@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('gmajor.controllers', [])
 
 .controller('GridCtrl', function($scope) {
 })

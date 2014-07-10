@@ -48,35 +48,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-    .state('tab.dash', {
-      url: '/dash',
-      views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
-        }
-      }
-    })
-
-    .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
-
     .state('tab.account', {
       url: '/account',
       views: {
@@ -88,7 +59,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/grid');
 
 });
 

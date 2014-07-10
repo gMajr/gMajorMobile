@@ -32,3 +32,44 @@
 2014-07-10 14:42:08.450 gMajor[9661:70b] [CDVTimer][TotalPluginStartup] 1.260996ms
 2014-07-10 14:42:08.539 gMajor[9661:70b] Resetting plugins due to page load.
 2014-07-10 14:42:08.659 gMajor[9661:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/dash
+2014-07-10 14:43:41.192 gMajor[10049:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 14:43:41.198 gMajor[10049:70b] Unlimited access to network resources
+2014-07-10 14:43:41.212 gMajor[10049:70b] [CDVTimer][keyboard] 0.054002ms
+2014-07-10 14:43:41.212 gMajor[10049:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 14:43:41.212 gMajor[10049:70b] [CDVTimer][statusbar] 0.325978ms
+2014-07-10 14:43:41.213 gMajor[10049:70b] [CDVTimer][TotalPluginStartup] 1.084030ms
+2014-07-10 14:43:41.241 gMajor[10049:70b] Resetting plugins due to page load.
+2014-07-10 14:43:41.337 gMajor[10049:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/grid
+2014-07-10 14:45:24.527 gMajor[10419:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 14:45:24.533 gMajor[10419:70b] Unlimited access to network resources
+2014-07-10 14:45:24.546 gMajor[10419:70b] [CDVTimer][keyboard] 0.050008ms
+2014-07-10 14:45:24.546 gMajor[10419:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 14:45:24.546 gMajor[10419:70b] [CDVTimer][statusbar] 0.326991ms
+2014-07-10 14:45:24.547 gMajor[10419:70b] [CDVTimer][TotalPluginStartup] 1.070976ms
+2014-07-10 14:45:24.580 gMajor[10419:70b] Resetting plugins due to page load.
+2014-07-10 14:45:24.684 gMajor[10419:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/grid
+2014-07-10 14:46:21.917 gMajor[10788:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 14:46:21.923 gMajor[10788:70b] Unlimited access to network resources
+2014-07-10 14:46:21.939 gMajor[10788:70b] [CDVTimer][keyboard] 0.057995ms
+2014-07-10 14:46:21.939 gMajor[10788:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 14:46:21.940 gMajor[10788:70b] [CDVTimer][statusbar] 0.393033ms
+2014-07-10 14:46:21.940 gMajor[10788:70b] [CDVTimer][TotalPluginStartup] 1.285017ms
+2014-07-10 14:46:22.023 gMajor[10788:70b] Resetting plugins due to page load.
+2014-07-10 14:46:22.141 gMajor[10788:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/grid
+2014-07-10 15:18:24.169 gMajor[11121:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 15:18:24.179 gMajor[11121:70b] Unlimited access to network resources
+2014-07-10 15:18:24.197 gMajor[11121:70b] [CDVTimer][keyboard] 0.083983ms
+2014-07-10 15:18:24.197 gMajor[11121:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 15:18:24.197 gMajor[11121:70b] [CDVTimer][statusbar] 0.440001ms
+2014-07-10 15:18:24.198 gMajor[11121:70b] [CDVTimer][TotalPluginStartup] 1.423001ms
+2014-07-10 15:18:24.311 gMajor[11121:70b] Resetting plugins due to page load.
+2014-07-10 15:18:24.463 gMajor[11121:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/grid
+2014-07-10 15:18:46.925 gMajor[11121:70b] Received memory warning.
+2014-07-10 15:41:31.317 gMajor[11527:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 15:41:31.324 gMajor[11527:70b] Unlimited access to network resources
+2014-07-10 15:41:31.341 gMajor[11527:70b] [CDVTimer][keyboard] 0.087023ms
+2014-07-10 15:41:31.342 gMajor[11527:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 15:41:31.342 gMajor[11527:70b] [CDVTimer][statusbar] 0.402987ms
+2014-07-10 15:41:31.342 gMajor[11527:70b] [CDVTimer][TotalPluginStartup] 1.355052ms
+2014-07-10 15:41:31.421 gMajor[11527:70b] Resetting plugins due to page load.
+2014-07-10 15:41:31.551 gMajor[11527:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/grid

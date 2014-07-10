@@ -1,5 +1,8 @@
 angular.module('starter.controllers', [])
 
+.controller('GridCtrl', function($scope) {
+})
+
 .controller('DashCtrl', function($scope) {
 })
 

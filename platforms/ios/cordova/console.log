@@ -7,3 +7,28 @@
 2014-07-10 14:33:37.227 HelloCordova[8636:70b] [CDVTimer][TotalPluginStartup] 1.218021ms
 2014-07-10 14:33:37.308 HelloCordova[8636:70b] Resetting plugins due to page load.
 2014-07-10 14:33:37.417 HelloCordova[8636:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/551E3F9E-7CA6-4B5A-89BC-BAEC32719445/HelloCordova.app/www/index.html#/tab/dash
+2014-07-10 14:35:38.019 gMajor[8876:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 14:35:38.026 gMajor[8876:70b] Unlimited access to network resources
+2014-07-10 14:35:38.029 gMajor[8876:70b] Fix applied for database locations?: YES
+2014-07-10 14:35:38.044 gMajor[8876:70b] [CDVTimer][keyboard] 0.082970ms
+2014-07-10 14:35:38.045 gMajor[8876:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 14:35:38.045 gMajor[8876:70b] [CDVTimer][statusbar] 0.369012ms
+2014-07-10 14:35:38.045 gMajor[8876:70b] [CDVTimer][TotalPluginStartup] 1.235008ms
+2014-07-10 14:35:38.138 gMajor[8876:70b] Resetting plugins due to page load.
+2014-07-10 14:35:38.262 gMajor[8876:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/dash
+2014-07-10 14:41:08.475 gMajor[9294:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 14:41:08.480 gMajor[9294:70b] Unlimited access to network resources
+2014-07-10 14:41:08.494 gMajor[9294:70b] [CDVTimer][keyboard] 0.088036ms
+2014-07-10 14:41:08.494 gMajor[9294:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 14:41:08.494 gMajor[9294:70b] [CDVTimer][statusbar] 0.306964ms
+2014-07-10 14:41:08.495 gMajor[9294:70b] [CDVTimer][TotalPluginStartup] 1.148999ms
+2014-07-10 14:41:08.522 gMajor[9294:70b] Resetting plugins due to page load.
+2014-07-10 14:41:08.614 gMajor[9294:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/dash
+2014-07-10 14:42:08.426 gMajor[9661:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 14:42:08.432 gMajor[9661:70b] Unlimited access to network resources
+2014-07-10 14:42:08.449 gMajor[9661:70b] [CDVTimer][keyboard] 0.061989ms
+2014-07-10 14:42:08.449 gMajor[9661:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 14:42:08.449 gMajor[9661:70b] [CDVTimer][statusbar] 0.396967ms
+2014-07-10 14:42:08.450 gMajor[9661:70b] [CDVTimer][TotalPluginStartup] 1.260996ms
+2014-07-10 14:42:08.539 gMajor[9661:70b] Resetting plugins due to page load.
+2014-07-10 14:42:08.659 gMajor[9661:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/dash

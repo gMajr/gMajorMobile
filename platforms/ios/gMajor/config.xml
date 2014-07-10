@@ -28,9 +28,9 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
-    <name>HelloCordova</name>
+    <name>gMajor</name>
     <description>
-        An Ionic Framework and Cordova project.
+        Make music, not war.
     </description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">
       Ionic Framework Team

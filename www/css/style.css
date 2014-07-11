@@ -1,1 +1,9 @@
 /* Empty. Add your own CSS if you like */
+.grid-col {
+  width: 75px;
+  float: left;
+}
+
+.mGrid{
+  width: 100%;
+}

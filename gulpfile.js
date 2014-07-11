@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('gulp-shell');
+var shelljs = require('shelljs');
 
 var paths = {
   // all our client app js files, not including 3rd party js files
@@ -50,7 +51,7 @@ gulp.task('install', ['git-check'], function() {
 });
 
 gulp.task('git-check', function(done) {
-  if (!sh.which('git')) {
+  if (!shelljs.which('git')) {
     console.log(
       '  ' + gutil.colors.red('Git is not installed.'),
       '\n  Git, the version control system, is required to download Ionic.',

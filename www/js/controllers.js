@@ -10,42 +10,10 @@ angular.module('gmajor.controllers', [])
   };
 })
 
-.controller('GridController', function ($scope) {
+.controller('GridController', function ($scope, GridTargetFactory) {
   $scope.navTitle = 'Grid Yo!';
 
-  $scope.columns = [[{x: 59,
-                      y: 59},
-                     {x: 59,
-                      y: 118}, 
-                     {x: 59,
-                      y: 177},
-                     {x: 59,
-                      y: 236}],
-                    [{x: 118,
-                      y: 59},
-                     {x: 118,
-                      y: 118}, 
-                     {x: 118,
-                      y: 177},
-                     {x: 118,
-                      y: 236}],
-                    [{x: 177,
-                      y: 59},
-                     {x: 177,
-                      y: 118}, 
-                     {x: 177,
-                      y: 177},
-                     {x: 177,
-                      y: 236}],
-                    [{x: 236,
-                      y: 59},
-                     {x: 236,
-                      y: 118}, 
-                     {x: 236,
-                      y: 177},
-                     {x: 236,
-                      y: 236}]
-                   ];
+  $scope.columns = GridTargetFactory.columns;
 
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',

@@ -73,3 +73,23 @@
 2014-07-10 15:41:31.342 gMajor[11527:70b] [CDVTimer][TotalPluginStartup] 1.355052ms
 2014-07-10 15:41:31.421 gMajor[11527:70b] Resetting plugins due to page load.
 2014-07-10 15:41:31.551 gMajor[11527:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/grid
+2014-07-10 16:20:46.866 gMajor[11899:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 16:20:46.871 gMajor[11899:70b] Unlimited access to network resources
+2014-07-10 16:20:46.884 gMajor[11899:70b] [CDVTimer][keyboard] 0.051022ms
+2014-07-10 16:20:46.884 gMajor[11899:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 16:20:46.884 gMajor[11899:70b] [CDVTimer][statusbar] 0.303984ms
+2014-07-10 16:20:46.885 gMajor[11899:70b] [CDVTimer][TotalPluginStartup] 1.012981ms
+2014-07-10 16:20:46.924 gMajor[11899:70b] Resetting plugins due to page load.
+2014-07-10 16:20:47.024 gMajor[11899:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/tab/grid
+2014-07-10 16:21:27.709 gMajor[11899:70b] Received memory warning.
+2014-07-10 18:14:18.200 gMajor[12879:70b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 18:14:18.208 gMajor[12879:70b] Unlimited access to network resources
+2014-07-10 18:14:18.230 gMajor[12879:70b] [CDVTimer][keyboard] 0.090003ms
+2014-07-10 18:14:18.230 gMajor[12879:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 18:14:18.230 gMajor[12879:70b] [CDVTimer][statusbar] 0.313997ms
+2014-07-10 18:14:18.231 gMajor[12879:70b] [CDVTimer][TotalPluginStartup] 1.046002ms
+2014-07-10 18:14:18.353 gMajor[12879:70b] Resetting plugins due to page load.
+2014-07-10 18:14:18.573 gMajor[12879:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/one
+2014-07-10 18:14:22.591 gMajor[12879:70b] Going to one
+2014-07-10 18:14:24.523 gMajor[12879:70b] Going to three
+2014-07-10 18:14:27.197 gMajor[12879:70b] Going to two

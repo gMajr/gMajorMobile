@@ -1,11 +1,11 @@
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// 'gmajor' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+// 'gmajor.services' is found in services.js
+// 'gmajor.controllers' is found in controllers.js
+angular.module('gmajor', ['ionic', 'gmajor.controllers', 'gmajor.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -29,37 +29,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
-    })
-
-    // Each tab has its own nav history stack:
-
-    .state('tab.grid', {
-      url: '/grid',
-      views: {
-        'tab-grid': {
-          templateUrl: 'templates/tab-grid.html',
-          controller: 'GridCtrl'
-        }
-      }
-    })
-
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
-        }
-      }
-    })
+      .state('one', {
+          url: '/one',
+          controller: 'OneController',
+          templateUrl: 'templates/one.html'
+      })
+      .state('two', {
+          url: '/two',
+          controller: 'TwoController',
+          templateUrl: 'templates/two.html'
+      })
+      .state('three', {
+          url: '/three',
+          controller: 'ThreeController',
+          templateUrl: 'templates/three.html'
+      });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/grid');
+  $urlRouterProvider.otherwise('/one');
 
 });
 

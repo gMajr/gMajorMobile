@@ -1,18 +1,50 @@
 angular.module('gmajor.controllers', [])
 
-.controller('GridCtrl', function($scope) {
+.controller('MenuController', function ($scope, $location, MenuService) {
+    // "MenuService" is a service returning mock data (services.js)
+    $scope.list = MenuService.all();
+
+    $scope.goTo = function(page) {
+        console.log('Going to ' + page);
+        $location.url('/' + page);
+    };
 })
 
-.controller('DashCtrl', function($scope) {
+.controller('OneController', function ($scope) {
+    $scope.navTitle = "Page One Title";
+
+    $scope.leftButtons = [{
+        type: 'button-icon icon ion-navicon',
+        tap: function(e) {
+            // TODO: Stuff on click
+        }
+    }];
+
+    $scope.rightButtons = [];
 })
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
+.controller('TwoController', function ($scope) {
+    $scope.navTitle = "Page Two Title";
+
+    $scope.leftButtons = [{
+        type: 'button-icon icon ion-navicon',
+        tap: function(e) {
+            // TODO: Stuff on click
+        }
+    }];
+
+    $scope.rightButtons = [];
 })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
+.controller('ThreeController', function ($scope) {
+    $scope.navTitle = "Page Three Title";
 
-.controller('AccountCtrl', function($scope) {
+    $scope.leftButtons = [{
+        type: 'button-icon icon ion-navicon',
+        tap: function(e) {
+            // TODO: Stuff on click
+        }
+    }];
+
+    $scope.rightButtons = [];
 });

@@ -29,37 +29,24 @@ angular.module('gmajor', ['ionic', 'gmajor.controllers', 'gmajor.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
-    })
-
-    // Each tab has its own nav history stack:
-
-    .state('tab.grid', {
-      url: '/grid',
-      views: {
-        'tab-grid': {
-          templateUrl: 'templates/tab-grid.html',
-          controller: 'GridCtrl'
-        }
-      }
-    })
-
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
-        }
-      }
-    })
+      .state('one', {
+          url: '/one',
+          controller: 'OneController',
+          templateUrl: 'templates/one.html'
+      })
+      .state('two', {
+          url: '/two',
+          controller: 'TwoController',
+          templateUrl: 'templates/two.html'
+      })
+      .state('three', {
+          url: '/three',
+          controller: 'ThreeController',
+          templateUrl: 'templates/three.html'
+      });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/grid');
+  $urlRouterProvider.otherwise('/one');
 
 });
 

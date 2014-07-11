@@ -7,29 +7,8 @@
     <h2>{{navTitle}}</h2>
     <p>I'm a grid.</p>
     <div class="mGrid">
-      <div class="grid-col">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-      </div>
-      <div class="grid-col">
-        <button>5</button>
-        <button>6</button>
-        <button>7</button>
-        <button>8</button>
-      </div>      
-      <div class="grid-col">
-        <button>9</button>
-        <button>10</button>
-        <button>11</button>
-        <button>12</button>
-      </div>
-      <div class="grid-col">
-        <button>13</button>
-        <button>14</button>
-        <button>15</button>
-        <button>16</button>
+      <div class="grid-col" ng-repeat="column in columns">
+        <button ng-repeat="target in column">{{target.name}}</button>
       </div>
     </div>
     <br />

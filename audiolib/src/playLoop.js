@@ -1,3 +1,15 @@
+// these params should mostly be accessible from the Grid instantiation.
+// the function should not be playSounds... 
+// Instead, the interface should simply call:
+// playSound(m,n)... m and n represent the matrix coordinates.
+// all the other variables are already represented in the class instantiation.
+// osc. sshould be an instance...
+// we can also modularize this code.  Below is a decay and attack function.  We should seperate these functions
+// out.  Again, they should be a prototype function, otherwise we're being sloppy and repeating code.
+//Also, we need to establish a system that plays the sounds on a scale and on a consistent chord.
+// we also need to include a note-to-frequency conversion equation.
+
+
 // too many params for an interative function
 // intsrument should have this as a method
 var playSounds = function(SoundProfile, Modules, frequency, volume, sampleRate, duration, start){

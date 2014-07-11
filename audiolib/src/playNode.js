@@ -1,3 +1,8 @@
+
+//I'm not too sure what is happening here.  I would definitely like to discuss.
+// can you comment on this a little more ,and what your overall vision is?
+
+
 // eventual params = buffer, pan, x, y, z, sendGain, mainGain, playbackRate, noteTime
 // hardcoded for now
 

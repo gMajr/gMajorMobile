@@ -105,3 +105,43 @@
 2014-07-10 18:32:47.156 gMajor[13281:70b] Finished load of: file:///Users/bobowen/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/E2608A38-95C4-4E70-A4F6-1E26FD92BD47/gMajor.app/www/index.html#/one
 2014-07-10 18:33:57.558 gMajor[13281:70b] Going to two
 2014-07-10 18:33:59.309 gMajor[13281:70b] Going to one
+2014-07-10 21:15:48.758 gMajor[932:90b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 21:15:48.902 gMajor[932:90b] Unlimited access to network resources
+2014-07-10 21:15:50.446 gMajor[932:90b] [CDVTimer][keyboard] 0.079989ms
+2014-07-10 21:15:50.447 gMajor[932:90b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 21:15:50.447 gMajor[932:90b] [CDVTimer][statusbar] 0.416994ms
+2014-07-10 21:15:50.448 gMajor[932:90b] [CDVTimer][TotalPluginStartup] 1.828969ms
+2014-07-10 21:15:50.794 gMajor[932:90b] Resetting plugins due to page load.
+>>>> frameSizeChanged = 4096
+>>>> frameSizeChanged = 4096
+2014-07-10 21:15:52.452 gMajor[932:90b] Finished load of: file:///Users/Will/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/37265345-B2F9-47A5-B3E9-8C95B80FF781/gMajor.app/www/index.html#/one
+2014-07-10 21:16:11.938 gMajor[932:90b] Going to two
+2014-07-10 21:16:14.364 gMajor[932:90b] Going to three
+2014-07-10 21:16:16.428 gMajor[932:90b] Going to one
+2014-07-10 21:16:18.359 gMajor[932:90b] Going to two
+2014-07-10 21:16:20.025 gMajor[932:90b] Going to one
+2014-07-10 21:16:27.111 gMajor[932:90b] Going to two
+2014-07-10 21:16:29.677 gMajor[932:90b] Going to one
+2014-07-10 21:34:14.062 gMajor[1296:90b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 21:34:14.068 gMajor[1296:90b] Unlimited access to network resources
+2014-07-10 21:34:14.083 gMajor[1296:90b] [CDVTimer][keyboard] 0.056982ms
+2014-07-10 21:34:14.084 gMajor[1296:90b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 21:34:14.084 gMajor[1296:90b] [CDVTimer][statusbar] 0.370026ms
+2014-07-10 21:34:14.085 gMajor[1296:90b] [CDVTimer][TotalPluginStartup] 1.410007ms
+2014-07-10 21:34:14.133 gMajor[1296:90b] Resetting plugins due to page load.
+2014-07-10 21:34:14.341 gMajor[1296:90b] Finished load of: file:///Users/Will/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/37265345-B2F9-47A5-B3E9-8C95B80FF781/gMajor.app/www/index.html#/one
+2014-07-10 21:36:01.468 gMajor[1618:90b] Multi-tasking -> Device: YES, App: YES
+2014-07-10 21:36:01.483 gMajor[1618:90b] Unlimited access to network resources
+2014-07-10 21:36:01.508 gMajor[1618:90b] [CDVTimer][keyboard] 0.092983ms
+2014-07-10 21:36:01.509 gMajor[1618:90b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-07-10 21:36:01.509 gMajor[1618:90b] [CDVTimer][statusbar] 0.512004ms
+2014-07-10 21:36:01.510 gMajor[1618:90b] [CDVTimer][TotalPluginStartup] 1.592040ms
+2014-07-10 21:36:01.621 gMajor[1618:90b] Resetting plugins due to page load.
+2014-07-10 21:36:01.897 gMajor[1618:90b] Finished load of: file:///Users/Will/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/37265345-B2F9-47A5-B3E9-8C95B80FF781/gMajor.app/www/index.html#/one
+>>>> frameSizeChanged = 4096
+>>>> frameSizeChanged = 4096
+2014-07-10 21:37:02.301 gMajor[1618:90b] Going to two
+2014-07-10 21:39:43.508 gMajor[1618:90b] Going to three
+2014-07-10 21:39:45.255 gMajor[1618:90b] Going to one
+2014-07-10 23:10:14.030 gMajor[1618:61bf] 23:10:14.030 WARNING:   235: Default audio device changed. Restart the simulator to have it use the newly-selected device.
+2014-07-10 23:10:15.205 gMajor[1618:9b07] 23:10:15.205 WARNING:   235: Default audio device changed. Restart the simulator to have it use the newly-selected device.

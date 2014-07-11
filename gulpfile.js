@@ -5,13 +5,15 @@ var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
-var sh = require('shelljs');
+var sh = require('gulp-shell');
 
 var paths = {
+  // all our client app js files, not including 3rd party js files
+  audio: ['audiolib/src/main.js', 'audiolib/src/buildGrid.js', 'audiolib/src/playLoop.js', 'audiolib/src/getSound.js', 'audiolib/src/sound.js', 'audiolib/src/playGrid.js'],
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['audio', 'serve-ionic']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -25,7 +27,18 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+gulp.task('audio', function(){
+  gulp.src(paths.audio)
+    .pipe(concat('audiow.js'))
+    .pipe(gulp.dest('www/js/'));
+});
+
+gulp.task('serve-ionic', sh.task([
+  'ionic serve'
+]));
+
 gulp.task('watch', function() {
+  gulp.watch(paths.audio, ['audio']);
   gulp.watch(paths.sass, ['sass']);
 });
 

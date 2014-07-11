@@ -1,0 +1,23 @@
+{
+  "name": "audioW",
+  "version": "0.0.0",
+  "description": "audioW ======",
+  "main": "audiow.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gMajr/audioW.git"
+  },
+  "author": "gMajr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gMajr/audioW/issues"
+  },
+  "homepage": "https://github.com/gMajr/audioW",
+  "devDependencies": {
+    "gulp": "^3.8.6",
+    "gulp-concat": "^2.3.3"
+  }
+}

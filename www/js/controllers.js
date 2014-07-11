@@ -13,10 +13,39 @@ angular.module('gmajor.controllers', [])
 .controller('GridController', function ($scope) {
   $scope.navTitle = 'Grid Yo!';
 
-  $scope.columns = [[{name: 1},{name: 2} ,{name: 3} ,{name: 4}],
-                    [{name: 5},{name: 6} ,{name: 7} ,{name: 8}],
-                    [{name: 9},{name: 10} ,{name: 11} ,{name: 12}],
-                    [{name: 13},{name: 14} ,{name: 15} ,{name: 16}]];
+  $scope.columns = [[{x: 59,
+                      y: 59},
+                     {x: 59,
+                      y: 118}, 
+                     {x: 59,
+                      y: 177},
+                     {x: 59,
+                      y: 236}],
+                    [{x: 118,
+                      y: 59},
+                     {x: 118,
+                      y: 118}, 
+                     {x: 118,
+                      y: 177},
+                     {x: 118,
+                      y: 236}],
+                    [{x: 177,
+                      y: 59},
+                     {x: 177,
+                      y: 118}, 
+                     {x: 177,
+                      y: 177},
+                     {x: 177,
+                      y: 236}],
+                    [{x: 236,
+                      y: 59},
+                     {x: 236,
+                      y: 118}, 
+                     {x: 236,
+                      y: 177},
+                     {x: 236,
+                      y: 236}]
+                   ];
 
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',

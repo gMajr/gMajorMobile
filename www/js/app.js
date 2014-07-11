@@ -29,6 +29,11 @@ angular.module('gmajor', ['ionic', 'gmajor.controllers', 'gmajor.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+      .state('grid', {
+          url: '/grid',
+          controller: 'GridController',
+          templateUrl: 'templates/grid.html'
+      })
       .state('one', {
           url: '/one',
           controller: 'OneController',
@@ -46,7 +51,7 @@ angular.module('gmajor', ['ionic', 'gmajor.controllers', 'gmajor.services'])
       });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/one');
+  $urlRouterProvider.otherwise('/grid');
 
 });
 

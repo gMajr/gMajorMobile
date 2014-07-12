@@ -1,4 +1,4 @@
-angular.module('gmajor.services', [])
+angular.module('gmajor.menuService', [])
 
 /**
  * A simple example service that returns some data.
@@ -12,9 +12,11 @@ angular.module('gmajor.services', [])
     { text: '3 Page Three', iconClass: 'icon ion-star', link: 'three'}
   ];
 
+
   return {
     all: function() {
       return menuItems;
     }
   }
 });
+

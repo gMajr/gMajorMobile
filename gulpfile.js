@@ -11,10 +11,10 @@ var shelljs = require('shelljs');
 var paths = {
   // all our client app js files, not including 3rd party js files
   audio: ['audiolib/src/main.js', 'audiolib/src/buildGrid.js', 'audiolib/src/playLoop.js', 'audiolib/src/getSound.js', 'audiolib/src/sound.js', 'audiolib/src/playGrid.js'],
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  dependencies: [ 'www/js/app.js', 'www/js/services/**/*.js', 'www/js/controllers/**/*.js']
 };
 
-gulp.task('default', ['audio', 'serve-ionic']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -34,6 +34,14 @@ gulp.task('audio', function(){
     .pipe(gulp.dest('www/js/'));
 });
 
+gulp.task('dependencies', function(){
+  gulp.src(paths.dependencies)
+    .pipe(concat('dependencies.js'))
+    .pipe(gulp.dest('www/js/'));
+});
+
+
+
 gulp.task('serve-ionic', sh.task([
   'ionic serve'
 ]));
@@ -41,6 +49,7 @@ gulp.task('serve-ionic', sh.task([
 gulp.task('watch', function() {
   gulp.watch(paths.audio, ['audio']);
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.dependencies, ['dependencies']);
 });
 
 gulp.task('install', ['git-check'], function() {
@@ -62,3 +71,5 @@ gulp.task('git-check', function(done) {
   }
   done();
 });
+
+gulp.task('default', ['audio','dependencies', 'serve-ionic', 'watch']);

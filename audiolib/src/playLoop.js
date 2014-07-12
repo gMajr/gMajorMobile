@@ -1,5 +1,5 @@
 // these params should mostly be accessible from the Grid instantiation.
-// the function should not be playSounds... 
+// the function should not be playSounds...
 // Instead, the interface should simply call:
 // playSound(m,n)... m and n represent the matrix coordinates.
 // all the other variables are already represented in the class instantiation.
@@ -12,7 +12,16 @@
 
 // too many params for an interative function
 // intsrument should have this as a method
+///
+///
+
+// var InitializeSound(){
+
+
+// }
+
 var playSounds = function(SoundProfile, Modules, frequency, volume, sampleRate, duration, start){
+  var amplitude;
   var attackLen = sampleRate * SoundProfile.attack();
   var buffer = context.createBuffer(1, duration * sampleRate, sampleRate);
   var data = buffer.getChannelData(0);
@@ -23,7 +32,9 @@ var playSounds = function(SoundProfile, Modules, frequency, volume, sampleRate, 
     }else{
       amplitude = volume * Math.pow((1-((i-(sampleRate*SoundProfile.attack()))/(sampleRate*(duration-SoundProfile.attack())))),SoundProfile.dampen(sampleRate, frequency, volume))
     }
-    data[i] = amplitude * SoundProfile.wave(i, sampleRate, frequency, volume)
+    val = amplitude * SoundProfile.wave(i, sampleRate, frequency, volume);
+    data[i<<1] = val;
+    data[(i<<1)+1] = val>> 8;
   }
 
   var osc = context.createBufferSource();
@@ -34,7 +45,7 @@ var playSounds = function(SoundProfile, Modules, frequency, volume, sampleRate, 
 
   osc.buffer = buffer;
   // turn off to call once // turn off the 's' from the function (see below)
-  osc.loop = true;
+  osc.loop = false;
   osc.connect(context.destination);
 
   //play sound after start time

@@ -1,17 +1,6 @@
-// should split these out once they do more
-angular.module('gmajor.controllers', [])
+angular.module('gmajor.gridController', [])
 
-.controller('MenuController', function ($scope, $location, MenuService) {
-  // "MenuService" is a service returning mock data (services.js)
-  $scope.list = MenuService.all();
-
-  $scope.goTo = function(page) {
-    console.log('Going to ' + page);
-    $location.url('/' + page);
-  };
-})
-
-.controller('GridController', function ($scope, GridTargetFactory) {
+.controller('GridController', function ($scope, Grid, GridTargetFactory) {
   $scope.navTitle = 'Grid Yo!';
 
   $scope.columns = GridTargetFactory.columns;

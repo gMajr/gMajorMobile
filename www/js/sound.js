@@ -1,15 +1,17 @@
-//Again, I think these will be great functions for the library... but these are probably not needed for
-// our library.
-
 
 
 var playSound = function(instrument, frequency){
-  playSounds(profile, instrument, 300, 1, 44100, 1, 0 );
+
 };
 
 var scheduleSound = function(){
 
-};
+}
+
+
+
+
+
 
 
 var SoundProfile = {

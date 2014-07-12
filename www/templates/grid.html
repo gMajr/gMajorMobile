@@ -8,7 +8,7 @@
     <p>I'm a grid.</p>
     <div class="mGrid">
       <div class="grid-col" ng-repeat="column in columns">
-        <button ng-repeat="target in column">{{target.name}}</button>
+        <button ng-repeat="target in column" ng-click="leftButtons.tap(target.name)">{{target.name}}</button>
       </div>
     </div>
     <br />

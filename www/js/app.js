@@ -5,8 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'gmajor.services' is found in services.js
 // 'gmajor.controllers' is found in controllers.js
-angular.module('gmajor', ['ionic', 'gmajor.controllers', 'gmajor.services'])
-
+angular.module('gmajor', ['ionic',
+                          'gmajor.controllers',
+                          'gmajor.gridController',
+                          'gmajor.gridService',
+                          'gmajor.menuController',
+                          'gmajor.menuService',
+                          'gmajor.main' ])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

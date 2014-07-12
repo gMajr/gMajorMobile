@@ -12,8 +12,9 @@ angular.module('gmajor', ['ionic',
                           'gmajor.menuController',
                           'gmajor.menuService',
                           'gmajor.main',
+                          'gmajor.gridTargetFactory',
                           'gmajor.directives'
-                           ])
+                          ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

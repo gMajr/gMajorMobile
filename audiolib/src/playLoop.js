@@ -15,10 +15,10 @@
 ///
 ///
 
-var InitializeSound(){
+// var InitializeSound(){
 
 
-}
+// }
 
 var playSounds = function(SoundProfile, Modules, frequency, volume, sampleRate, duration, start){
   var amplitude;

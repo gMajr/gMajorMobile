@@ -10,7 +10,7 @@ var shelljs = require('shelljs');
 
 var paths = {
   // all our client app js files, not including 3rd party js files
-  audio: ['audiolib/src/main.js', 'audiolib/src/buildGrid.js', 'audiolib/src/playLoop.js', 'audiolib/src/getSound.js', 'audiolib/src/sound.js', 'audiolib/src/playGrid.js'],
+  audio: ['audiolib/src/main.js'],
   sass: ['./scss/**/*.scss'],
   dependencies: [ 'www/js/app.js', 'www/js/services/**/*.js', 'www/js/controllers/**/*.js']
 };
@@ -30,7 +30,7 @@ gulp.task('sass', function(done) {
 
 gulp.task('audio', function(){
   gulp.src(paths.audio)
-    .pipe(concat('audiow.js'))
+    .pipe(concat('sounds.js'))
     .pipe(gulp.dest('www/js/'));
 });
 

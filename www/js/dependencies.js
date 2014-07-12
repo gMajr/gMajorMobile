@@ -72,7 +72,7 @@ angular.module('gmajor.gridService', [])
   var toggle = function(key, module, profile){
     // add note to grid
     // makes any noise
-    playSounds(profile, module, 300, 1, 44100, 1, 0 );
+    playSounds('piano', 300, 1, 1, 0);
 
   };
 
@@ -96,10 +96,11 @@ angular.module('gmajor.gridTargetFactory', [])
   var mSpacingOffset = Math.floor(298/(mMax+1));
 
   var columns = [];
+  var soundBoard = new SoundBoard()
   var play = function(){
     // add note to grid
     // makes any noise
-    playSounds(SoundProfile, Modules, 400, 1, 44100, 1, 0 );
+    soundBoard.playSounds('piano', 400, 1, 1, 0);
   };
   // generate an m x n collection of target objects
     // Associate a row and column with each object
@@ -191,63 +192,7 @@ angular.module('gmajor.gridController', [])
 
   $scope.buttonClick = function(){
     alert('button clicked');
-
-    var SoundProfile = {
-    name: 'piano',
-    attack: function() { return 0.002; },
-    dampen: function(sampleRate, frequency, volume) {
-      return Math.pow(0.5*Math.log((frequency*volume)/sampleRate),2);
-    },
-    wave: function(i, sampleRate, frequency, volume) {
-      var base = Modules[0];
-      return Modules[1](
-        i,
-        sampleRate,
-        frequency,
-        Math.pow(base(i, sampleRate, frequency, 0), 2) +
-          (0.75 * base(i, sampleRate, frequency, 0.25)) +
-          (0.1 * base(i, sampleRate, frequency, 0.5))
-        );
-      }
-    };
-
-    // I have no idea what these do
-    Modules = [
-      function(i, sampleRate, frequency, x) {
-        return 1 * Math.sin(2 * Math.PI * ((i / sampleRate) * frequency) + x);
-      },
-      function(i, sampleRate, frequency, x) {
-        return 1 * Math.sin(4 * Math.PI * ((i / sampleRate) * frequency) + x);
-      },
-      function(i, sampleRate, frequency, x) {
-        return 1 * Math.sin(8 * Math.PI * ((i / sampleRate) * frequency) + x);
-      },
-      function(i, sampleRate, frequency, x) {
-        return 1 * Math.sin(0.5 * Math.PI * ((i / sampleRate) * frequency) + x);
-      },
-      function(i, sampleRate, frequency, x) {
-        return 1 * Math.sin(0.25 * Math.PI * ((i / sampleRate) * frequency) + x);
-      },
-      function(i, sampleRate, frequency, x) {
-        return 0.5 * Math.sin(2 * Math.PI * ((i / sampleRate) * frequency) + x);
-      },
-      function(i, sampleRate, frequency, x) {
-        return 0.5 * Math.sin(4 * Math.PI * ((i / sampleRate) * frequency) + x);
-      },
-      function(i, sampleRate, frequency, x) {
-        return 0.5 * Math.sin(8 * Math.PI * ((i / sampleRate) * frequency) + x);
-      },
-      function(i, sampleRate, frequency, x) {
-        return 0.5 * Math.sin(0.5 * Math.PI * ((i / sampleRate) * frequency) + x);
-      },
-      function(i, sampleRate, frequency, x) {
-        return 0.5 * Math.sin(0.25 * Math.PI * ((i / sampleRate) * frequency) + x);
-      }
-    ];
-
-    playSounds(SoundProfile, Modules, 100, 1, 44100, 1, 0 );
-    playSounds(SoundProfile, Modules, 600, 1, 44100, 1, 0 + .5);
-  }
+}
 
 })
 .controller('OneController', function ($scope) {

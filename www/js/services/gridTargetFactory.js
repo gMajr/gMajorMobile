@@ -8,10 +8,11 @@ angular.module('gmajor.gridTargetFactory', [])
   var mSpacingOffset = Math.floor(298/(mMax+1));
 
   var columns = [];
+  var soundBoard = new SoundBoard()
   var play = function(){
     // add note to grid
     // makes any noise
-    playSounds(SoundProfile, Modules, 400, 1, 44100, 1, 0 );
+    soundBoard.playSounds('piano', 400, 1, 1, 0);
   };
   // generate an m x n collection of target objects
     // Associate a row and column with each object

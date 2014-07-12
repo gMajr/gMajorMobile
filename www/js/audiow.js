@@ -55,10 +55,10 @@ var grid = function(rows, cols){
 ///
 ///
 
-var InitializeSound(){
+// var InitializeSound(){
 
 
-}
+// }
 
 var playSounds = function(SoundProfile, Modules, frequency, volume, sampleRate, duration, start){
   var amplitude;
@@ -93,7 +93,7 @@ var playSounds = function(SoundProfile, Modules, frequency, volume, sampleRate, 
 };
 
 // We can use this function for loading custom sounds
-// It also can be used to load the sounds we'll eventually need 
+// It also can be used to load the sounds we'll eventually need
 // code below looks messy, and does not look like it will work.  we need to expand this more.
 // getSound should be a prototype function of grid.
 

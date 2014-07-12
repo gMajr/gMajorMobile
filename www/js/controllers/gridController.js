@@ -1,28 +1,22 @@
-  angular.module('gmajor.gridController', [])
+angular.module('gmajor.gridController', [])
 
-.controller('GridController', function ($scope, Grid) {
+.controller('GridController', function ($scope, Grid, GridTargetFactory) {
   $scope.navTitle = 'Grid Yo!';
 
-  $scope.columns = [[{name: [0,0], on: false},{name: [0,1], on: false} ,{name: [0,2], on: false} ,{name: [0,3], on: false}],
-                    [{name: [1,0], on: false},{name: [1,1], on: false} ,{name: [1,2], on: false} ,{name: [1,3], on: false}],
-                    [{name: [2,0], on: false},{name: [2,1], on: false} ,{name: [2,2], on: false} ,{name: [2,3], on: false}],
-                    [{name: [3,0], on: false},{name: [3,1], on: false} ,{name: [3,2], on: false} ,{name: [3,3], on: false}]];
-//Weird syntax, why we doing an array here, yo?
-  $scope.leftButtons = {
+  $scope.columns = GridTargetFactory.columns;
+
+  $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',
     tap: function(e) {
-      console.log(e);
-      console.log(context.currentTime);//TEST!!!!
-      e['on']= !e['on'];
-      Grid.toggle(e.key, Modules, SoundProfile);
+        // TODO: Stuff on click
     }
-  };
+  }];
 
   $scope.rightButtons = [];
 
   $scope.buttonClick = function(){
-    console.log('button clicked');
-  }
+    alert('button clicked');
+
     var SoundProfile = {
     name: 'piano',
     attack: function() { return 0.002; },
@@ -76,8 +70,46 @@
       }
     ];
 
-    // playSounds(SoundProfile, Modules, 100, 1, 44100, 1, 0 );
-    // playSounds(SoundProfile, Modules, 600, 1, 44100, 1, 0 + .5);
+    playSounds(SoundProfile, Modules, 100, 1, 44100, 1, 0 );
+    playSounds(SoundProfile, Modules, 600, 1, 44100, 1, 0 + .5);
+  }
 
+})
+.controller('OneController', function ($scope) {
+    $scope.navTitle = "Page One Title";
 
+    $scope.leftButtons = [{
+        type: 'button-icon icon ion-navicon',
+        tap: function(e) {
+            // TODO: Stuff on click
+        }
+    }];
+
+    $scope.rightButtons = [];
+})
+
+.controller('TwoController', function ($scope) {
+    $scope.navTitle = "Page Two Title";
+
+    $scope.leftButtons = [{
+        type: 'button-icon icon ion-navicon',
+        tap: function(e) {
+            // TODO: Stuff on click
+        }
+    }];
+
+    $scope.rightButtons = [];
+})
+
+.controller('ThreeController', function ($scope) {
+    $scope.navTitle = "Page Three Title";
+
+    $scope.leftButtons = [{
+        type: 'button-icon icon ion-navicon',
+        tap: function(e) {
+            // TODO: Stuff on click
+        }
+    }];
+
+    $scope.rightButtons = [];
 });

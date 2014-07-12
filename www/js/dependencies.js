@@ -11,7 +11,10 @@ angular.module('gmajor', ['ionic',
                           'gmajor.gridService',
                           'gmajor.menuController',
                           'gmajor.menuService',
-                          'gmajor.main' ])
+                          'gmajor.main',
+                          'gmajor.directives'
+                           ])
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -117,34 +120,62 @@ angular.module('gmajor.menuService', [])
     all: function() {
       return menuItems;
     }
-  };
+  }
+})
+
+.factory('GridTargetFactory', function(){
+  var iPhoneSVGWidth = 298;
+  var nMax = 4;
+  var mMax = 4;
+  var nSpacingOffset = Math.floor(298/(nMax+1));
+  var mSpacingOffset = Math.floor(298/(mMax+1));
+
+  var columns = [];
+  // generate an m x n collection of target objects
+    // Associate a row and column with each object
+    // Generate the svg pixel offset for placing the target on the screen
+    // Add a clickToggle function
+  for(var n = 0; n < nMax; n++) {
+    var currColumn = [];
+    for(var m = 0; m < mMax; m++) {
+      var newTarget = {
+        col: n,
+        row: m,
+        x: (n + 1) * nSpacingOffset,
+        y: (m + 1) * mSpacingOffset,
+        clickToggle: function() {
+          alert("Click button: " + this.col + " x " + this.row);
+        }
+      };
+      currColumn.push(newTarget);
+    }
+    columns.push(currColumn);
+  }
+
+  // return as array of arrays in column, row order.
+
+  return { 'columns': columns };
 });
 
-  angular.module('gmajor.gridController', [])
+angular.module('gmajor.gridController', [])
 
-.controller('GridController', function ($scope, Grid) {
+.controller('GridController', function ($scope, Grid, GridTargetFactory) {
   $scope.navTitle = 'Grid Yo!';
 
-  $scope.columns = [[{name: [0,0], on: false},{name: [0,1], on: false} ,{name: [0,2], on: false} ,{name: [0,3], on: false}],
-                    [{name: [1,0], on: false},{name: [1,1], on: false} ,{name: [1,2], on: false} ,{name: [1,3], on: false}],
-                    [{name: [2,0], on: false},{name: [2,1], on: false} ,{name: [2,2], on: false} ,{name: [2,3], on: false}],
-                    [{name: [3,0], on: false},{name: [3,1], on: false} ,{name: [3,2], on: false} ,{name: [3,3], on: false}]];
-//Weird syntax, why we doing an array here, yo?
-  $scope.leftButtons = {
+  $scope.columns = GridTargetFactory.columns;
+
+  $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',
     tap: function(e) {
-      console.log(e);
-      console.log(context.currentTime);//TEST!!!!
-      e['on']= !e['on'];
-      Grid.toggle(e.key, Modules, SoundProfile);
+        // TODO: Stuff on click
     }
-  };
+  }];
 
   $scope.rightButtons = [];
 
   $scope.buttonClick = function(){
-    console.log('button clicked');
-  }
+    alert('button clicked');
+
     var SoundProfile = {
     name: 'piano',
     attack: function() { return 0.002; },
@@ -198,10 +229,48 @@ angular.module('gmajor.menuService', [])
       }
     ];
 
-    // playSounds(SoundProfile, Modules, 100, 1, 44100, 1, 0 );
-    // playSounds(SoundProfile, Modules, 600, 1, 44100, 1, 0 + .5);
+    playSounds(SoundProfile, Modules, 100, 1, 44100, 1, 0 );
+    playSounds(SoundProfile, Modules, 600, 1, 44100, 1, 0 + .5);
+  }
 
+})
+.controller('OneController', function ($scope) {
+    $scope.navTitle = "Page One Title";
 
+    $scope.leftButtons = [{
+        type: 'button-icon icon ion-navicon',
+        tap: function(e) {
+            // TODO: Stuff on click
+        }
+    }];
+
+    $scope.rightButtons = [];
+})
+
+.controller('TwoController', function ($scope) {
+    $scope.navTitle = "Page Two Title";
+
+    $scope.leftButtons = [{
+        type: 'button-icon icon ion-navicon',
+        tap: function(e) {
+            // TODO: Stuff on click
+        }
+    }];
+
+    $scope.rightButtons = [];
+})
+
+.controller('ThreeController', function ($scope) {
+    $scope.navTitle = "Page Three Title";
+
+    $scope.leftButtons = [{
+        type: 'button-icon icon ion-navicon',
+        tap: function(e) {
+            // TODO: Stuff on click
+        }
+    }];
+
+    $scope.rightButtons = [];
 });
 
 angular.module('gmajor.menuController', [])

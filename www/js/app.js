@@ -11,7 +11,10 @@ angular.module('gmajor', ['ionic',
                           'gmajor.gridService',
                           'gmajor.menuController',
                           'gmajor.menuService',
-                          'gmajor.main' ])
+                          'gmajor.main',
+                          'gmajor.directives'
+                           ])
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

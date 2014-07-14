@@ -1,5 +1,5 @@
 var express = require('express');
-var db = require(__dirname + '/db.js');
+var db = require(__dirname + '/db/db.js');
 db.init();
 
 var port = process.env.PORT || 8080;

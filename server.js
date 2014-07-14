@@ -1,6 +1,8 @@
 var express = require('express');
+var db = require(__dirname + '/db.js');
+db.init();
 
+var port = process.env.PORT || 8080;
 var server = express();
 server.use(express.static(__dirname + '/www'));
-var port = process.env.PORT || 1337;
 server.listen(port);

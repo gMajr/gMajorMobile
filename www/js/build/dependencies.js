@@ -90,8 +90,8 @@ angular.module('gmajor.gridTargetFactory', [])
 
 .factory('GridTargetFactory', function(){
   var iPhoneSVGWidth = 298;
-  var nMax = 4;
-  var mMax = 4;
+  var nMax = 8;
+  var mMax = 8;
   var nSpacingOffset = Math.floor(298/(nMax+1));
   var mSpacingOffset = Math.floor(298/(mMax+1));
 

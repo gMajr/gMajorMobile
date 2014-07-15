@@ -1,4 +1,4 @@
-SoundBoard.prototype.toggle = function(row, col){
+SoundBoard.prototype.toggle = function(col, row){
 	row = row - 1;
 	col = col - 1;
 	if (this.noteScheduler[col][this.keys[row]]){

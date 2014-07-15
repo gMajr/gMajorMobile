@@ -9,6 +9,8 @@ angular.module('gmajor', ['ionic',
                           'gmajor.controllers',
                           'gmajor.gridController',
                           'gmajor.loginController',
+                          'gmajor.chatsController',
+                          'gmajor.chatController',
                           'gmajor.gridService',
                           'gmajor.menuController',
                           'gmajor.menuService',
@@ -63,6 +65,16 @@ angular.module('gmajor', ['ionic',
           url: '/login',
           controller: 'LoginController',
           templateUrl: 'templates/login.html'
+      })
+      .state('chats', {
+          url: '/chats',
+          controller: 'ChatsController',
+          templateUrl: 'templates/chats.html'
+      })
+      .state('chat', {
+          url: '/chat',
+          controller: 'ChatController',
+          templateUrl: 'templates/chat.html'
       });
 
   // if none of the above states are matched, use this as the fallback

@@ -3,7 +3,7 @@ angular.module('gmajor.gridTargetFactory', [])
 .factory('GridTargetFactory', function(){
   var iPhoneSVGWidth = 298;
   var nMax = 8;
-  var mMax = 8;
+  var mMax = 6;
   var targetSize = 16; // Size of touch target in SVG pixels
   var initCirR = 4;
   var selectedCirR = 12;
@@ -11,12 +11,7 @@ angular.module('gmajor.gridTargetFactory', [])
   var mSpacingOffset = Math.floor(298/(mMax+1));
 
   var columns = [];
-  // var soundBoard = new SoundBoard()
-  var play = function(){
-    // add note to grid
-    // makes any noise
-    // soundBoard.playSounds('piano', 400, 1, 1, 0);
-  };
+  var soundBoard = new SoundBoard(piano, 90, 329.63);
   // generate an m x n collection of target objects
     // Associate a row and column with each object
     // Generate the svg pixel offset for placing the target on the screen
@@ -42,17 +37,14 @@ angular.module('gmajor.gridTargetFactory', [])
         toggleState: 'off',
         column: currColumn,
         clickToggle: function() {
+          soundBoard.toggle(this.col, this.row);
           if (this.toggleState === 'off') {
-            play();
+            soundBoard.playSounds(soundBoard.keys[this.row], 1, 0);
             this.circleR = selectedCirR;
             this.toggleState = 'on';
-            if (!this.column.activeClass){
-              this.column.activeClass = "colActive"
-            }
           } else {
             this.circleR = initCirR;
             this.toggleState = 'off';
-            this.column.activeClass = undefined;
           }
         }
       };
@@ -67,6 +59,6 @@ angular.module('gmajor.gridTargetFactory', [])
 
   return {
     'columns': columns,
-    'play': play
+    'play': soundBoard.playInterval.bind(soundBoard)
   };
 });

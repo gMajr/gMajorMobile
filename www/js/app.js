@@ -57,6 +57,11 @@ angular.module('gmajor', ['ionic',
           url: '/three',
           controller: 'ThreeController',
           templateUrl: 'templates/three.html'
+      })
+      .state('login', {
+          url: '/login',
+          controller: 'LoginController',
+          templateUrl: 'templates/login.html'
       });
 
   // if none of the above states are matched, use this as the fallback

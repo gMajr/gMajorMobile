@@ -14,10 +14,6 @@ angular.module('gmajor.gridController', [])
 
   $scope.rightButtons = [];
 
-  $scope.$watch('ngR', function(oldVal, newVal){
-    debugger;
-  });
-
   $scope.buttonClick = function(){
     alert('button clicked');
 }

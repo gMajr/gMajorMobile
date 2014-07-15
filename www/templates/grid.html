@@ -8,7 +8,8 @@
       <rect x="0" y="0" width="298" height="298" fill="white"/>
       <g stroke="black" fill="grey" stroke-width="2">
         <g class="column" ng-repeat="column in columns">
-          <circle ng-repeat="target in column" ng-cx="target.x" ng-cy="target.y" ng-r="target.targetSize" ng-click="target.clickToggle(this)"/>
+          <circle ng-repeat-start="target in column" ng-cx="target.x" ng-cy="target.y" ng-r="target.targetSize" />
+          <rect ng-repeat-end ng-x="target.rectX" ng-y="target.rectY" ng-width="target.rectHeight" ng-height="target.rectWidth" on-touch="target.clickToggle()" class="targetInvisible" />
         </g>
       </g>
     </svg>

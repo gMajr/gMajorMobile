@@ -8,6 +8,7 @@
 angular.module('gmajor', ['ionic',
                           'gmajor.controllers',
                           'gmajor.gridController',
+                          'gmajor.loginController',
                           'gmajor.gridService',
                           'gmajor.menuController',
                           'gmajor.menuService',

@@ -11,7 +11,7 @@ angular.module('gmajor.gridTargetFactory', [])
   var mSpacingOffset = Math.floor(298/(mMax+1));
 
   var columns = [];
-  var soundBoard = new SoundBoard(piano, 90, 400);
+  var soundBoard = new SoundBoard(piano, 90, 329.63);
   // generate an m x n collection of target objects
     // Associate a row and column with each object
     // Generate the svg pixel offset for placing the target on the screen
@@ -39,16 +39,12 @@ angular.module('gmajor.gridTargetFactory', [])
         clickToggle: function() {
           soundBoard.toggle(this.col, this.row);
           if (this.toggleState === 'off') {
-            soundBoard.playSound(soundBoard.keys[this.row], 1, 0);
+            soundBoard.playSounds(soundBoard.keys[this.row], 1, 0);
             this.circleR = selectedCirR;
             this.toggleState = 'on';
-            if (!this.column.activeClass){
-              this.column.activeClass = "colActive"
-            }
           } else {
             this.circleR = initCirR;
             this.toggleState = 'off';
-            this.column.activeClass = undefined;
           }
         }
       };
@@ -63,5 +59,6 @@ angular.module('gmajor.gridTargetFactory', [])
 
   return {
     'columns': columns,
+    'play': soundBoard.playInterval.bind(soundBoard)
   };
 });

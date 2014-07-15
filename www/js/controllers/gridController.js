@@ -14,4 +14,6 @@ angular.module('gmajor.gridController', [])
 
   $scope.rightButtons = [];
 
+  $scope.playGrid = GridTargetFactory.play;
+
 });

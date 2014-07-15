@@ -1,4 +1,5 @@
 var express = require('express');
+console.log(__dirname);
 var db = require(__dirname + '/db/db.js');
 db.init();
 

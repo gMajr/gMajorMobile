@@ -1,16 +1,22 @@
 window.AudioContext = window.AudioContext||window.webkitAudioContext;
 var context = new AudioContext();
+//scale needs to be an array of preset notes on the BPM scale.
+//single beat is 60/BPM seconds
 
-var SoundBoard = function(){
 
-	//the sound hash holds previously calculated buffers.  In this case, we won't have to go through
-	// an array that spans 44,100 elements again.
+var SoundBoard = function(instrument, BPM, scale){
 
   this.sampleRate = 44100;
 
-	this.soundHash = {};
+  this.BPM = BPM;
 
-	this.modules = [
+  this.instrument = instrument;
+
+  this.noteScheduler = [];
+
+  this.interval;
+
+  this.modules = [
   function(i, sampleRate, frequency, x) {
     return 1 * Math.sin(2 * Math.PI * ((i / sampleRate) * frequency) + x);
   },
@@ -41,43 +47,72 @@ var SoundBoard = function(){
   function(i, sampleRate, frequency, x) {
     return 0.5 * Math.sin(0.25 * Math.PI * ((i / sampleRate) * frequency) + x);
   }
-	];
-	this.Instruments = {
-	  piano: {
-		  attack: function() { return 0.002; },
-		  dampen: function(sampleRate, frequency, volume) {
-	    return Math.pow(0.5*Math.log((frequency*volume)/this.sampleRate),2);
-	  	},
-		  wave: function(i, sampleRate, frequency, volume) {
+  ];
+  this.Instruments = {
+    piano: {
+      attack: function() { return 0.002; },
+      dampen: function(sampleRate, frequency, volume) {
+      return Math.pow(0.5*Math.log((frequency*volume)/this.sampleRate),2);
+      },
+      wave: function(i, sampleRate, frequency, volume) {
 
-		    var base = this.modules[0];
-		    if ( i === 4 )
-		    	console.log(base);
-		    return this.modules[1].call(this,
-	        i,
-		      sampleRate,
-		      frequency,
-		      Math.pow(base(i, this.sampleRate, frequency, 0), 2) +
-	        (0.75 * base(i, this.sampleRate, frequency, 0.25)) +
-	        (0.1 * base(i, this.sampleRate, frequency, 0.5))
-	   		);  
-	  	}
-	  }}
+        var base = this.modules[0];
+        return this.modules[1].call(this,
+          i,
+          sampleRate,
+          frequency,
+          Math.pow(base(i, this.sampleRate, frequency, 0), 2) +
+          (0.75 * base(i, this.sampleRate, frequency, 0.25)) +
+          (0.1 * base(i, this.sampleRate, frequency, 0.5))
+         );  
+      }
+    }}
 
 // These functions shift, add noise, and character to the waveforms.  As a result, the instrument
 // sounds more realistic
+  this.soundHash = {};
 
+  var attackLen = this.sampleRate * this.Instruments[this.instrument].attack();
+  var duration = 60/this.BPM/2;
+  var volume = 1;
+
+
+  for ( var i = 0; i < scale.length; i++ ){
+    var buffer = context.createBuffer(1, duration * this.sampleRate, this.sampleRate);
+    var frequency = scale[i];
+    data = buffer.getChannelData(0);
+    for (var j = 0; j < data.length; j++){
+      if ( j < attackLen){
+        amplitude = volume * (j/(this.sampleRate * this.Instruments[this.instrument].attack()))
+      }else{
+        amplitude = volume * Math.pow((1-((j-(this.sampleRate*this.Instruments[this.instrument].attack()))/(this.sampleRate*(duration-this.Instruments[this.instrument].attack())))),this.Instruments[this.instrument].dampen.call(this,this.sampleRate, frequency, volume))
+      }
+        val = amplitude * this.Instruments[this.instrument].wave.call(this, j, this.sampleRate, frequency, volume);
+        data[j<<1] = val;
+        data[(j<<1)+1] = val>> 8;
+    }
+    this.soundHash[ scale[i] ] = buffer;
+  }
+
+
+//the sound hash holds all the notes so we don't have to complete strenous calculations every time.
 }
 //Sample rate represents the array size that stores the amplitudes of the sound for the web Audio API.
 //the this.sampleRate should automatically be set to 44100 since most computer sound cards will be running
 //at this spec
 //Volume is on a scale from 0 to 1
+SoundBoard.prototype.startClock = function(){
+  oscillator = context.createOscillator(); // Create sound source  
+  oscillator.connect(context.destination); // Connect sound to output
+  oscillator.start();
+  oscillator.stop()
+}
 
-SoundBoard.prototype.playSounds = function(Instrument, frequency, volume, duration, start){
-  var attackLen = this.sampleRate * this.Instruments[Instrument].attack();
+SoundBoard.prototype.playSounds = function( frequency, volume, start){
   //The web audio API contains buffers that can be evaluated as sound.  Below, we will fill this buffer
   //for the sound card to evaluate
-  var buffer = context.createBuffer(1, duration * this.sampleRate, this.sampleRate);
+
+  var duration = 60/this.BPM/2;
   var osc = context.createBufferSource();
   var gainNode = context.createGain();
   gainNode.gain.value = volume;
@@ -88,38 +123,58 @@ SoundBoard.prototype.playSounds = function(Instrument, frequency, volume, durati
   //The code below represents the attack and decay functions for the wave.  A logarithmic/exponential
   //function is used for the decay. This gives the effect of lower notes lasting longer than
   //higher notes.  Pretty cool!!!
-  if (this.soundHash[Instrument] && this.soundHash[Instrument][frequency] && this.soundHash[Instrument][frequency][duration]){
-  	buffer = this.soundHash[Instrument][frequency][duration]
-  }else{
-  	data = buffer.getChannelData(0);
-    for (i = 0; i < data.length; i++){
-	    if ( i < attackLen){
-	      amplitude = volume * (i/(this.sampleRate * this.Instruments[Instrument].attack()))
-	    }else{
-	      amplitude = volume * Math.pow((1-((i-(this.sampleRate*this.Instruments[Instrument].attack()))/(this.sampleRate*(duration-this.Instruments[Instrument].attack())))),this.Instruments[Instrument].dampen.call(this,this.sampleRate, frequency, volume))
-	    }
-	      val = amplitude * this.Instruments[Instrument].wave.call(this, i, this.sampleRate, frequency, volume);
-	      if ( i === 4)
-	      	console.log(amplitude);
-   			data[i<<1] = val;
-    		data[(i<<1)+1] = val>> 8;
+  var buffer = this.soundHash[frequency];
 
-  	}
-  	if (!this.soundHash[Instrument]){
-  		this.soundHash[Instrument] = {};
-  	}
-  	if (!this.soundHash[Instrument][frequency]){
-  		this.soundHash[Instrument][frequency] = {};
-  	}
-  	this.soundHash[Instrument][frequency][duration] = buffer;
-  }
-
-  //If you have quesitons on this function, let me know.  Otherwise, you won't need to alter it at all.
-  //Think of the web Audio API as a simple instrument to speaker connection.  The source(buffer source),
+  //If you have questions on this function, let me know.  Otherwise, you won't need to alter it at all.
+  //Think of the web Audio API as a simple insrument to speaker connection.  The source(buffer source),
   //acts like the guitar.  The context.destination is the speaker (see below).  Otherwise,
   //all the nodes in-between would be like a filter, or pedal you might connect to an electric guitar.
   osc.buffer = buffer;
   osc.loop = false;
   osc.connect(context.destination);
-  osc.noteOn(start);
+  osc.start(start);
 }
+
+SoundBoard.prototype.playInterval = function( MIDI ){
+  var startTime = context.currentTime;
+  var halfwayPointBetweenNotes = 60/this.BPM/2/2;
+  this.noteScheduler = MIDI;
+
+  var continuedLoop = function( MIDI, startTime, k ){
+
+    var currentTime = context.currentTime;
+    var currentCol = Math.ceil((currentTime - startTime)/(60/this.BPM/2)%8)-1;
+    var numberOfCycles = Math.floor((currentTime - startTime)/(60/this.BPM/2*8))
+    var scheduledTime = ((numberOfCycles * ( 60/this.BPM/2 * 8 )) + startTime + ((currentCol + 1) * 60/this.BPM/2))
+
+    for (var note in this.noteScheduler[currentCol]){
+      if ( this.noteScheduler[currentCol][note] )
+      this.playSounds( note, 1, scheduledTime )
+    }
+
+    //find how far until I schedule the next one...
+    //var hello = scheduledTime;
+
+    loop.call( this, MIDI, startTime, halfwayPointBetweenNotes, continuedLoop, (scheduledTime - context.currentTime + halfwayPointBetweenNotes), k);
+  }
+
+  var loop = function( MIDI, startTime, halfwayPointBetweenNotes, continuedLoop, firstTime , k){
+    k = k || 0;
+    k++
+
+    firstTime = firstTime || 0;
+    this.interval = setTimeout( continuedLoop.bind(this, MIDI, startTime, k), firstTime * 1000 );
+  }
+// first it needs to evaluate the array.  It will need to set up a setTimeout()
+  loop.call(this, MIDI, startTime, halfwayPointBetweenNotes, continuedLoop );
+}
+
+
+// var yo = new SoundBoard('piano', 120, [200, 300, 600, 350, 400]);
+// yo.startClock();
+// yo.playInterval([{}, {}, {}, {200:true, 400:true, 300:true, 600:true, 350:true}, {}, {}, {}, {400:true, 600:true}]);
+
+//Below may be the correct version.
+// var currentCol = Math.ceil((currentTime - startTime - 1)) % (8 * this.BPM/60/2); 
+// var numberOfCycles = Math.floor((currentTime - startTime - 1)/(this.BPM/60/2))
+

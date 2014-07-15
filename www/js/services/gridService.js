@@ -5,7 +5,7 @@ angular.module('gmajor.gridService', [])
   var toggle = function(key, module, profile){
     // add note to grid
     // makes any noise
-    playSounds('piano', 300, 1, 1, 0);
+    // playSounds('piano', 300, 1, 1, 0);
 
   };
 

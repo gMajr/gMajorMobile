@@ -27,6 +27,7 @@ angular.module('gmajor.gridTargetFactory', [])
     //    and acts as a bigger touch target. (rectY, rectY, rectHeight, & rectWidth)
   for(var n = 0; n < nMax; n++) {
     var currColumn = [];
+    currColumn.activeClass = undefined;
     for(var m = 0; m < mMax; m++) {
       var newTarget = {
         col: n,
@@ -39,14 +40,19 @@ angular.module('gmajor.gridTargetFactory', [])
         rectHeight: targetSize * 2,
         circleR: initCirR,
         toggleState: 'off',
+        column: currColumn,
         clickToggle: function() {
           if (this.toggleState === 'off') {
             play();
             this.circleR = selectedCirR;
             this.toggleState = 'on';
+            if (!this.column.activeClass){
+              this.column.activeClass = "colActive"
+            }
           } else {
             this.circleR = initCirR;
             this.toggleState = 'off';
+            this.column.activeClass = undefined;
           }
         }
       };

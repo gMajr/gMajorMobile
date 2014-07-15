@@ -31,13 +31,13 @@ gulp.task('sass', function(done) {
 gulp.task('audio', function(){
   gulp.src(paths.audio)
     .pipe(concat('sounds.js'))
-    .pipe(gulp.dest('www/js/'));
+    .pipe(gulp.dest('www/js/build/'));
 });
 
 gulp.task('dependencies', function(){
   gulp.src(paths.dependencies)
     .pipe(concat('dependencies.js'))
-    .pipe(gulp.dest('www/js/'));
+    .pipe(gulp.dest('www/js/build/'));
 });
 
 

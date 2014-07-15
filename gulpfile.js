@@ -46,6 +46,11 @@ gulp.task('serve-ionic', sh.task([
   'ionic serve'
 ]));
 
+
+gulp.task('emulate-ios', sh.task([
+    'ionic emulate ios'
+]));
+
 gulp.task('watch', function() {
   gulp.watch(paths.audio, ['audio']);
   gulp.watch(paths.sass, ['sass']);
@@ -72,4 +77,5 @@ gulp.task('git-check', function(done) {
   done();
 });
 
+gulp.task('emulate', ['audio', 'dependencies', 'emulate-ios']);
 gulp.task('default', ['audio','dependencies', 'serve-ionic', 'watch']);

@@ -1,9 +1,7 @@
-angular.module('gmajor.gridController', [])
+angular.module('gmajor.loginController', [])
 
-.controller('GridController', function ($scope, Grid, GridTargetFactory) {
-  $scope.navTitle = 'Grid Yo!';
-
-  $scope.columns = GridTargetFactory.columns;
+.controller('LoginController', function ($scope) {
+  $scope.navTitle = 'Log In';
 
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',
@@ -16,6 +14,6 @@ angular.module('gmajor.gridController', [])
 
   $scope.buttonClick = function(){
     alert('button clicked');
-}
+  };
 
 });

@@ -23,4 +23,15 @@ angular.module('gmajor.directives', [])
       element.attr('cy', value);
     });
   };
+})
+
+//Use this in SVGs instead of: r="{{whatever}}"
+//use this: ng-r={{whatever}}
+//See: https://github.com/angular/angular.js/issues/1050
+.directive('ngR', function() {
+  return function(scope, element, attrs) {
+    scope.$watch(attrs.ngR, function(value) {
+      element.attr('r', value);
+    });
+  };
 });

@@ -4,6 +4,7 @@ angular.module('gmajor.gridTargetFactory', [])
   var iPhoneSVGWidth = 298;
   var nMax = 8;
   var mMax = 8;
+  var targetSize = 16; // Size of touch target in SVG pixels
   var nSpacingOffset = Math.floor(298/(nMax+1));
   var mSpacingOffset = Math.floor(298/(mMax+1));
 
@@ -26,10 +27,11 @@ angular.module('gmajor.gridTargetFactory', [])
         row: m,
         x: (n + 1) * nSpacingOffset,
         y: (m + 1) * mSpacingOffset,
+        targetSize: targetSize,
         clickToggle: function() {
           // alert("Click button: " + this.col + " x " + this.row);
           play();
-
+          this.targetSize = 4;
         }
       };
       currColumn.push(newTarget);

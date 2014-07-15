@@ -14,3 +14,7 @@
 .targetInvisible {
   opacity: 0.0;
 }
+
+.colActive{
+  fill: blue;
+}

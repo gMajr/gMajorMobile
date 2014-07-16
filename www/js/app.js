@@ -11,6 +11,7 @@ angular.module('gmajor', ['ionic',
                           'gmajor.loginController',
                           'gmajor.chatsController',
                           'gmajor.chatController',
+                          'gmajor.commentController',
                           'gmajor.gridService',
                           'gmajor.menuController',
                           'gmajor.menuService',
@@ -75,6 +76,11 @@ angular.module('gmajor', ['ionic',
           url: '/chat',
           controller: 'ChatController',
           templateUrl: 'templates/chat.html'
+      })
+      .state('comment', {
+          url: '/comment',
+          controller: 'CommentController',
+          templateUrl: 'templates/comment.html'
       });
 
   // if none of the above states are matched, use this as the fallback

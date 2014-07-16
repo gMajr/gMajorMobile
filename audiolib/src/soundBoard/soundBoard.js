@@ -1,6 +1,7 @@
 var SoundBoard = function(ImportedJSON){
 
 	this.Grids = [];
+	this.interval;
 
 	if ( importedJSON ){
 

@@ -11,7 +11,9 @@ angular.module('gmajor.gridTargetFactory', [])
   var mSpacingOffset = Math.floor(298/(mMax+1));
 
   var columns = [];
-  var soundBoard = new SoundBoard(piano, 90, 329.63);
+  var soundBoard = new SoundBoard();
+  var grid = new Grid('piano', 90, 329.63);
+  soundBoard.addGrid(grid);
 
   // generate an m x n collection of target objects
     // Associate a row and column with each object
@@ -38,9 +40,9 @@ angular.module('gmajor.gridTargetFactory', [])
         toggleState: 'off',
         column: currColumn,
         clickToggle: function() {
-          soundBoard.toggle(this.col, this.row);
+          grid.toggle(this.col, this.row);
           if (this.toggleState === 'off') {
-            soundBoard.playSounds(soundBoard.keys[this.row], 1, 0);
+            grid.playSounds(grid.keys[this.row], 1, 0);
             this.circleR = selectedCirR;
             this.toggleState = 'on';
           } else {

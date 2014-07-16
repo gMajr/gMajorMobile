@@ -1,9 +1,9 @@
-SoundBoard.prototype.playInterval = function(){
+SoundBoard.prototype.playInterval = function( cb ){
  var startTime = context.currentTime;
  var halfwayPointBetweenNotes = 60/this.BPM/2/2;
  var MIDI = this.noteScheduler;
 
- var continuedLoop = function( MIDI, startTime, k ){
+ var continuedLoop = function( MIDI, startTime, k, cb){
    var currentTime = context.currentTime;
    var currentCol = Math.ceil((currentTime - startTime)/(60/this.BPM/2)%8)-1;
    var numberOfCycles = Math.floor((currentTime - startTime)/(60/this.BPM/2*8))
@@ -13,10 +13,11 @@ SoundBoard.prototype.playInterval = function(){
        this.playSounds( note, 1, scheduledTime )
      }
    }
+   setTimeout(cb, context.scheduledTime - context.currentTime);
    loop.call( this, MIDI, startTime, halfwayPointBetweenNotes, continuedLoop, (scheduledTime - context.currentTime + halfwayPointBetweenNotes), k);
  };
 
- var loop = function( MIDI, startTime, halfwayPointBetweenNotes, continuedLoop, firstTime , k){
+ var loop = function( MIDI, startTime, halfwayPointBetweenNotes, continuedLoop, firstTime , k, cb){
    k = k || 0;
    k++;
    firstTime = firstTime || 0;

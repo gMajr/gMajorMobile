@@ -77,5 +77,7 @@ gulp.task('git-check', function(done) {
   done();
 });
 
-gulp.task('emulate', ['audio', 'dependencies', 'emulate-ios']);
-gulp.task('default', ['audio','dependencies', 'serve-ionic', 'watch']);
+
+gulp.task('compile', ['audio', 'dependencies']);
+gulp.task('emulate', ['compile', 'emulate-ios']);
+gulp.task('default', ['compile', 'serve-ionic', 'watch']);

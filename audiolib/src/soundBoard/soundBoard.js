@@ -1,5 +1,4 @@
 var SoundBoard = function(ImportedJSON){
-
 	this.Grids = [];
 
 	if ( importedJSON ){
@@ -15,5 +14,4 @@ var SoundBoard = function(ImportedJSON){
 			this.Grids.push(new Grid(instrument, BPM, freq, noteScheduler));
 		}
 	}
-
-};
+}

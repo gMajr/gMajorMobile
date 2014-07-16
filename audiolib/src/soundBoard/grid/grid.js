@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> Build initial multi-grid system.  Continued restructuring of files, and updated gulp to reflect the new changes.
 var Grid = function(instrument, BPM, freq, noteScheduler){
 
   this.sampleRate = 44100;

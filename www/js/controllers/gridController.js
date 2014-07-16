@@ -14,6 +14,12 @@ angular.module('gmajor.gridController', [])
 
   $scope.rightButtons = [];
 
-  $scope.playGrid = GridTargetFactory.play;
+  var playcallback = function() {
+    console.log('Called back.');
+  }
+
+  $scope.playGrid = function() {
+    GridTargetFactory.play(playcallback);
+  }
 
 });

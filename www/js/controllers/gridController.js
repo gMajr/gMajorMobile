@@ -18,6 +18,7 @@ angular.module('gmajor.gridController', [])
   $scope.rightButtons = [];
 
   $scope.playButtonText = 'Play';
+  $scope.playButtonIcon = 'ion-play';
   $scope.playButtonStyle = 'button-balanced';
 
 
@@ -36,12 +37,14 @@ angular.module('gmajor.gridController', [])
       playStatus = 'playing';
       //Change the play button to a stop button
       $scope.playButtonText = 'Stop';
+      $scope.playButtonIcon = 'ion-stop';
       $scope.playButtonStyle = 'button-assertive';
     } else {
       GridTargetFactory.stop();
       playStatus = 'stopped';
       //Change the stop button back to a play button
       $scope.playButtonText = 'Play';
+      $scope.playButtonIcon = 'ion-play';
       $scope.playButtonStyle = 'button-balanced';
     }
   }

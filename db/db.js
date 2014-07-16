@@ -3,23 +3,29 @@ var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 module.exports= {
   init: function(){
+  },
+  insert: function(collectionName, data){
     MongoClient.connect(connectionString, function(err, db) {
       if(!err) {
         console.log("We are connected to a mongodb server");
-        console.log("Creating document {username: user, password: password} in gmajor.users ");
-        db.collection('gmajor.users', function(err, collection){
+        db.collection('gmajor.' + collectionName, function(err, collection){
           if(err){
             console.log('collection retrieval error: ', err);
+            db.close();
           }
-          collection.insert({username: 'user', password: 'password'}, function(err,result){
+          console.log(data);
+          collection.insert(data, function(err,result){
             if(err){
-              console.log('insert into gmajor.users error: ', err);
+              console.log('insert into gmajor.' ,collectionName, ' error: ', err);
+              db.close();
             }
-            console.log('insert into gmajor.users result: ', result);
+            console.log('insert into gmajor.' ,collectionName, ' result: ', result);
+            db.close();
           });
         });
       } else {
         console.log('mongo connection error: ', err);
+        db.close();
       }
     });
   }

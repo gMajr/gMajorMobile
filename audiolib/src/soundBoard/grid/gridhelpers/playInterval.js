@@ -1,4 +1,4 @@
-SoundBoard.prototype.playInterval = function( cb ){
+Grid.prototype.playInterval = function(){
  var startTime = context.currentTime;
  var halfwayPointBetweenNotes = 60/this.BPM/2/2;
  var MIDI = this.noteScheduler;
@@ -15,8 +15,6 @@ SoundBoard.prototype.playInterval = function( cb ){
      }
    }
 
-   var time = scheduledTime - context.currentTime;
-   setTimeout(function(){console.log(cb);cb(currentCol)}, time);
    loop.call( this, MIDI, startTime, halfwayPointBetweenNotes, continuedLoop, (scheduledTime - context.currentTime + halfwayPointBetweenNotes), k);
  };
 

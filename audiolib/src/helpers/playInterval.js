@@ -16,7 +16,7 @@ SoundBoard.prototype.playInterval = function( cb ){
    }
 
    var time = scheduledTime - context.currentTime;
-   setTimeout(cb, time);
+   setTimeout(function(){console.log(cb);cb(currentCol)}, time);
    loop.call( this, MIDI, startTime, halfwayPointBetweenNotes, continuedLoop, (scheduledTime - context.currentTime + halfwayPointBetweenNotes), k);
  };
 

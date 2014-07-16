@@ -1,4 +1,5 @@
 var SoundBoard = function(ImportedJSON){
+
 	this.Grids = [];
 
 	if ( importedJSON ){
@@ -15,3 +16,4 @@ var SoundBoard = function(ImportedJSON){
 		}
 	}
 }
+

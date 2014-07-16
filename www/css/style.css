@@ -4,6 +4,17 @@
   float: left;
 }
 
-.mGrid{
+.mGrid {
   width: 100%;
+}
+
+ /* Rectangles are placed over the grid dots to be the actual
+    touch targets. This allows them to recieve touches but
+    not appear in the UI */
+.targetInvisible {
+  opacity: 0.0;
+}
+
+.colActive{
+  fill: blue;
 }

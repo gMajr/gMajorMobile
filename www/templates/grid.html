@@ -3,15 +3,24 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
-  <ion-content has-header="true" padding="true">
-    <svg width="298" height="298" xmlns="http://www.w3.org/2000/svg" version="1.1">
-      <rect x="0" y="0" width="298" height="298" fill="white"/>
-      <g stroke="black" fill="grey" stroke-width="2">
-        <g class="column" ng-repeat="column in columns">
-          <circle ng-repeat="target in column" ng-cx="{{target.x}}" ng-cy="{{target.y}}" r="10" ng-click="target.clickToggle()"/>
+  <ion-content has-header="true" scroll="false">
+  <div class="row" padding="false">
+    <div class="col">
+      <svg width="298" height="298" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <rect x="0" y="0" width="298" height="298" fill="white"/>
+        <g stroke="black" fill="grey" stroke-width="2">
+          <g class="column {{column.activeClass}}" ng-repeat="column in columns">
+            <circle ng-repeat-start="target in column" ng-cx="target.x" ng-cy="target.y" ng-r="target.circleR" />
+            <rect ng-repeat-end ng-x="target.rectX" ng-y="target.rectY" ng-width="target.rectHeight" ng-height="target.rectWidth" on-touch="target.clickToggle()" class="targetInvisible" />
+          </g>
         </g>
-      </g>
-    </svg>
-    <button ng-click="buttonClick()">play</button>
+      </svg>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="button button-block button-balanced" ng-click="playGrid()">play</button><a ui-sref="login">Log In</a>
+    </div>
+  </div>
   </ion-content>
 </ion-view>

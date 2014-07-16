@@ -60,5 +60,6 @@ angular.module('gmajor.gridTargetFactory', [])
   return {
     'columns': columns,
     'play': soundBoard.playInterval.bind(soundBoard),
+    'stop': soundBoard.stopSounds.bind(soundBoard)
   };
 });

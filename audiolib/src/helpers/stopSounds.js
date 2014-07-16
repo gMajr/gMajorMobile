@@ -1,3 +1,3 @@
 SoundBoard.prototype.stopSounds = function(){
-  this.interval.stop();
+  clearInterval(this.interval);
 };

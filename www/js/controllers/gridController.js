@@ -1,6 +1,9 @@
 angular.module('gmajor.gridController', [])
 
 .controller('GridController', function ($scope, GridTargetFactory) {
+  var prevPlayingCol = 0;
+  var playStatus = 'stopped';
+
   $scope.navTitle = 'Grid Yo!';
 
   $scope.columns = GridTargetFactory.columns;
@@ -14,7 +17,10 @@ angular.module('gmajor.gridController', [])
 
   $scope.rightButtons = [];
 
-  var prevPlayingCol = 0;
+  $scope.playButtonText = 'Play';
+  $scope.playButtonIcon = 'ion-play';
+  $scope.playButtonStyle = 'button-balanced';
+
 
   var playcallback = function(playingCol) {
     if(playingCol >= 0){
@@ -26,7 +32,21 @@ angular.module('gmajor.gridController', [])
   }
 
   $scope.playGrid = function() {
-    GridTargetFactory.play(playcallback);
+    if(playStatus === 'stopped'){
+      GridTargetFactory.play(playcallback);
+      playStatus = 'playing';
+      //Change the play button to a stop button
+      $scope.playButtonText = 'Stop';
+      $scope.playButtonIcon = 'ion-stop';
+      $scope.playButtonStyle = 'button-assertive';
+    } else {
+      GridTargetFactory.stop();
+      playStatus = 'stopped';
+      //Change the stop button back to a play button
+      $scope.playButtonText = 'Play';
+      $scope.playButtonIcon = 'ion-play';
+      $scope.playButtonStyle = 'button-balanced';
+    }
   }
 
 });

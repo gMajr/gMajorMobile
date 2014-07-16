@@ -17,6 +17,9 @@ angular.module('gmajor.gridController', [])
 
   $scope.rightButtons = [];
 
+  $scope.playButtonText = 'Play';
+  $scope.playButtonStyle = 'button-balanced';
+
 
   var playcallback = function(playingCol) {
     if(playingCol >= 0){
@@ -31,9 +34,15 @@ angular.module('gmajor.gridController', [])
     if(playStatus === 'stopped'){
       GridTargetFactory.play(playcallback);
       playStatus = 'playing';
+      //Change the play button to a stop button
+      $scope.playButtonText = 'Stop';
+      $scope.playButtonStyle = 'button-assertive';
     } else {
       GridTargetFactory.stop();
       playStatus = 'stopped';
+      //Change the stop button back to a play button
+      $scope.playButtonText = 'Play';
+      $scope.playButtonStyle = 'button-balanced';
     }
   }
 

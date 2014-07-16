@@ -17,7 +17,7 @@ var SoundBoard = function(instrument, BPM, freq){
 
  this.keys = scale = (function(){
    return [ freq, 9/8 * freq, 5/4 * freq,
-     3/2 * freq, 5/3 * freq, 2 * freq ];
+     3/2 * freq, 5/3 * freq, 2 * freq ].reverse();
  })();
 
  this.soundHash = {};

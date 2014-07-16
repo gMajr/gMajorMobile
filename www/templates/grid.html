@@ -3,7 +3,7 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
-  <ion-content has-header="true" scroll="false">
+  <ion-content has-header="true" scroll="true">
   <div class="row" padding="false">
     <div class="col">
       <svg width="298" height="298" xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -19,7 +19,12 @@
   </div>
   <div class="row">
     <div class="col">
-      <button class="button button-block {{playButtonStyle}}" ng-click="playGrid()"><i class="icon {{playButtonIcon}}"></i> {{playButtonText}}</button><a ui-sref="login">Log In</a>
+      <button class="button button-block {{playButtonStyle}}" ng-click="playGrid()"><i class="icon {{playButtonIcon}}"></i> {{playButtonText}}</button>
+    </div>
+  </div>
+    <div class="row">
+    <div class="col">
+      <button class="button button-block button-positive"><i class="icon ion-plus"></i> Add Song To Chat</button><a ui-sref="login">Log In</a>
     </div>
   </div>
   </ion-content>

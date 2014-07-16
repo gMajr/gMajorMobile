@@ -1,4 +1,7 @@
- var piano = {
+ var instruments = 
+{
+
+ piano: {
    attack: function() { return 0.002; },
    dampen: function(sampleRate, frequency, volume) {
      return Math.pow(0.5*Math.log((frequency*volume)/this.sampleRate),2);
@@ -15,3 +18,6 @@
      );  
    }
  }
+
+
+}

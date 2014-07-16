@@ -14,8 +14,15 @@ angular.module('gmajor.gridController', [])
 
   $scope.rightButtons = [];
 
-  var playcallback = function() {
-    console.log('Called back.');
+  var prevPlayingCol = 0;
+
+  var playcallback = function(playingCol) {
+    if(playingCol >= 0){
+      $scope.columns[prevPlayingCol].activeClass = undefined;
+      $scope.columns[playingCol].activeClass = 'colActive';
+      $scope.$apply();
+      prevPlayingCol = playingCol;
+    }
   }
 
   $scope.playGrid = function() {

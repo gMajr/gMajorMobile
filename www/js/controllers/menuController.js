@@ -5,6 +5,7 @@ angular.module('gmajor.menuController', [])
   $scope.list = MenuService.all();
 
   $scope.goTo = function(page) {
+    $scope.$broadcast('SideMenuNavigate');
     console.log('Going to ' + page);
     $location.url('/' + page);
   };

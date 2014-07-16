@@ -15,7 +15,7 @@ var paths = {
           'audiolib/src/soundBoard/soundBoard.js', 
           'audiolib/src/soundBoard/soundBoardHelpers/*.js',
           'audiolib/src/soundBoard/grid/grid.js',
-          'audiolib/src/soundBoard/grid/gridhelpers/*.js'
+          'audiolib/src/soundBoard/grid/gridhelpers/*.js',
           'audiolib/src/test/*.js'],
 
   sass: ['./scss/**/*.scss'],

@@ -1,4 +1,3 @@
-
 var Grid = function(instrument, BPM, freq, noteScheduler){
 
   this.sampleRate = 44100;

@@ -12,6 +12,7 @@ angular.module('gmajor.gridTargetFactory', [])
 
   var columns = [];
   var soundBoard = new SoundBoard(piano, 90, 329.63);
+
   // generate an m x n collection of target objects
     // Associate a row and column with each object
     // Generate the svg pixel offset for placing the target on the screen
@@ -59,6 +60,7 @@ angular.module('gmajor.gridTargetFactory', [])
 
   return {
     'columns': columns,
-    'play': soundBoard.playInterval.bind(soundBoard)
+    'play': soundBoard.playInterval.bind(soundBoard),
+    'stop': soundBoard.stopSounds.bind(soundBoard)
   };
 });

@@ -1,7 +1,7 @@
 angular.module('gmajor.chatController', [])
 
 .controller('ChatController', function ($scope) {
-  $scope.navTitle = 'Chats';
+  $scope.navTitle = 'Chat';
 
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',

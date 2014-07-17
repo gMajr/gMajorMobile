@@ -10,7 +10,14 @@ var shelljs = require('shelljs');
 
 var paths = {
   // all our client app js files, not including 3rd party js files
-  audio: ['audiolib/src/main.js', 'audiolib/src/helpers/*.js', 'audiolib/src/instruments/*.js', 'audiolib/src/test/*.js'],
+  audio: ['audiolib/src/main.js', 
+          'audiolib/src/instruments/*.js', 
+          'audiolib/src/soundBoard/soundBoard.js', 
+          'audiolib/src/soundBoard/soundBoardHelpers/*.js',
+          'audiolib/src/soundBoard/grid/grid.js',
+          'audiolib/src/soundBoard/grid/gridhelpers/*.js',
+          'audiolib/src/test/*.js'],
+
   sass: ['./scss/**/*.scss'],
   dependencies: [ 'www/js/app.js', 'www/js/services/**/*.js', 'www/js/controllers/**/*.js']
 };

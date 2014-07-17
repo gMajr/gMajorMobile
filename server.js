@@ -33,9 +33,11 @@ router.route('/users')
 router.route('/conversations/:conversationId')
   .post(function(req, res){
     var message = req.body;
-    console.log(message);
-
+    var conId = req.params.conversationId;
+    db.update('gmajor.conversations', conId, message);
   });
+
+
 // Restrictions: usernames must be unique
 // API
 // /user/:id/friends

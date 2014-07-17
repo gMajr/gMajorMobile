@@ -19,21 +19,21 @@ router.use(bodyParser.json());
 router.get('/', function(req, res){
   console.log('get /api accessed');
 });
-router.route('/users')
 
+router.route('/users')
   // create a bear (accessed at POST http://localhost:8080/api/users)
   .post(function(req, res) {
     // console.log(req.body);
-    var username = req.body.name;  // set the users name (comes from the request)
-
-    
-    
+    var username = req.body.name;  // set the users name (comes from the request)  
   });
 
 router.route('/conversations/')
   .post(function(req, res){
     var message = req.body;
     db.insert('gmajor.conversations', message, res);
+  })
+  .get(function(req, res){
+    db.find('gmajor.conversations', res);
   });
 
 router.route('/conversations/:conversationId')
@@ -41,7 +41,12 @@ router.route('/conversations/:conversationId')
     var message = req.body;
     var conId = req.params.conversationId;
     db.update('gmajor.conversations', conId, message, res);
+  })
+  .get(function(req, res){
+    var conId = req.params.conversationId;
+    db.find('gmajor.conversations', res, conId);
   });
+
 
 
 // Restrictions: usernames must be unique

@@ -5,6 +5,7 @@ module.exports = {
   init: function(){
     console.log('test');
   },
+
   update: function(collectionName, id, data, res){
     MongoClient.connect(connectionString, function(err, db) {
       if(err) throw err;
@@ -22,6 +23,7 @@ module.exports = {
         });
     });
   },
+
   insert: function(collectionName, data, res){
     MongoClient.connect(connectionString, function(err, db) {
       if(err) throw err;
@@ -33,7 +35,25 @@ module.exports = {
         }
       });
     });
-  }
-  // remove: function(){}
+  },
 
+  find: function(collectionName, res, id){
+    if (id !== undefined){
+      id = {_id: +id};
+    }
+    MongoClient.connect(connectionString, function(err, db) {
+      if(err) throw err;
+      db.collection(collectionName).find(id).toArray(function(err, item){
+        if (err){
+          throw err;
+        }else{
+          res.send(item);
+        }
+      });
+    });
+  }
 };
+
+
+
+

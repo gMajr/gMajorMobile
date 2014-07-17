@@ -5,7 +5,6 @@ SoundBoard.prototype.exportGrids = function(){
 	for ( var i = 0; i < this.Grids.length; i++ ){
 
 		var data = {};
-		console.log(this.Grids[i])
 		var instrument = this.Grids[i].instrumentName;
 		var BPM = this.Grids[i].BPM;
 		var freq = this.Grids[i].freq;

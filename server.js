@@ -30,6 +30,12 @@ router.route('/users')
     
   });
 
+router.route('/conversations/')
+  .post(function(req, res){
+    var message = req.body;
+    db.insert('gmajor.conversations', message, res);
+  });
+
 router.route('/conversations/:conversationId')
   .post(function(req, res){
     var message = req.body;

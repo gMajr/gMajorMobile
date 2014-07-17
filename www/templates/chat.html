@@ -15,7 +15,7 @@
           </div>
           <div class="row">
             <div class="col col-25">
-              <button class="button button-balanced" ng-click="chat.playThis()"><i class="icon ion-play"></i></button>
+              <button class="button {{chat.buttonState.style}}" ng-click="chat.togglePlay()"><i class="icon {{chat.buttonState.icon}}"></i></button>
             </div>
             <div class="col item-text-wrap">
               <p>{{chat.comment}}</p>
@@ -27,7 +27,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <button class="button button-block button-balanced" ng-click="playAll()"><i class="icon ion-play"></i> Play All</button>
+      <button class="button button-block {{playAllButtonState.style}}" ng-click="playAll()"><i class="icon {{playAllButtonState.icon}}"></i> {{playAllButtonState.text}}</button>
       <button class="button button-block button-positive"><i class="icon ion-plus"></i> Add Music to Chat</button>
       <button class="button button-block button-stable"><i class="icon ion-chatbox"></i> Add Comment</button>
     </div>

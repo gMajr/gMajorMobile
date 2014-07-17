@@ -10,7 +10,7 @@ module.exports = {
     MongoClient.connect(connectionString, function(err, db) {
       if(err) throw err;
       db.collection(collectionName).findAndModify(
-        {_id: +id},
+        {_id: mongodb.ObjectID(id)},
         [['_id','asc']],
         {$set: data},
         {},
@@ -39,7 +39,7 @@ module.exports = {
 
   find: function(collectionName, res, id){
     if (id !== undefined){
-      id = {_id: +id};
+      id = {_id: mongodb.ObjectID(id)};
     }
     MongoClient.connect(connectionString, function(err, db) {
       if(err) throw err;

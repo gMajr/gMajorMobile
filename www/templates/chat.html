@@ -7,42 +7,27 @@
   <div class="row">
     <div class="col">
       <ul class="list">
-        <li class="item">
+        <li class="item" ng-repeat="chat in chatStream">
           <div class="row">
             <div class="col">
-              <p>Will said:</p>
+              <p>{{chat.username}} said:</p>
             </div>
           </div>
           <div class="row">
             <div class="col col-25">
-              <button class="button button-balanced"><i class="icon ion-play"></i></button>
+              <button class="button button-balanced" ng-click="chat.playThis()"><i class="icon ion-play"></i></button>
             </div>
             <div class="col item-text-wrap">
-              <p>This is a paragraph of text that the message send created when they created the musical grid and added it to the conversation. Bacon ipsum dolor sit amet chuck pancetta pastrami beef ribs, chicken short loin corned beef spare ribs swine hamburger. Swine frankfurter shankle sirloin flank porchetta.</p>
+              <p>{{chat.comment}}</p>
             </div>
           </div>
-        </li>
-        <li class="item">
-          <div class="row">
-            <div class="col">
-              <p>Will said:</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col col-25">
-              <button class="button button-balanced"><i class="icon ion-play"></i></button>
-            </div>
-            <div class="col item-text-wrap">
-              <p>This is a paragraph of text that the message send created when they created the musical grid and added it to the conversation. Bacon ipsum dolor sit amet chuck pancetta pastrami beef ribs, chicken short loin corned beef spare ribs swine hamburger. Swine frankfurter shankle sirloin flank porchetta.</p>
-            </div>
-          </div>
-        </li>
+        </li ng-repeat-end>
       </ul>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <button class="button button-block button-balanced"><i class="icon ion-play"></i> Play All</button>
+      <button class="button button-block button-balanced" ng-click="playAll()"><i class="icon ion-play"></i> Play All</button>
       <button class="button button-block button-positive"><i class="icon ion-plus"></i> Add Music to Chat</button>
       <button class="button button-block button-stable"><i class="icon ion-chatbox"></i> Add Comment</button>
     </div>

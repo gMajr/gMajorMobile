@@ -16,8 +16,10 @@ SoundBoard.prototype.playInterval = function( cb ){
 	   }
    }
 	
-   var time = scheduledTime - context.currentTime;
-   setTimeout(function(){cb(currentCol)}, time);
+   if ( cb ){
+      var time = scheduledTime - context.currentTime;
+      setTimeout(function(){cb(currentCol)}, time);
+   }
    
    loop.call( this, startTime, halfwayPointBetweenNotes, continuedLoop, (scheduledTime - context.currentTime + halfwayPointBetweenNotes), k);
  };

@@ -51,6 +51,18 @@ module.exports = {
         }
       });
     });
+  },
+  match: function(collectionName, res, params){
+    MongoClient.connect(connectionString, function(err, db) {
+      if(err) throw err;
+      db.collection(collectionName).find({authors: params['author']}).toArray(function(err, item){
+        if (err){
+          throw err;
+        }else{
+          res.send(item);
+        }
+      });
+    });
   }
 };
 

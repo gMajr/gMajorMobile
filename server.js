@@ -23,11 +23,27 @@ router.get('/', function(req, res){
 router.route('/users')
   // create a bear (accessed at POST http://localhost:8080/api/users)
   .post(function(req, res) {
-    // console.log(req.body);
-    var username = req.body.name;  // set the users name (comes from the request)  
+    var user = req.body;
+    db.insert('gmajor.users', user, res);
+  })
+  .get(function(req, res){
+    db.find('gmajor.users', res);
   });
 
-router.route('/conversations/')
+router.route('/users/:userId')
+  .post(function(req, res){
+    var message = req.body;
+    var conId = req.params.userId;
+    db.update('gmajor.users', conId, message, res);
+  })
+  .get(function(req, res){
+    var conId = req.params.userId;
+    console.log(conId);
+    db.find('gmajor.users', res, conId);
+  });
+
+
+router.route('/conversations')
   .post(function(req, res){
     var message = req.body;
     db.insert('gmajor.conversations', message, res);

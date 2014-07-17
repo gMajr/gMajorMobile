@@ -5,7 +5,7 @@ module.exports = {
   init: function(){
     console.log('test');
   },
-  update: function(collectionName, id, data){
+  update: function(collectionName, id, data, res){
     MongoClient.connect(connectionString, function(err, db) {
       if(err) throw err;
       console.log({_id: +id});
@@ -18,7 +18,7 @@ module.exports = {
             if (err){
                 console.warn(err.message);  // returns error if no matching object found
             }else{
-                console.log(object);
+              res.send(object);
             }
         });
     });
@@ -47,5 +47,8 @@ module.exports = {
         db.close();
       }
     });
-  }
+  },
+  find: function(){}
+  // remove: function(){}
+
 };

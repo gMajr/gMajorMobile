@@ -34,7 +34,7 @@ router.route('/conversations/:conversationId')
   .post(function(req, res){
     var message = req.body;
     var conId = req.params.conversationId;
-    db.update('gmajor.conversations', conId, message);
+    db.update('gmajor.conversations', conId, message, res);
   });
 
 

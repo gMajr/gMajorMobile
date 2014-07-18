@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var url = require('url');
-var querystring = require('querystring')
+var querystring = require('querystring');
 var router = express.Router();
 var db = require(__dirname + '/db/db.js');
 var port = process.env.PORT || 8080;
@@ -13,7 +13,6 @@ db.init();
 
 // API Router
 // handles requests starting with '/api' 
-
 server.use('/api', router);
 
 router.use(bodyParser.json());
@@ -48,6 +47,11 @@ router.route('/threads')
   // TODO: Check that this works
   .post(function(req, res){
     var message = req.body;
+    var newThread = {};
+    newThread.music = message.music;
+    newThread.authors = [message.author];
+    newThread.messages = [message.message];
+    newThread.timestamps = [message.timestamp];
     db.insert('gmajor.threads', message, res);
   })
   // TODO: Check functionality for /threads

@@ -58,14 +58,15 @@ router.route('/threads')
   });
 
 router.route('/threads/:threadId')
+  // appends a message to a thread
   .post(function(req, res){
-    var thread = req.body;
-    var conId = req.params.threadId;
-    db.update('gmajor.threads', conId, message, res);
+    var message = req.body;
+    var threadId = req.params.threadId;
+    db.append('gmajor.threads', res, threadId, message);
   })
   .get(function(req, res){
-    var conId = req.params.threadId;
-    db.find('gmajor.threads', res, conId);
+    var threadId = req.params.threadId;
+    db.find('gmajor.threads', res, threadId);
   });
 
 

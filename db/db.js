@@ -63,6 +63,28 @@ module.exports = {
         }
       });
     });
+  },
+  append: function(collectionName, res, id, message){
+    if (id !== undefined){
+      id = {_id: mongodb.ObjectID(id)};
+    }
+    MongoClient.connect(connectionString, (function(err, db) {
+      if(err) throw err;
+      db.collection(collectionName).find(id).toArray((function(err, item){
+        if (err){
+          throw err;
+        }else{
+          item = item[0];
+          item.music = message.music;
+          item.authors.push(message.author);
+          item.messages.push(message.message);
+          item.timestamps.push(message.timestamp);
+          delete item._id;
+          console.log(item);
+          this.update(collectionName, id._id.toString(), item, res);
+        }
+      }).bind(this));
+    }).bind(this));
   }
 };
 

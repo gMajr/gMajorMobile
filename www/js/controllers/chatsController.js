@@ -1,6 +1,6 @@
 angular.module('gmajor.chatsController', [])
 
-.controller('ChatsController', function ($scope, $location, ChatsFactory) {
+.controller('ChatsController', function ($scope, $location, ChatsFactory, GridTargetFactory) {
 
   $scope.navTitle = 'Chats';
 
@@ -24,6 +24,8 @@ angular.module('gmajor.chatsController', [])
 	// }
 
 	$scope.startNewChat = function(){
+		console.log(GridTargetFactory)
+		ChatsFactory.resetBoard(GridTargetFactory);
 		$location.url('/' + 'grid');
 	}
 

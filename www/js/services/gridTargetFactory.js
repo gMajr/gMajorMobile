@@ -16,7 +16,6 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   var soundBoard = new SoundBoard();
   var grid = new Grid('piano', 90, 329.63);
   soundBoard.addGrid(grid);
-  console.log('im here');
 
 
   // generate an m x n collection of target objects
@@ -30,7 +29,6 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
     
     clickToggle = function() {
       grid.toggle(this.col, this.row);
-      console.log('yo');
       if (this.toggleState === 'off') {
         grid.playSounds(grid.keys[this.row], 1, 0);
         this.circleR = selectedCirR;

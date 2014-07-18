@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var url = require('url');
+var querystring = require('querystring')
 var router = express.Router();
 var db = require(__dirname + '/db/db.js');
 var port = process.env.PORT || 8080;
@@ -43,24 +45,26 @@ router.route('/users/:userId')
   });
 
 
-router.route('/conversations')
+router.route('/chats')
   .post(function(req, res){
     var message = req.body;
-    db.insert('gmajor.conversations', message, res);
+    db.insert('gmajor.chats', message, res);
   })
   .get(function(req, res){
-    db.find('gmajor.conversations', res);
+    var parsedUrl = url.parse(req.url);
+    var params = querystring.parse(parsedUrl.query);
+    db.match('gmajor.chats', res, params);
   });
 
-router.route('/conversations/:conversationId')
+router.route('/chats/:chatId')
   .post(function(req, res){
     var message = req.body;
-    var conId = req.params.conversationId;
-    db.update('gmajor.conversations', conId, message, res);
+    var conId = req.params.chatId;
+    db.update('gmajor.chats', conId, message, res);
   })
   .get(function(req, res){
-    var conId = req.params.conversationId;
-    db.find('gmajor.conversations', res, conId);
+    var conId = req.params.chatId;
+    db.find('gmajor.chats', res, conId);
   });
 
 

@@ -1,6 +1,6 @@
 angular.module('gmajor.loginController', [])
 
-.controller('LoginController', function ($scope) {
+.controller('LoginController', function ($scope, User) {
   $scope.navTitle = 'Log In';
   
   // seems mostly pointless?
@@ -17,11 +17,11 @@ angular.module('gmajor.loginController', [])
   $scope.buttonClick = function(){
     alert('button clicked');
   };
-
   $scope.login = function(){
     openFB.login('', function(){
       console.log('login successful');
       window.location.href = window.location.origin + '/#/grid';
+      User.userData();
     },
     function(err){
       console.log(err);

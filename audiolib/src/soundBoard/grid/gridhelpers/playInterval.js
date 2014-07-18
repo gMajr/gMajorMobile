@@ -23,7 +23,7 @@ Grid.prototype.playInterval = function(){
    k = k || 0;
    k++;
    firstTime = firstTime || 0;
-   this.interval = setTimeout( continuedLoop.bind(this, MIDI, startTime, k), firstTime * 1000, 2, cb );
+   this.interval = setTimeout( continuedLoop.bind(this, MIDI, startTime, k), firstTime * 1000);
  }
  if (!context.currentTime){
    this.playSounds(this.keys[0], 0, 0);

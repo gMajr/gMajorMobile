@@ -52,7 +52,7 @@ router.route('/threads')
     newThread.authors = [message.author];
     newThread.messages = [message.message];
     newThread.timestamps = [message.timestamp];
-    db.insert('gmajor.threads', message, res);
+    db.insert('gmajor.threads', newThread, res);
   })
   // TODO: Check functionality for /threads
   .get(function(req, res){

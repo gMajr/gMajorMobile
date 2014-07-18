@@ -2,50 +2,30 @@ angular.module('gmajor.chatsController', [])
 
 .controller('ChatsController', function ($scope, $location, ChatsFactory) {
 
-  $scope.getChatData = function(){ 
-		ChatsFactory.getAllChats()
-		.then(function (data) {
-			var chats = [];
-
-			for ( var i = 0; i < data.length; i++){
-				var users = _.uniq(data[i].authors);
-				var gridNumbers = data[i].music.length;
-				var last = 'Jan 01, 2014';
-				var id = i;
-				chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
-
-			}
-			$scope.userChats = chats;
-			ChatsFactory.data = data;
-		  })
-		  .catch(function (error) {
-		    console.error(error);
-		  });
-	}
+  $scope.navTitle = 'Chats';
 
 	if(ChatsFactory.retrieved === false){
-
-		$scope.getChatData();
-		ChatsFactory.retrieved = true;
-	}else{
-		var chats = [];
-		for ( var i = 0; i < ChatsFactory.data.length; i++){
-		var users = _.uniq(ChatsFactory.data[i].authors);
-		var gridNumbers = ChatsFactory.data[i].music.length;
-		var last = 'Jan 01, 2014';
-		var id = i;
-		console.log(users);
-		chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
-		}
-		$scope.userChats = chats;
-		ChatsFactory.data = data;
+		ChatsFactory.getChatData(ChatsFactory.getAllChats, $scope, ChatsFactory);
+		ChatsFactory.retrieved = true;  
 	}
+	// }else{
+
+	// 	ChatsFactoryDataLength = ChatsFactory.data.length -1;
+	// 	var users = _.uniq(ChatsFactory.data[ChatsFactoryDataLength].authors);
+	// 	var gridNumbers = ChatsFactory.data[ChatsFactoryDataLength].music.length;
+	// 	var last = 'Jan 01, 2014';
+	// 	var id = ChatsFactoryDataLengh;
+	// 	chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
+	// 	}
+	// 	$scope.userChats = chats;
+	// 	ChatsFactory.data = data;
+	// }
 
 	$scope.startNewChat = function(){
+		ChatsFactory.newChat = true;
 		$location.url('/' + 'grid');
 	}
 
-  $scope.navTitle = 'Chats';
  
   $scope.navigateToChatScreen = function(chat){
 

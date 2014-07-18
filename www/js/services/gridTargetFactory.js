@@ -1,6 +1,7 @@
-angular.module('gmajor.gridTargetFactory', [])
+angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
 
 .factory('GridTargetFactory', function(){
+
   var iPhoneSVGWidth = 298;
   var nMax = 8;
   var mMax = 6;
@@ -23,6 +24,20 @@ angular.module('gmajor.gridTargetFactory', [])
     // 1. a cicle with properites x, y, & circleR that indicates the target state
     // 2. an invisible rectangle overlayed onto them that recieves the click / touch events
     //    and acts as a bigger touch target. (rectY, rectY, rectHeight, & rectWidth)
+    
+    clickToggle = function() {
+      grid.toggle(this.col, this.row);
+      if (this.toggleState === 'off') {
+        grid.playSounds(grid.keys[this.row], 1, 0);
+        this.circleR = selectedCirR;
+        this.toggleState = 'on';
+      } else {
+        this.circleR = initCirR;
+        this.toggleState = 'off';
+      }
+    }
+
+
   for(var n = 0; n < nMax; n++) {
     var currColumn = [];
     currColumn.activeClass = undefined;
@@ -39,17 +54,7 @@ angular.module('gmajor.gridTargetFactory', [])
         circleR: initCirR,
         toggleState: 'off',
         column: currColumn,
-        clickToggle: function() {
-          grid.toggle(this.col, this.row);
-          if (this.toggleState === 'off') {
-            grid.playSounds(grid.keys[this.row], 1, 0);
-            this.circleR = selectedCirR;
-            this.toggleState = 'on';
-          } else {
-            this.circleR = initCirR;
-            this.toggleState = 'off';
-          }
-        }
+        clickToggle: clickToggle
       };
       currColumn.push(newTarget);
     }
@@ -63,6 +68,7 @@ angular.module('gmajor.gridTargetFactory', [])
   return {
     'columns': columns,
     'play': soundBoard.playInterval.bind(soundBoard),
-    'stop': soundBoard.stopSounds.bind(soundBoard)
+    'stop': soundBoard.stopSounds.bind(soundBoard),
+    'soundBoard': soundBoard
   };
 });

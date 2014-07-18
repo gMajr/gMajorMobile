@@ -1,11 +1,10 @@
-var SoundBoard = function(ImportedJSON){
+var SoundBoard = function(gridInformation){
 
 	this.Grids = [];
 	this.interval;
 
-	if ( ImportedJSON ){
+	if ( gridInformation ){
 
-		gridInformation = JSON.parse(ImportedJSON);
 		for ( var i = 0; i < gridInformation.length; i++){
 
 			var instrument = gridInformation[i].instrument;

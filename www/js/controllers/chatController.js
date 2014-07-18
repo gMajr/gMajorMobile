@@ -1,6 +1,6 @@
 angular.module('gmajor.chatController', [])
 
-.controller('ChatController', function ($scope) {
+.controller('ChatController', function ($scope, ChatsFactory, $location) {
   $scope.navTitle = 'Chat';
 
   $scope.leftButtons = [{
@@ -11,22 +11,15 @@ angular.module('gmajor.chatController', [])
   }];
 
   $scope.rightButtons = [];
-
   $scope.chatStream = {};
 
   // Demo code, hard coded test until backend work is complete.
-  var soundBoard = new SoundBoard();
-  var grid = new Grid('piano', 90, 329.63);
-  soundBoard.addGrid(grid);
-  grid.toggle(3,2);
-  grid.toggle(4,3);
-  cb = function(){console.log('yo')}
-  var grid1 = new Grid('piano', 90, 329.63);
-  grid1.toggle(4,4);
-  grid1.toggle(6,2);
-  soundBoard.addGrid(grid1);
-  var wow = JSON.stringify(soundBoard.exportGrids());
-  var wowza = new SoundBoard(wow);
+  console.log(ChatsFactory.data);
+  currentChatStream = ChatsFactory.data[ChatsFactory.currentID];
+  var soundBoard = new SoundBoard(currentChatStream.music);
+  chatStream = [];
+
+
 
   var currentlyPlaying = undefined;
 
@@ -65,6 +58,7 @@ angular.module('gmajor.chatController', [])
   }
 
   var playThis = function(){
+    console.log(this)
     stopAllPlaying();
     currentlyPlaying = this.id;
     this.musicGrid.playInterval();
@@ -79,40 +73,66 @@ angular.module('gmajor.chatController', [])
     this.buttonState.icon = 'ion-play';
   }
 
+    for ( var i = 0; i < currentChatStream.messages.length; i++ ){
+    id = i;
+    username = currentChatStream.authors[i];
+    comment = currentChatStream.messages[i];
+    musicGrid = soundBoard.Grids[i];
 
-  $scope.chatStream[0] = {
-    id: 0,
-    username: 'Will',
-    comment: 'This is a paragraph of text that the message send created when they created the musical grid and added it to the conversation. Bacon ipsum dolor sit amet chuck pancetta pastrami beef ribs, chicken short loin corned beef spare ribs swine hamburger. Swine frankfurter shankle sirloin flank porchetta.',
-    musicGrid: soundBoard.Grids[0],
-    togglePlay: function(){
+    togglePlay = function(){
       if(currentlyPlaying === this.id) {
         this.stopThis();
       } else {
         this.playThis();
       }
-    },
-    playThis: playThis,
-    stopThis: stopThis,
-    buttonState: { style: 'button-balanced',
+    };
+    playThis = playThis,
+    stopThis = stopThis,
+    buttonState = { style: 'button-balanced',
                    icon: 'ion-play'}
+    chatStream.push({id: id, username: username, comment: comment, musicGrid: musicGrid, togglePlay: togglePlay, playThis: playThis, stopThis: stopThis,
+      buttonState: buttonState });
   }
-  $scope.chatStream[1] = {
-    id: 1,
-    username: 'Bob',
-    comment: 'This is some other text. Hi mom!',
-    musicGrid: soundBoard.Grids[1],
-    togglePlay: function(){
-      if(currentlyPlaying === this.id) {
-        this.stopThis();
-      } else {
-        this.playThis();
-      }
-    },
-    playThis: playThis,
-    stopThis: stopThis,
-    buttonState: { style: 'button-balanced',
-                   icon: 'ion-play'}
+  $scope.chatStream = chatStream;
+  $scope.addMusic = function(){
+    ChatsFactory.grids = soundBoard;
+    $location.url('/' + 'grid')
+
   }
+
+  // $scope.chatStream[0] = {
+  //   id: 0,
+  //   username: 'Will',
+  //   comment: 'This is a paragraph of text that the message send created when they created the musical grid and added it to the conversation. Bacon ipsum dolor sit amet chuck pancetta pastrami beef ribs, chicken short loin corned beef spare ribs swine hamburger. Swine frankfurter shankle sirloin flank porchetta.',
+  //   musicGrid: soundBoard.Grids[0],
+  //   togglePlay: function(){
+  //     if(currentlyPlaying === this.id) {
+  //       this.stopThis();
+  //     } else {
+  //       this.playThis();
+  //     }
+  //   },
+  //   playThis: playThis,
+  //   stopThis: stopThis,
+  //   buttonState: { style: 'button-balanced',
+  //                  icon: 'ion-play'}
+  // }
+  // $scope.chatStream[1] = {
+  //   id: 1,
+  //   username: 'Bob',
+  //   comment: 'This is some other text. Hi mom!',
+  //   musicGrid: soundBoard.Grids[1],
+  //   togglePlay: function(){
+  //     if(currentlyPlaying === this.id) {
+  //       this.stopThis();
+  //     } else {
+  //       this.playThis();
+  //     }
+  //   },
+  //   playThis: playThis,
+  //   stopThis: stopThis,
+  //   buttonState: { style: 'button-balanced',
+  //                  icon: 'ion-play'}
+  // }
 
 });

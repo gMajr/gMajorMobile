@@ -39,7 +39,6 @@ router.route('/users/:userId')
   })
   .get(function(req, res){
     var conId = req.params.userId;
-    console.log(conId);
     db.find('gmajor.users', res, conId);
   });
 
@@ -52,6 +51,7 @@ router.route('/threads')
     newThread.authors = [message.author];
     newThread.messages = [message.message];
     newThread.timestamps = [message.timestamp];
+    newThread.fbids = [message.fbid];
     db.insert('gmajor.threads', newThread, res);
   })
   // TODO: Check functionality for /threads
@@ -60,7 +60,6 @@ router.route('/threads')
     var params = querystring.parse(parsedUrl.query);
     db.match('gmajor.threads', res, params);
   });
-
 router.route('/threads/:threadId')
   // appends a message to a thread
   .post(function(req, res){

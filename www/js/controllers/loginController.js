@@ -23,6 +23,7 @@ angular.module('gmajor.loginController', [])
       // a little janky, but works for now
       window.location.href = window.location.origin + '/#/grid';
       User.userData();
+      $scope.loggedIn = true;
     },
     function(err){
       console.log(err);

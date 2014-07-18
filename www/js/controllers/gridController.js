@@ -17,10 +17,10 @@ angular.module('gmajor.gridController', [])
   }];
 
   $scope.addSongToChat = function(){
-    if ( ChatsFactory.newChat === true ){
+
+    console.log(ChatsFactory);
     ChatsFactory.currentGrid = GridTargetFactory.soundBoard.Grids[0];
     ChatsFactory.currentBoard = GridTargetFactory.soundBoard;      
-    }
     $location.url('/' + 'comment');
   }
 

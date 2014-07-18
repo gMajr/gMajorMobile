@@ -11,7 +11,7 @@ Grid.prototype.playInterval = function(){
    var scheduledTime = ((numberOfCycles * ( 60/this.BPM/2 * 8 )) + startTime + ((currentCol + 1) * 60/this.BPM/2))
    for (var note in this.noteScheduler[currentCol]){
      if ( this.noteScheduler[currentCol][note] ){
-       this.playSounds( note, 1, scheduledTime )
+       this.playSounds( this.noteScheduler[currentCol][note], 1, scheduledTime )
      }
    }
 

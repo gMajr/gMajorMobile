@@ -10,7 +10,10 @@ angular.module('gmajor.commentFactory', [])
     music = ChatsFactory.currentBoard.exportGrids();
 
     dataToServer = {message: message, timestamp: timestamp, author: author, music: music};
-    console.log(ChatsFactory);
+
+    console.log(dataToServer);
+    dataToServer = JSON.stringify(dataToServer);
+    // console.log(dataToServer);
     addSong(dataToServer)
 
   }

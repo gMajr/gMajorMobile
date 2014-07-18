@@ -17,6 +17,7 @@ angular.module('gmajor.chatsFactory', [])
   var getChatData = function(getChatsFunction, $scope, factory){ 
     getChatsFunction()
     .then(function (data) {
+      console.log(data);
       var chats = [];
 
       for ( var i = 0; i < data.length; i++){

@@ -2,6 +2,8 @@ angular.module('gmajor.chatsFactory', [])
 
 .factory('ChatsFactory', function($http){
 
+
+//none of this will exist in the future
 	var soundBoard = new SoundBoard();
   var grid = new Grid('piano', 90, 329.63);
   soundBoard.addGrid(grid);
@@ -40,15 +42,19 @@ angular.module('gmajor.chatsFactory', [])
   var wowz = soundBoard1.exportGrids();
   var wow = soundBoard.exportGrids();
   now = new Date();
-  var data = {author: 'Will', music: wow, message: 'Wow this is really really working!!', timestamps: now}
-  data = JSON.stringify(data)
 
-  $http({
+  //notes on bullshit, this will not exist in the future
+  // var data = {author: 'Will', music: wow, message: 'Wow this is really really working!!', timestamps: now}
+  // data = JSON.stringify(data)
+
+
+$http({
     method: 'GET',
-    url: 'http://localhost:8100/api/threads?author=Tyler'
+    url: 'http://localhost:8080/api/threads?author=Tyler'
   }).success(function(data){
-    console.log(data);
-  })
+    console.log('yo');
+})
+
 
 
   // {_id: ObjectId("aklsdkfldjkfs"), "authors" : ['Tyler'], messages: [], music: 'music'}
@@ -56,11 +62,20 @@ angular.module('gmajor.chatsFactory', [])
 
   // on POST: {'author: .... ', 'message': .... 'music': music}
   // localhost:8080/api/threads/id...
+/*
+ var data;
 
-
+INSTEAD, I'll have something like the following:
+  $http({
+    method: 'GET',
+    url: 'http://localhost:8100/api/threads?author=Tyler'
+  }).success(function(data){
+      data = data;
+  })
+*/
 
   var chats = [];
-  var data = [{music: wow, authors:['Bob', 'Will'], messages: ['yo bro', 'So, today Ive been having a crazy awesome time at hack reactor if you know what I mean ']}, {music: wow, authors:['Bob', 'Will', 'John'], messages: ['yo bro', 'So, today Ive been having a crazy awesome time at hack reactor if you know what I mean ']}];
+  var data = [{_id: 'abcddsdfacsd', music: wow, authors:['Bob', 'Will'], messages: ['yo bro', 'So, today Ive been having a crazy awesome time at hack reactor if you know what I mean ']}, {_id: 'sweoifsndlkfsd', music: wow, authors:['Bob', 'Will', 'John'], messages: ['yo bro', 'So, today Ive been having a crazy awesome time at hack reactor if you know what I mean ']}];
   //here is where I would typically start.  I can begin building the array that we'll have.
 
   for ( var i = 0; i < data.length; i++ ){

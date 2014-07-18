@@ -11,14 +11,12 @@ angular.module('gmajor.chatController', [])
   }];
 
   $scope.rightButtons = [];
-
   $scope.chatStream = {};
 
   // Demo code, hard coded test until backend work is complete.
-
+  console.log(ChatsFactory)
   currentChatStream = ChatsFactory.data[ChatsFactory.currentID];
   var soundBoard = new SoundBoard(currentChatStream.music);
-  console.log(currentChatStream)
   chatStream = [];
 
 

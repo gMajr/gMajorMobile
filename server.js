@@ -44,27 +44,28 @@ router.route('/users/:userId')
     db.find('gmajor.users', res, conId);
   });
 
-
-router.route('/chats')
+router.route('/threads')
+  // TODO: Check that this works
   .post(function(req, res){
     var message = req.body;
-    db.insert('gmajor.chats', message, res);
+    db.insert('gmajor.threads', message, res);
   })
+  // TODO: Check functionality for /threads
   .get(function(req, res){
     var parsedUrl = url.parse(req.url);
     var params = querystring.parse(parsedUrl.query);
-    db.match('gmajor.chats', res, params);
+    db.match('gmajor.threads', res, params);
   });
 
-router.route('/chats/:chatId')
+router.route('/threads/:threadId')
   .post(function(req, res){
-    var message = req.body;
-    var conId = req.params.chatId;
-    db.update('gmajor.chats', conId, message, res);
+    var thread = req.body;
+    var conId = req.params.threadId;
+    db.update('gmajor.threads', conId, message, res);
   })
   .get(function(req, res){
-    var conId = req.params.chatId;
-    db.find('gmajor.chats', res, conId);
+    var conId = req.params.threadId;
+    db.find('gmajor.threads', res, conId);
   });
 
 

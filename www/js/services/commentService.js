@@ -8,13 +8,14 @@ angular.module('gmajor.commentFactory', [])
     timestamp = new Date();
     author = 'Tyler';
     music = ChatsFactory.currentBoard.exportGrids();
+    console.log(music);
 
     dataToServer = {message: message, timestamp: timestamp, author: author, music: music};
 
-    console.log(dataToServer);
+
     dataToServer = JSON.stringify(dataToServer);
-    // console.log(dataToServer);
     addSong(dataToServer)
+    ChatsFactory.newChat = false;
 
   }
 

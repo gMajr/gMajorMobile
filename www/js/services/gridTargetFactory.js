@@ -1,6 +1,6 @@
 angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
 
-.factory('GridTargetFactory', function(){
+.factory('GridTargetFactory', function(ChatsFactory){
 
   var iPhoneSVGWidth = 298;
   var nMax = 8;
@@ -12,9 +12,11 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   var mSpacingOffset = Math.floor(298/(mMax+1));
 
   var columns = [];
+
   var soundBoard = new SoundBoard();
   var grid = new Grid('piano', 90, 329.63);
   soundBoard.addGrid(grid);
+
 
   // generate an m x n collection of target objects
     // Associate a row and column with each object

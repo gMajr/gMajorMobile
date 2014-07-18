@@ -16,4 +16,14 @@ angular.module('gmajor.loginController', [])
     alert('button clicked');
   };
 
+  $scope.login = function(){
+    openFB.login('', function(){
+      console.log('success');
+      window.location.href = window.location.origin + '/#/chats';
+    },
+    function(err){
+      console.log(err);
+    });
+  }
+
 });

@@ -1,6 +1,6 @@
 angular.module('gmajor.gridController', [])
 
-.controller('GridController', function ($scope, GridTargetFactory, ChatsFactory, $location) {
+.controller('GridController', function ($scope, GridTargetFactory, $ionicSideMenuDelegate) {
   var prevPlayingCol = 0;
   var playStatus = 'stopped';
 

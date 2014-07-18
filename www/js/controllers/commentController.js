@@ -9,40 +9,30 @@ angular.module('gmajor.commentController', [])
   $scope.styles = 'button-balanced';
   $scope.icon = 'ion-play';
 
-  $scope.currentlyPlaying = false;
+  currentlyPlaying = false;
 
   $scope.togglePlay = function($scope){
 
-    if($scope.currentlyPlaying){
+    if(currentlyPlaying){
       $scope.styles = 'button-balanced';
       $scope.icon = 'ion-play';
       ChatsFactory.currentBoard.stopSounds();
-      $scope.currentlyPlaying = false;
+      currentlyPlaying = false;
     }else{
       $scope.styles = 'button-assertive';
       $scope.icon = 'ion-stop';
       ChatsFactory.currentBoard.playInterval();
-      $scope.currentlyPlaying = true;
+      currentlyPlaying = true;
     }
   }
 
   $scope.addNewComment = function(){ 
-
     message = $scope.text;
-    timestamp = new Date();
-    author = 'Tyler';
-    music = ChatsFactory.currentBoard.exportGrids();
-
-    data = {message: message, timestamp: timestamp, author: author, music: music};
-    CommentFactory.addSong(data);
-
-
-    $location.url('/' + 'chats');
-    ChatsFactory.data.push(data)
-
-
-
+    CommentFactory.addNewComment(message);
+    // $location.url('/' + 'chats');
   }
+
+  $scope.test = CommentFactory.test;
 
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',

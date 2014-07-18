@@ -16,6 +16,7 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   var soundBoard = new SoundBoard();
   var grid = new Grid('piano', 90, 329.63);
   soundBoard.addGrid(grid);
+  console.log('im here');
 
 
   // generate an m x n collection of target objects

@@ -29,7 +29,7 @@ angular.module('gmajor.commentController', [])
   $scope.addNewComment = function(){ 
     message = $scope.text;
     CommentFactory.addNewComment(message);
-    // $location.url('/' + 'chats');
+    $location.url('/' + 'chats');
   }
 
   $scope.test = CommentFactory.test;

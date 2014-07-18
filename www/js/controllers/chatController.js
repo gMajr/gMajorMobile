@@ -1,6 +1,6 @@
 angular.module('gmajor.chatController', [])
 
-.controller('ChatController', function ($scope, ChatsFactory, $location) {
+.controller('ChatController', function ($scope, ChatsFactory, $location, GridTargetFactory) {
   $scope.navTitle = 'Chat';
 
   $scope.leftButtons = [{
@@ -93,6 +93,7 @@ angular.module('gmajor.chatController', [])
   $scope.chatStream = chatStream;
 
   $scope.addMusic = function(){
+    console.log(GridTargetFactory.columns);
     $location.url('/' + 'grid')
 
   }

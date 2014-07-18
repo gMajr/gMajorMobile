@@ -30,7 +30,7 @@ SoundBoard.prototype.playInterval = function( cb ){
    k++;
 
    firstTime = firstTime || 0;
-   this.interval = setTimeout( continuedLoop.bind(this, startTime, k), firstTime * 1000, 2, cb );
+   this.interval = setTimeout( continuedLoop.bind(this, startTime, k), firstTime * 1000);
  }
  if (!context.currentTime){
    this.Grids[0].playSounds(this.Grids[0].keys[0], 0, 0);

@@ -56,7 +56,6 @@ angular.module('gmajor.chatController', [])
   }
 
   var playThis = function(){
-    console.log(this)
     stopAllPlaying();
     currentlyPlaying = this.id;
     this.musicGrid.playInterval();
@@ -92,8 +91,8 @@ angular.module('gmajor.chatController', [])
       buttonState: buttonState });
   }
   $scope.chatStream = chatStream;
+
   $scope.addMusic = function(){
-    ChatsFactory.grids = soundBoard;
     $location.url('/' + 'grid')
 
   }

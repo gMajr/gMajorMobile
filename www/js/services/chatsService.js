@@ -14,12 +14,9 @@ angular.module('gmajor.chatsFactory', [])
   };
 
 
-  var getChatData = function(getChatsFunction, $scope, factory){ 
-    getChatsFunction()
-    .then(function (data) {
-      console.log(data);
-      var chats = [];
+  var processChatData = function(data){ 
 
+      var chats = [];
       for ( var i = 0; i < data.length; i++){
         var users = _.uniq(data[i].authors);
         var gridNumbers = data[i].music.length;
@@ -28,18 +25,13 @@ angular.module('gmajor.chatsFactory', [])
         chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
 
       }
-      $scope.userChats = chats;
-      factory.data = data;
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  }
+      return chats;
+      }
 
 
   return {
     getAllChats: getAllChats,
-    getChatData: getChatData,
+    processChatData: processChatData,
     retrieved: false
   }
 

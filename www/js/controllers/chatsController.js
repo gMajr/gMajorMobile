@@ -4,10 +4,12 @@ angular.module('gmajor.chatsController', [])
 
   $scope.navTitle = 'Chats';
 
-	if(ChatsFactory.retrieved === false){
-		ChatsFactory.getChatData(ChatsFactory.getAllChats, $scope, ChatsFactory);
-		ChatsFactory.retrieved = true;  
-	}
+	ChatsFactory.getAllChats()
+	.then(function (data) {
+		 $scope.userChats = ChatsFactory.processChatData(data);
+		 ChatsFactory.data = data;
+	});
+
 	// }else{
 
 	// 	ChatsFactoryDataLength = ChatsFactory.data.length -1;
@@ -22,7 +24,6 @@ angular.module('gmajor.chatsController', [])
 	// }
 
 	$scope.startNewChat = function(){
-		ChatsFactory.newChat = true;
 		$location.url('/' + 'grid');
 	}
 

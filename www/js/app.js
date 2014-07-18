@@ -15,6 +15,8 @@ angular.module('gmajor', ['ionic',
                           'gmajor.gridService',
                           'gmajor.menuController',
                           'gmajor.menuService',
+                          'gmajor.userController',
+                          'gmajor.userService',
                           'gmajor.main',
                           'gmajor.gridTargetFactory',
                           'gmajor.directives'

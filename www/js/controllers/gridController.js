@@ -16,6 +16,14 @@ angular.module('gmajor.gridController', [])
     }
   }];
 
+  $scope.addSongToChat = function(){
+
+    console.log(ChatsFactory);
+    ChatsFactory.currentGrid = GridTargetFactory.soundBoard.Grids[0];
+    ChatsFactory.currentBoard = GridTargetFactory.soundBoard;      
+    $location.url('/' + 'comment');
+  }
+
   $scope.rightButtons = [];
 
   $scope.playButtonText = 'Play';

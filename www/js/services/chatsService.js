@@ -1,98 +1,32 @@
 angular.module('gmajor.chatsFactory', [])
 
-.factory('ChatsFactory', function($http){
+.factory('ChatsFactory', function($http, $window){
 
-
-//none of this will exist in the future
-	var soundBoard = new SoundBoard();
-  var grid = new Grid('piano', 90, 329.63);
-  soundBoard.addGrid(grid);
-  grid.toggle(3,2);
-  grid.toggle(4,3);
-  grid.toggle(4,4);
-  grid.toggle(1,2);
-  cb = function(){console.log('yo')}
-  var grid1 = new Grid('piano', 90, 329.63);
-  grid1.toggle(4,4);
-  grid1.toggle(6,2);
-  grid1.toggle(6,1);
-  grid1.toggle(6,3);
-  soundBoard.addGrid(grid1);
-
-
-  var soundBoard1 = new SoundBoard();
-  var grid2 = new Grid('piano', 90, 329.63);
-  soundBoard1.addGrid(grid);
-  grid2.toggle(3,2);
-  grid2.toggle(4,3);
-  grid2.toggle(4,4);
-  grid2.toggle(1,2);
-  cb = function(){console.log('yo')}
-  var grid3 = new Grid('piano', 90, 329.63);
-  grid3.toggle(4,4);
-  grid3.toggle(6,2);
-  grid3.toggle(6,1);
-  grid3.toggle(6,3);
-  soundBoard1.addGrid(grid1);
-  var grid4 = new Grid('piano', 90, 329.63)
-  grid4.toggle(3,3);
-  grid4.toggle(5,2);
-  grid4.toggle(2,6);
-  soundBoard.addGrid(grid4);
-  var wowz = soundBoard1.exportGrids();
-  var wow = soundBoard.exportGrids();
-  now = new Date();
-
-  //notes on bullshit, this will not exist in the future
-  // var data = {author: 'Will', music: wow, message: 'Wow this is really really working!!', timestamps: now}
-  // data = JSON.stringify(data)
-
-
-$http({
-    method: 'GET',
-    url: 'http://localhost:8080/api/threads?author=Tyler'
-  }).success(function(data){
-    console.log('yo');
-})
-
-
-
-  // {_id: ObjectId("aklsdkfldjkfs"), "authors" : ['Tyler'], messages: [], music: 'music'}
-
-
-  // on POST: {'author: .... ', 'message': .... 'music': music}
-  // localhost:8080/api/threads/id...
-/*
- var data;
-
-INSTEAD, I'll have something like the following:
-  $http({
-    method: 'GET',
-    url: 'http://localhost:8100/api/threads?author=Tyler'
-  }).success(function(data){
-      data = data;
-  })
-*/
-
-  var chats = [];
-  var data = [{_id: 'abcddsdfacsd', music: wow, authors:['Bob', 'Will'], messages: ['yo bro', 'So, today Ive been having a crazy awesome time at hack reactor if you know what I mean ']}, {_id: 'sweoifsndlkfsd', music: wow, authors:['Bob', 'Will', 'John'], messages: ['yo bro', 'So, today Ive been having a crazy awesome time at hack reactor if you know what I mean ']}];
-  //here is where I would typically start.  I can begin building the array that we'll have.
-
-  for ( var i = 0; i < data.length; i++ ){
-
-    var users = _.uniq(data[i].authors);
-    var gridNumbers = data[i].music.length;
-    var last = 'Jan 01, 2014'
-    var id = i;
-    chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
-
+  var getAllChats = function (){
+    url = $window.location.origin + '/api/threads?author=Tyler'
+    return $http({
+      method: 'GET',
+      url: url
+    })
+    .then(function (resp) {
+      return resp.data;
+    });
+  };
+  return {
+    getAllChats: getAllChats
   }
 
-	return {
-    data: data,
-		chats: chats
-	}
+  });
+// $http({
+//   method:'POST',
+//   url: 'http://localhost:8080/api/threads/53c86c8b09bd9d2bcc491a7b',
+//   data: data
+// }).success(function(a){
+//   console.log(a);
+// })
+
+  // var data = [{_id: 'abcddsdfacsd', music: wow, authors:['Bob', 'Will'], messages: ['yo bro', 'So, today Ive been having a crazy awesome time at hack reactor if you know what I mean ']}, {_id: 'sweoifsndlkfsd', music: wow, authors:['Bob', 'Will', 'John'], messages: ['yo bro', 'So, today Ive been having a crazy awesome time at hack reactor if you know what I mean ']}];
+  //here is where I would typically start.  I can begin building the array that we'll have.
 
 
 
-});

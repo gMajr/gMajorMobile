@@ -7,17 +7,17 @@
   <form>
     <div class="row">
       <div class="col col-25">
-        <button class="button button-balanced"><i class="icon ion-play"></i></button>
+        <button class="button {{styles}}" ng-click="togglePlay($parent)"><i class="icon {{icon}}"></i></button>
       </div>
       <div class="col">
         <label class="item item-input">
-          <textarea type="text" name="comment-text" placeholder="Enter comment"></textarea>
+          <textarea type="text" name="comment-text" placeholder="Enter comment" ng-model="$parent.text"></textarea>
         </label>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <button type="submit" class="button button-block" name="comment-text"><i class="icon ion-plus"></i> Add Comment</button>
+        <button type="submit" class="button button-block" name="comment-text" ng-click="addNewComment()"><i class="icon ion-plus"></i> Add Comment</button>
       </div>
     </div>
   </form>

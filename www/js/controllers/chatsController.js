@@ -23,14 +23,27 @@ angular.module('gmajor.chatsController', [])
 		  });
 	}
 
-	$scope.startNewChat = function(){
+	if(ChatsFactory.retrieved === false){
 
-		$location.url('/' + 'grid');
-
+		$scope.getChatData();
+		ChatsFactory.retrieved = true;
+	}else{
+		var chats = [];
+		for ( var i = 0; i < ChatsFactory.data.length; i++){
+		var users = _.uniq(ChatsFactory.data[i].authors);
+		var gridNumbers = ChatsFactory.data[i].music.length;
+		var last = 'Jan 01, 2014';
+		var id = i;
+		console.log(users);
+		chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
+		}
+		$scope.userChats = chats;
+		ChatsFactory.data = data;
 	}
 
-	$scope.getChatData();
-
+	$scope.startNewChat = function(){
+		$location.url('/' + 'grid');
+	}
 
   $scope.navTitle = 'Chats';
  

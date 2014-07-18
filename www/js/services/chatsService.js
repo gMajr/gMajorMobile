@@ -13,7 +13,8 @@ angular.module('gmajor.chatsFactory', [])
     });
   };
   return {
-    getAllChats: getAllChats
+    getAllChats: getAllChats,
+    retrieved: false
   }
 
   });

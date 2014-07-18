@@ -1,6 +1,6 @@
 angular.module('gmajor.gridController', [])
 
-.controller('GridController', function ($scope, GridTargetFactory, ChatsFactory) {
+.controller('GridController', function ($scope, GridTargetFactory, ChatsFactory, $location) {
   var prevPlayingCol = 0;
   var playStatus = 'stopped';
 
@@ -15,6 +15,14 @@ angular.module('gmajor.gridController', [])
         stopPlayingGrid();
     }
   }];
+
+  $scope.test = function(){
+
+    ChatsFactory.currentGrid = GridTargetFactory.soundBoard.Grids[0];
+    ChatsFactory.currentBoard = GridTargetFactory.soundBoard;
+    $location.url('/' + 'comment');
+
+  }
 
   $scope.rightButtons = [];
 

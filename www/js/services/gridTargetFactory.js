@@ -1,7 +1,7 @@
 angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
 
-.factory('GridTargetFactory', function(ChatsFactory){
-  console.log(ChatsFactory)
+.factory('GridTargetFactory', function(){
+
   var iPhoneSVGWidth = 298;
   var nMax = 8;
   var mMax = 6;
@@ -12,7 +12,7 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   var mSpacingOffset = Math.floor(298/(mMax+1));
 
   var columns = [];
-  var soundBoard = ChatsFactory.grids
+  var soundBoard = new SoundBoard();
   var grid = new Grid('piano', 90, 329.63);
   soundBoard.addGrid(grid);
 
@@ -24,6 +24,20 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
     // 1. a cicle with properites x, y, & circleR that indicates the target state
     // 2. an invisible rectangle overlayed onto them that recieves the click / touch events
     //    and acts as a bigger touch target. (rectY, rectY, rectHeight, & rectWidth)
+    
+    clickToggle = function() {
+      grid.toggle(this.col, this.row);
+      if (this.toggleState === 'off') {
+        grid.playSounds(grid.keys[this.row], 1, 0);
+        this.circleR = selectedCirR;
+        this.toggleState = 'on';
+      } else {
+        this.circleR = initCirR;
+        this.toggleState = 'off';
+      }
+    }
+
+
   for(var n = 0; n < nMax; n++) {
     var currColumn = [];
     currColumn.activeClass = undefined;
@@ -40,17 +54,7 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
         circleR: initCirR,
         toggleState: 'off',
         column: currColumn,
-        clickToggle: function() {
-          grid.toggle(this.col, this.row);
-          if (this.toggleState === 'off') {
-            grid.playSounds(grid.keys[this.row], 1, 0);
-            this.circleR = selectedCirR;
-            this.toggleState = 'on';
-          } else {
-            this.circleR = initCirR;
-            this.toggleState = 'off';
-          }
-        }
+        clickToggle: clickToggle
       };
       currColumn.push(newTarget);
     }
@@ -64,6 +68,7 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   return {
     'columns': columns,
     'play': soundBoard.playInterval.bind(soundBoard),
-    'stop': soundBoard.stopSounds.bind(soundBoard)
+    'stop': soundBoard.stopSounds.bind(soundBoard),
+    'soundBoard': soundBoard
   };
 });

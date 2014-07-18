@@ -7,6 +7,8 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('gulp-shell');
 var shelljs = require('shelljs');
+var nodemon = require('gulp-nodemon')
+
 
 var paths = {
   // all our client app js files, not including 3rd party js files
@@ -19,7 +21,8 @@ var paths = {
           'audiolib/src/test/*.js'],
 
   sass: ['./scss/**/*.scss'],
-  dependencies: [ 'www/js/app.js', 'www/js/services/**/*.js', 'www/js/controllers/**/*.js']
+  dependencies: [ 'www/js/app.js', 'www/js/services/**/*.js', 'www/js/controllers/**/*.js'],
+  templates: ['www/templates/**/*.html']
 };
 
 
@@ -47,6 +50,12 @@ gulp.task('dependencies', function(){
     .pipe(gulp.dest('www/js/build/'));
 });
 
+gulp.task('serve', function(){
+  nodemon({
+    script: 'server.js',
+    ext: 'js html'
+  });
+})
 
 
 gulp.task('serve-ionic', sh.task([
@@ -87,4 +96,4 @@ gulp.task('git-check', function(done) {
 
 gulp.task('compile', ['audio', 'dependencies']);
 gulp.task('emulate', ['compile', 'emulate-ios']);
-gulp.task('default', ['compile', 'serve-ionic', 'watch']);
+gulp.task('default', ['compile', 'serve', 'watch']);

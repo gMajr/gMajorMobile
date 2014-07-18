@@ -16,12 +16,12 @@ angular.module('gmajor.gridController', [])
     }
   }];
 
-  $scope.test = function(){
-
+  $scope.addSongToChat = function(){
+    if ( ChatsFactory.newChat === true ){
     ChatsFactory.currentGrid = GridTargetFactory.soundBoard.Grids[0];
-    ChatsFactory.currentBoard = GridTargetFactory.soundBoard;
+    ChatsFactory.currentBoard = GridTargetFactory.soundBoard;      
+    }
     $location.url('/' + 'comment');
-
   }
 
   $scope.rightButtons = [];

@@ -12,10 +12,38 @@ angular.module('gmajor.chatsFactory', [])
       return resp.data;
     });
   };
+
+
+  var getChatData = function(getChatsFunction, $scope, factory){ 
+    getChatsFunction()
+    .then(function (data) {
+      console.log(data);
+      var chats = [];
+
+      for ( var i = 0; i < data.length; i++){
+        var users = _.uniq(data[i].authors);
+        var gridNumbers = data[i].music.length;
+        var last = 'Jan 01, 2014';
+        var id = i;
+        chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
+
+      }
+      $scope.userChats = chats;
+      factory.data = data;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
+
+
   return {
     getAllChats: getAllChats,
+    getChatData: getChatData,
     retrieved: false
   }
+
+
 
   });
 // $http({

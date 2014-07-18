@@ -12,7 +12,7 @@ SoundBoard.prototype.playInterval = function( cb ){
 
    for ( var i = 0; i < this.Grids.length; i++ ){
 	   for ( var note in this.Grids[i].noteScheduler[currentCol] ){
-	       this.Grids[i].playSounds( note, 1, scheduledTime )
+	       this.Grids[i].playSounds( this.Grids[i].noteScheduler[currentCol][note], 1, scheduledTime )
 	   }
    }
 	

@@ -151,7 +151,8 @@ var openFB = (function () {
      */
     function logout() {
         tokenStore['fbtoken'] = undefined;
-    }
+        tokenStore['fbid'] = undefined;
+    };
 
     /**
      * Lets you make any Facebook Graph API request.

@@ -2,7 +2,8 @@ angular.module('gmajor.loginController', [])
 
 .controller('LoginController', function ($scope) {
   $scope.navTitle = 'Log In';
-
+  
+  // seems mostly pointless?
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',
     tap: function(e) {
@@ -12,6 +13,7 @@ angular.module('gmajor.loginController', [])
 
   $scope.rightButtons = [];
 
+  //I assume this doesn't do anything
   $scope.buttonClick = function(){
     alert('button clicked');
   };
@@ -24,6 +26,6 @@ angular.module('gmajor.loginController', [])
     function(err){
       console.log(err);
     });
-  }
+  };
 
 });

@@ -4,8 +4,6 @@ angular.module('gmajor.userController', [])
 
   $scope.logout = function(){
     openFb.logout();
-    $scope.user = null;
-    window.name = '';
   };
 
 });

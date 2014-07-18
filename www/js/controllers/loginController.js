@@ -20,6 +20,7 @@ angular.module('gmajor.loginController', [])
   $scope.login = function(){
     openFB.login('', function(){
       console.log('login successful');
+      // a little janky, but works for now
       window.location.href = window.location.origin + '/#/grid';
       User.userData();
     },

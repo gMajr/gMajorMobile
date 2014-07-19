@@ -4,7 +4,7 @@ angular.module('gmajor.gridController', [])
   var prevPlayingCol = 0;
   var playStatus = 'stopped';
 
-  $scope.navTitle = 'Grid Yo!';
+  $scope.navTitle = window.sessionStorage.name || 'Grid Yo!';
 
   $scope.columns = GridTargetFactory.columns;
 

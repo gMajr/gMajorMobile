@@ -16,7 +16,7 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   var soundBoard = new SoundBoard();
   var grid = new Grid('piano', 90, 329.63);
   soundBoard.addGrid(grid);
-  grid = soundBoard.Grids[0];
+
 
 
 
@@ -31,9 +31,9 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
     //    and acts as a bigger touch target. (rectY, rectY, rectHeight, & rectWidth)
     
     clickToggle = function() {
-      grid.toggle(this.col, this.row);
+      soundBoard.toggle(this.col, this.row);
       if (this.toggleState === 'off') {
-        grid.playSounds(grid.keys[this.row], 1, 0);
+        soundBoard.playSounds(grid.keys[this.row], 1, 0);
         this.circleR = selectedCirR;
         this.toggleState = 'on';
       } else {

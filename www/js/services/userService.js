@@ -10,6 +10,7 @@ angular.module('gmajor.userService', [])
         // stores id in token for fbdata access (I hope this isn't a security issue)
         // feels janky
         window.sessionStorage['fbid'] = user.id;
+        window.sessionStorage['name'] = user.name;
         //also super janky 
         console.log(user.name);
       },

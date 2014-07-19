@@ -17,12 +17,14 @@ angular.module('gmajor.loginController', [])
   $scope.buttonClick = function(){
     alert('button clicked');
   };
+
   $scope.login = function(){
-    openFB.login('', function(){
+    openFB.login('public_profile', function(){
       console.log('login successful');
       // a little janky, but works for now
       window.location.href = window.location.origin + '/#/chats';
       User.userData();
+      //seems odd to do this here, but we need the data...
       $scope.loggedIn = true; // should be better than this
     },
     function(err){

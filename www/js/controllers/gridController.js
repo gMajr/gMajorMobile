@@ -18,8 +18,6 @@ angular.module('gmajor.gridController', [])
 
   $scope.addSongToChat = function(){
     GridTargetFactory.stop();
-    ChatsFactory.currentGrid = GridTargetFactory.soundBoard.Grids[0];
-    ChatsFactory.currentBoard = GridTargetFactory.soundBoard;      
     $location.url('/' + 'comment');
   }
 

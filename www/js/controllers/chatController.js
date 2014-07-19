@@ -95,9 +95,13 @@ angular.module('gmajor.chatController', [])
 
   $scope.addMusic = function(){
 
+    soundBoard.stopSounds();
+    ChatsFactory.resetBoard(GridTargetFactory);
+    grid = new Grid('piano', 90, 329.63);
     GridTargetFactory.soundBoard.Grids = soundBoard.Grids;
-    console.log(GridTargetFactory.soundBoard);
-    $location.url('/' + 'grid')
+    GridTargetFactory.soundBoard.addGrid(grid);
+    $location.url('/' + 'grid');
+    ChatsFactory.firstTime = false;
 
   }
 

@@ -1,6 +1,6 @@
 angular.module('gmajor.commentController', [])
 
-.controller('CommentController', function ($scope, ChatsFactory, CommentFactory, $location) {
+.controller('CommentController', function ($scope, ChatsFactory, CommentFactory, $location, GridTargetFactory, $http) {
 
   $scope.text;
   $scope.navTitle = 'Add Comment';
@@ -16,20 +16,35 @@ angular.module('gmajor.commentController', [])
     if(currentlyPlaying){
       $scope.styles = 'button-balanced';
       $scope.icon = 'ion-play';
-      ChatsFactory.currentBoard.stopSounds();
+      GridTargetFactory.stop();
       currentlyPlaying = false;
     }else{
       $scope.styles = 'button-assertive';
       $scope.icon = 'ion-stop';
-      ChatsFactory.currentBoard.playInterval();
+      GridTargetFactory.play();
       currentlyPlaying = true;
     }
   }
 
+
+//store in local storage... 
   $scope.addNewComment = function(){ 
     message = $scope.text;
-    CommentFactory.addNewComment(message);
-    $location.url('/' + 'chats');
+    if (ChatsFactory.firstTime === true){
+      var serverData = CommentFactory.addNewComment(message);
+      CommentFactory.addSong(serverData)
+      .then(function(data){
+        ChatsFactory.firstTime = false;
+        $location.url('/' + 'chats');
+        //add local storage logic here :):):)
+      })
+    }else{
+      var serverData = CommentFactory.addNewComment(message);
+      CommentFactory.addAdditionalComment(serverData)
+      .then(function(data){
+        $location.url('/' + 'chats');
+      })
+    }
   }
 
   $scope.test = CommentFactory.test;

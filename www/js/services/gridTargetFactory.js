@@ -21,6 +21,7 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
 
 
 
+
   // generate an m x n collection of target objects
     // Associate a row and column with each object
     // Generate the svg pixel offset for placing the target on the screen

@@ -3,7 +3,7 @@ angular.module('gmajor.chatsFactory', [])
 .factory('ChatsFactory', function($http, $window ){
 
   var getAllChats = function (){
-    url = $window.location.origin + '/api/threads?author=Tyler'
+    url = $window.location.origin + '/api/threads?fbid=' + $window.sessionStorage.fbid;
     return $http({
       method: 'GET',
       url: url

@@ -10,23 +10,14 @@ angular.module('gmajor.chatsController', [])
 		 ChatsFactory.data = data;
 	});
 
-	// }else{
-
-	// 	ChatsFactoryDataLength = ChatsFactory.data.length -1;
-	// 	var users = _.uniq(ChatsFactory.data[ChatsFactoryDataLength].authors);
-	// 	var gridNumbers = ChatsFactory.data[ChatsFactoryDataLength].music.length;
-	// 	var last = 'Jan 01, 2014';
-	// 	var id = ChatsFactoryDataLengh;
-	// 	chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
-	// 	}
-	// 	$scope.userChats = chats;
-	// 	ChatsFactory.data = data;
-	// }
-
 	$scope.startNewChat = function(){
-		ChatsFactory.newChat === true;
+
 		ChatsFactory.resetBoard(GridTargetFactory);
+		var grid = new Grid('piano', 90, 329.63);
+		GridTargetFactory.soundBoard.Grids[0] = grid;
+		ChatsFactory.firstTime = true;
 		$location.url('/' + 'grid');
+
 	}
 
  

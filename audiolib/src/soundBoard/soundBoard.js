@@ -19,5 +19,5 @@ var SoundBoard = function(gridInformation){
 			this.Grids.push(new Grid(instrument, BPM, freq, noteScheduler));
 		}
 	}
-}
+};
 

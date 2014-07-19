@@ -17,7 +17,6 @@ angular.module('gmajor.gridController', [])
   }];
 
   $scope.addSongToChat = function(){
-    console.log(GridTargetFactory);
     GridTargetFactory.stop();
     ChatsFactory.currentGrid = GridTargetFactory.soundBoard.Grids[0];
     ChatsFactory.currentBoard = GridTargetFactory.soundBoard;      
@@ -59,6 +58,7 @@ angular.module('gmajor.gridController', [])
   }
 
   $scope.playGrid = function() {
+    console.log(GridTargetFactory);
     if(playStatus === 'stopped'){
       startPlayingGrid();
     } else {

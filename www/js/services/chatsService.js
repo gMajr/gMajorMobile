@@ -42,7 +42,6 @@ angular.module('gmajor.chatsFactory', [])
   return {
     getAllChats: getAllChats,
     processChatData: processChatData,
-    retrieved: false,
     resetBoard: resetBoard
   }
 

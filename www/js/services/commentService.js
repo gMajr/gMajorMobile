@@ -6,18 +6,28 @@ angular.module('gmajor.commentFactory', [])
   var addNewComment = function(message){ 
 
     timestamp = new Date();
-    author = 'Tyler';
+    author = window.sessionStorage.name;
     music = ChatsFactory.currentBoard.exportGrids();
+    fbid = window.sessionStorage.fbid;
     console.log(music);
 
-    dataToServer = {message: message, timestamp: timestamp, author: author, music: music};
+    dataToServer = {fbid: fbid, message: message, timestamp: timestamp, author: author, music: music};
+    console.log(dataToServer);
+    throw Error('contrivedError');
 
 
     dataToServer = JSON.stringify(dataToServer);
     addSong(dataToServer)
     ChatsFactory.newChat = false;
 
-  }
+  };
+  var addAdditionalComment = function(data, threadID){
+    return $http({
+      method: 'POST',
+      url: '/api/threads/',
+      data: data
+    });
+  };
 
   var addSong = function (data) {
     return $http({

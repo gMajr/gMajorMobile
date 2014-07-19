@@ -6,44 +6,29 @@ angular.module('gmajor.commentFactory', [])
   var addNewComment = function(message){ 
 
     timestamp = new Date();
-<<<<<<< HEAD
+
     author = window.sessionStorage.name;
-    music = ChatsFactory.currentBoard.exportGrids();
-    fbid = window.sessionStorage.fbid;
-    console.log(music);
-=======
-    author = 'Tyler';
     music = GridTargetFactory.soundBoard.exportGrids();
->>>>>>> Began implementing a promise system to store data locally, so data appears immediately.
+    fbid = window.sessionStorage.fbid;
 
     dataToServer = {fbid: fbid, message: message, timestamp: timestamp, author: author, music: music};
-    console.log(dataToServer);
-    throw Error('contrivedError');
-
-    console.log(dataToServer);
     dataToServer = JSON.stringify(dataToServer);
+
     return dataToServer;
 
   };
-  var addAdditionalComment = function(data, threadID){
+  var addAdditionalComment = function(data){
+    url = '/api/threads/' + ChatsFactory.data[ChatsFactory.currentID]._id;
     return $http({
       method: 'POST',
-      url: '/api/threads/',
+      url: url,
       data: data
-    });
+    })
+    .then(function (resp) {
+      return resp.data;
+    })
   };
 
-  // var addAdditionalComment = function(data) {
-
-  // }
-
-  //     return $http({
-  //     method: 'GET',
-  //     url: url
-  //   })
-  //   .then(function (resp) {
-  //     return resp.data;
-  //   });
 
   var addSong = function (data) {
     return $http({
@@ -61,7 +46,8 @@ angular.module('gmajor.commentFactory', [])
   return {
 
     addSong: addSong,
-    addNewComment: addNewComment
+    addNewComment: addNewComment,
+    addAdditionalComment: addAdditionalComment
 
   }
 

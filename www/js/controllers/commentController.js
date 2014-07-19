@@ -34,12 +34,17 @@ angular.module('gmajor.commentController', [])
       var serverData = CommentFactory.addNewComment(message);
       CommentFactory.addSong(serverData)
       .then(function(data){
-        console.log(data);
+        ChatsFactory.firstTime = false;
+        $location.url('/' + 'chats');
+        //add local storage logic here :):):)
       })
     }else{
-      CommentFactory.addAdditionalComment(message);
+      var serverData = CommentFactory.addNewComment(message);
+      CommentFactory.addAdditionalComment(serverData)
+      .then(function(data){
+        $location.url('/' + 'chats');
+      })
     }
-    $location.url('/' + 'chats');
   }
 
   $scope.test = CommentFactory.test;

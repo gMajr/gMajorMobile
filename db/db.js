@@ -55,13 +55,23 @@ module.exports = {
   match: function(collectionName, res, params){
     MongoClient.connect(connectionString, function(err, db) {
       if(err) throw err;
-      db.collection(collectionName).find({fbids: params['fbid']}).toArray(function(err, item){
-        if (err){
-          throw err;
-        }else{
-          res.send(item);
-        }
-      });
+      if(params['fbid'] !== undefined){
+        db.collection(collectionName).find({fbids: params['fbid']}).toArray(function(err, item){
+          if (err){
+            throw err;
+          }else{
+            res.send(item);
+          }
+        });
+      } else {
+        db.collection(collectionName).find().toArray(function(err, item){
+          if (err){
+            throw err;
+          }else{
+            res.send(item);
+          }
+        });
+      }
     });
   },
   append: function(collectionName, res, id, message){

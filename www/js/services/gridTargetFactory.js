@@ -16,6 +16,9 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   var soundBoard = new SoundBoard();
   var grid = new Grid('piano', 90, 329.63);
   soundBoard.addGrid(grid);
+  grid = soundBoard.Grids[0];
+
+
 
 
   // generate an m x n collection of target objects
@@ -71,6 +74,6 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
     'columns': columns,
     'play': soundBoard.playInterval.bind(soundBoard),
     'stop': soundBoard.stopSounds.bind(soundBoard),
-    'soundBoard': soundBoard
+    'soundBoard': soundBoard,
   };
 });

@@ -24,7 +24,7 @@ angular.module('gmajor.chatsController', [])
 	// }
 
 	$scope.startNewChat = function(){
-		console.log(GridTargetFactory)
+		ChatsFactory.newChat === true;
 		ChatsFactory.resetBoard(GridTargetFactory);
 		$location.url('/' + 'grid');
 	}

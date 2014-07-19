@@ -56,6 +56,7 @@ angular.module('gmajor.chatController', [])
   }
 
   var playThis = function(){
+    console.log(this)
     stopAllPlaying();
     currentlyPlaying = this.id;
     this.musicGrid.playInterval();
@@ -93,44 +94,11 @@ angular.module('gmajor.chatController', [])
   $scope.chatStream = chatStream;
 
   $scope.addMusic = function(){
-    console.log(GridTargetFactory.columns);
+
+    GridTargetFactory.soundBoard.Grids = soundBoard.Grids;
+    console.log(GridTargetFactory.soundBoard);
     $location.url('/' + 'grid')
 
   }
-
-  // $scope.chatStream[0] = {
-  //   id: 0,
-  //   username: 'Will',
-  //   comment: 'This is a paragraph of text that the message send created when they created the musical grid and added it to the conversation. Bacon ipsum dolor sit amet chuck pancetta pastrami beef ribs, chicken short loin corned beef spare ribs swine hamburger. Swine frankfurter shankle sirloin flank porchetta.',
-  //   musicGrid: soundBoard.Grids[0],
-  //   togglePlay: function(){
-  //     if(currentlyPlaying === this.id) {
-  //       this.stopThis();
-  //     } else {
-  //       this.playThis();
-  //     }
-  //   },
-  //   playThis: playThis,
-  //   stopThis: stopThis,
-  //   buttonState: { style: 'button-balanced',
-  //                  icon: 'ion-play'}
-  // }
-  // $scope.chatStream[1] = {
-  //   id: 1,
-  //   username: 'Bob',
-  //   comment: 'This is some other text. Hi mom!',
-  //   musicGrid: soundBoard.Grids[1],
-  //   togglePlay: function(){
-  //     if(currentlyPlaying === this.id) {
-  //       this.stopThis();
-  //     } else {
-  //       this.playThis();
-  //     }
-  //   },
-  //   playThis: playThis,
-  //   stopThis: stopThis,
-  //   buttonState: { style: 'button-balanced',
-  //                  icon: 'ion-play'}
-  // }
 
 });

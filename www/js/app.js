@@ -11,10 +11,15 @@ angular.module('gmajor', ['ionic',
                           'gmajor.loginController',
                           'gmajor.chatsController',
                           'gmajor.chatController',
+                          'gmajor.chatFactory',
+                          'gmajor.chatsFactory',
                           'gmajor.commentController',
+                          'gmajor.commentFactory',
                           'gmajor.gridService',
                           'gmajor.menuController',
                           'gmajor.menuService',
+                          'gmajor.userController',
+                          'gmajor.userService',
                           'gmajor.main',
                           'gmajor.gridTargetFactory',
                           'gmajor.directives'
@@ -84,7 +89,7 @@ angular.module('gmajor', ['ionic',
       });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/grid');
+  $urlRouterProvider.otherwise('/chats');
 
 });
 

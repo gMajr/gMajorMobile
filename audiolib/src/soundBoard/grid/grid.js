@@ -5,6 +5,7 @@ var Grid = function(instrument, BPM, freq, noteScheduler){
   this.instrumentName = instrument;
   this.instrument = instruments[this.instrumentName];
   this.freq = freq;
+  this.vars = {};
 
   this.interval;
 
@@ -45,8 +46,11 @@ var Grid = function(instrument, BPM, freq, noteScheduler){
       }
         val = amplitude * this.instrument.wave.call(this, j, this.sampleRate, frequency, volume);
         data[j<<1] = val;
-        data[(j<<1)+1] = val>> 8;
+        data[(j<<1)+1] = val>>8;
     }
     this.soundHash[ scale[i] ] = buffer;
   }
 };
+  
+
+

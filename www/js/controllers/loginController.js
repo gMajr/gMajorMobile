@@ -1,6 +1,6 @@
 angular.module('gmajor.loginController', [])
 
-.controller('LoginController', function ($scope, $http, User) {
+.controller('LoginController', function ($scope, User) {
   $scope.navTitle = 'Log In';
   
   // seems mostly pointless?

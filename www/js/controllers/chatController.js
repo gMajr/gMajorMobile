@@ -60,7 +60,6 @@ angular.module('gmajor.chatController', [])
   }
 
   var playThis = function(){
-    console.log(this)
     stopAllPlaying();
     currentlyPlaying = this.id;
     this.musicGrid.playInterval();

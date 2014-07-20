@@ -6,13 +6,9 @@ angular.module('gmajor.userService', [])
       path: '/me',
       params: {fields: 'id, name'},
       success: function(user) {
-        // stores username in scope for client access
-        // stores id in token for fbdata access (I hope this isn't a security issue)
-        // feels janky
+        // stores user/id in scope for client access
         window.sessionStorage['fbid'] = user.id;
         window.sessionStorage['name'] = user.name;
-        //also super janky 
-        console.log(user.name);
       },
       error: function(error) {
         console.log(error);

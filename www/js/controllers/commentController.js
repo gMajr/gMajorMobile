@@ -36,6 +36,7 @@ angular.module('gmajor.commentController', [])
       .then(function(data){
         ChatsFactory.firstTime = false;
         $location.url('/' + 'chats');
+        GridTargetFactory.stop()
         //add local storage logic here :):):)
       })
     }else{
@@ -43,6 +44,7 @@ angular.module('gmajor.commentController', [])
       CommentFactory.addAdditionalComment(serverData)
       .then(function(data){
         $location.url('/' + 'chats');
+        GridTargetFactory.stop()
       })
     }
   }

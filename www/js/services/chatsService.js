@@ -19,7 +19,7 @@ angular.module('gmajor.chatsFactory', [])
     for ( var i = 0; i < data.length; i++){
       var users = _.uniq(data[i].authors);
       var gridNumbers = data[i].music.length;
-      var last = 'Jan 01, 2014';
+      var last = moment(data[i].timestamps[data[i].timestamps.length -1]).fromNow();
       var id = i;
       chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
     }

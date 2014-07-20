@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.0.0-beta.9"
   },
   "dependencies": {
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "moment": "~2.7.0"
   }
 }

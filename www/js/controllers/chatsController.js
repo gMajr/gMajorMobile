@@ -11,7 +11,6 @@ angular.module('gmajor.chatsController', [])
 	});
 
 	$scope.startNewChat = function(){
-    console.log('ajsfgbuaisnfiansiodg');
 		ChatsFactory.resetBoard(GridTargetFactory);
     // hardcoded instrument for now, should be able to choose this later
 		var grid = new Grid('piano', 100, 329.63);

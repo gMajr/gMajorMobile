@@ -3,7 +3,7 @@ angular.module('gmajor.chatController', [])
 .controller('ChatController', function ($scope, ChatsFactory, $location, GridTargetFactory) {
   // this shouldn't be hard coded down the line, theortically one would be able to choose from instruments
   // so this wouldn't matter. This is for for our current auto-selecting instrument
-  var instruments = ['piano','edm','acoustic','organ'];
+  var instruments = ['piano','drums','edm','acoustic','organ'];
 
   $scope.navTitle = 'Chat';
 
@@ -98,7 +98,6 @@ angular.module('gmajor.chatController', [])
   $scope.chatStream = chatStream;
 
   $scope.addMusic = function(){
-    console.log('test');
     soundBoard.stopSounds();
     ChatsFactory.resetBoard(GridTargetFactory);
     // selects from existing instruments

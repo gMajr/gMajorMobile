@@ -1,13 +1,15 @@
-Grid.prototype.playSounds = function( frequencyOrSound, volume, start){
- var duration = 60/this.BPM/2;
+SoundBoard.prototype.playSounds = function( frequencyOrSound, volume, start){
+
+ var currentBoard = this.Grids[this.Grids.length -1];
+ var duration = 60/currentBoard.BPM/2;
  var osc = context.createBufferSource();
  var gainNode = context.createGain();
  gainNode.gain.value = volume;
-
- var buffer = this.soundHash[frequencyOrSound];
+ var buffer = currentBoard.soundHash[frequencyOrSound];
  osc.buffer = buffer;
  osc.loop = false;
  osc.connect(gainNode);
  gainNode.connect(context.destination);
  osc.start(start);
+
 };

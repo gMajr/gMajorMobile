@@ -11,7 +11,6 @@ angular.module('gmajor.loginController', [])
       window.location.href = window.location.origin + '/#/chats';
       User.userData();
       $scope.loginMain();
-      console.log($scope.$root.loggedIn);
     },
     function(err){
       console.log(err);

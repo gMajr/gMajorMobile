@@ -1,10 +1,10 @@
-// Ionic Starter App
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'gmajor' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'gmajor.services' is found in services.js
 // 'gmajor.controllers' is found in controllers.js
+// etc.
+// if there is a better way to organize this, please feel free to do so
 angular.module('gmajor', ['ionic',
                           'gmajor.controllers',
                           'gmajor.gridController',
@@ -38,9 +38,8 @@ angular.module('gmajor', ['ionic',
     }
   });
 })
-
+// sets router
 .config(function($stateProvider, $urlRouterProvider) {
-
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.

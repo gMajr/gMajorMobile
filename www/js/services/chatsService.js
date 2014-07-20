@@ -15,12 +15,10 @@ angular.module('gmajor.chatsFactory', [])
 
   // parses chat data
   var processChatData = function(data){ 
-    console.log(data);
     var chats = [];
     for ( var i = 0; i < data.length; i++){
       var users = _.uniq(data[i].authors);
       var gridNumbers = data[i].music.length;
-      //this needs to be completed.  Right now it is just hard-coded.
       var last = moment(data[i].timestamps[data[i].timestamps.length -1]).fromNow();
       var id = i;
       chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});

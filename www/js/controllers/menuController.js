@@ -1,12 +1,16 @@
 angular.module('gmajor.menuController', [])
 
 .controller('MenuController', function ($scope, $location, MenuService) {
-  // "MenuService" is a service returning mock data (services.js)
-  $scope.list = MenuService.all();
+  //the operator here checks if logged in and gets different things dependings
+  $scope.list = window.sessionStorage.fbtoken ? MenuService.other() : MenuService.all();
 
   $scope.goTo = function(page) {
     $scope.$broadcast('SideMenuNavigate');
-    console.log('Going to ' + page);
-    $location.url('/' + page);
+    // a bit wonky, but works in the short term
+    if (page !== 'logout'){
+      $location.url('/' + page);
+    }else{
+      $scope.logout();
+    }
   };
 });

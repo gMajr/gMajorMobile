@@ -18,10 +18,6 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   soundBoard.addGrid(grid);
 
 
-
-
-
-
   // generate an m x n collection of target objects
     // Associate a row and column with each object
     // Generate the svg pixel offset for placing the target on the screen
@@ -32,9 +28,10 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
     //    and acts as a bigger touch target. (rectY, rectY, rectHeight, & rectWidth)
     
     clickToggle = function() {
+      var currentBoard = soundBoard.Grids[soundBoard.Grids.length -1];
       soundBoard.toggle(this.col, this.row);
       if (this.toggleState === 'off') {
-        soundBoard.playSounds(grid.keys[this.row], 1, 0);
+        soundBoard.playSounds(currentBoard.keys[this.row], 1, 0);
         this.circleR = selectedCirR;
         this.toggleState = 'on';
       } else {

@@ -67,12 +67,14 @@ angular.module('gmajor.chatController', [])
     this.buttonState.icon = 'ion-stop';
   }
 
+
   var stopThis = function(){
     currentlyPlaying = undefined;
     this.musicGrid.stopSounds();
     this.buttonState.style = 'button-balanced';
     this.buttonState.icon = 'ion-play';
   }
+  //the logic below for defining currentChatStream should be moved to the factory
 
     for ( var i = 0; i < currentChatStream.messages.length; i++ ){
     id = i;
@@ -95,6 +97,8 @@ angular.module('gmajor.chatController', [])
       buttonState: buttonState });
   }
   $scope.chatStream = chatStream;
+
+//the code below should also be added to the factory
 
   $scope.addMusic = function(){
     soundBoard.stopSounds();

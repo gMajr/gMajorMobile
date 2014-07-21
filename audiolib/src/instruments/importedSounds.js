@@ -5,7 +5,7 @@
 
 function loadSound(ext) {
   var request = new XMLHttpRequest();
-  var url = window.location.origin + '/' + ext;
+  var url = window.location.origin + '/sounds/' + ext;
   request.open("GET", url, true); // Path to Audio File
   request.responseType = "arraybuffer"; // Read as Binary Data
   request.onload = function() {

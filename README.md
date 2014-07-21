@@ -10,6 +10,7 @@
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
 1. [Contributing](#contributing)
+1. [Style](#Style)
 
 ## Wiki
 The [Wiki](https://github.com/gMajr/gMajorMobile/wiki) contains information about the structure and usage of the app.
@@ -60,3 +61,6 @@ See the projects backlog in asana [here](https://app.asana.com/0/14549969807992/
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Style
+See the [Style Guide](https://github.com/gMajr/gMajorMobile/wiki/Style-Guide)

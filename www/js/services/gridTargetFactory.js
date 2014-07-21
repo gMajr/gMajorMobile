@@ -10,11 +10,13 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   var selectedCirR = 12;
   var nSpacingOffset = Math.floor(298/(nMax+1));
   var mSpacingOffset = Math.floor(298/(mMax+1));
+  // ideally, this would be made dynamic down the line.
+  var BPM = '100';
 
   var columns = [];
 
   var soundBoard = new SoundBoard();
-  var grid = new Grid('piano', 90, 329.63);
+  var grid = new Grid('piano', BPM, 329.63);
   soundBoard.addGrid(grid);
 
 
@@ -38,7 +40,7 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
         this.circleR = initCirR;
         this.toggleState = 'off';
       }
-    }
+    };
 
 
   for(var n = 0; n < nMax; n++) {
@@ -69,6 +71,7 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   // return as array of arrays in column, row order.
 
   return {
+    'BPM': BPM,
     'columns': columns,
     'play': soundBoard.playInterval.bind(soundBoard),
     'stop': soundBoard.stopSounds.bind(soundBoard),

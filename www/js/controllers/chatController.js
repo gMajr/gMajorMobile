@@ -117,8 +117,6 @@ angular.module('gmajor.chatController', [])
     ChatsFactory.resetBoard(GridTargetFactory);
     // selects from existing instruments
     // just cycles through, should be able to select eventually
-    console.log(GridTargetFactory.BPM);
-
     grid = new Grid(instruments[$scope.chatStream.length % instruments.length], GridTargetFactory.BPM, 329.63);
     GridTargetFactory.soundBoard.Grids = soundBoard.Grids;
     GridTargetFactory.soundBoard.addGrid(grid);

@@ -1,3 +1,7 @@
+//This function exports the information for all the grids into an array.
+//If you feed the exported grids data back into a new instance of a SoundBoard prototype, then it 
+//will rebuild all the grids, and sounds
+
 SoundBoard.prototype.exportGrids = function(){
 
 	var exportedGrids = [];

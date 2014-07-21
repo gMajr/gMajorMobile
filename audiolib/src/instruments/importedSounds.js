@@ -5,7 +5,7 @@
 
 function loadSound(ext) {
   var request = new XMLHttpRequest();
-  var url = window.location.origin + '/api/' +  ext;
+  var url = window.location.origin + '/sounds/' + ext;
   request.open("GET", url, true); // Path to Audio File
   request.responseType = "arraybuffer"; // Read as Binary Data
   request.onload = function() {
@@ -21,13 +21,13 @@ function loadSound(ext) {
 function store(incomingData, ext) {
     source = context.createBufferSource(); // Create Sound Source
     context.decodeAudioData(incomingData, function(buffer){
-      drumSounds[ext] = buffer;
+      drumSounds[ext.slice(0, ext.length -4)] = buffer;
     });
 };
 
 var drumSounds = {};
 
-var routes = ['kick', 'hh', 'synride', 'syncowbell', 'synfx', 'synshaker'];
+var routes = ['kick.wav', 'hh.wav', 'synride.wav', 'syncowbell.wav', 'synfx.wav', 'synshaker.wav'];
 
 for ( var i = 0; i < routes.length; i++ ){
   loadSound( routes[i] );

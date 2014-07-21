@@ -1,4 +1,5 @@
-// should split these out once they do more
+// I have no idea why we have these (they are still reqired in the app.js)
+// will delete soon
 angular.module('gmajor.controllers', [])
 
 // * Legacy demo page controllers. These need to be moved out.

@@ -1,10 +1,10 @@
 angular.module('gmajor.gridController', [])
 
-.controller('GridController', function ($scope, GridTargetFactory, $ionicSideMenuDelegate) {
+.controller('GridController', function ($scope, GridTargetFactory, ChatsFactory, $location) {
   var prevPlayingCol = 0;
   var playStatus = 'stopped';
 
-  $scope.navTitle = 'Grid Yo!';
+  $scope.navTitle = window.sessionStorage.name || 'Grid Yo!';
 
   $scope.columns = GridTargetFactory.columns;
 
@@ -15,6 +15,11 @@ angular.module('gmajor.gridController', [])
         stopPlayingGrid();
     }
   }];
+
+  $scope.addSongToChat = function(){
+    GridTargetFactory.stop();
+    $location.url('/' + 'comment');
+  }
 
   $scope.rightButtons = [];
 

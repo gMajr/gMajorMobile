@@ -18,3 +18,7 @@
 .colActive{
   fill: blue;
 }
+
+.users:not(:first-child){
+	display:block;
+}

@@ -15,7 +15,7 @@
         <li class="item" ng-repeat="chat in userChats" ng-click="navigateToChatScreen(chat)">
           <div class="row">
             <div class="col col-80">
-              With: {{chat.users.join(', ')}}
+              With: <span ng-repeat="user in chat.users" class="users"> {{user}} </span>
             </div>
             <div class="col">
               {{chat.gridNumbers}} Grids

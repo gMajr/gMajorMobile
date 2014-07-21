@@ -108,6 +108,7 @@ angular.module('gmajor.chatController', [])
 //the code below should also be added to the factory
 
   $scope.addMusic = function(){
+    stopAllPlaying();
     soundBoard.stopSounds();
     ChatsFactory.resetBoard(GridTargetFactory);
     // selects from existing instruments
@@ -118,5 +119,9 @@ angular.module('gmajor.chatController', [])
     $location.url('/' + 'grid');
     ChatsFactory.firstTime = false;
   };
+
+  $scope.$on('SideMenuNavigate', function(){
+    stopAllPlaying();
+  })
 
 });

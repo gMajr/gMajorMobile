@@ -64,4 +64,8 @@ angular.module('gmajor.commentController', [])
     alert('button clicked');
   };
 
+  $scope.$on('SideMenuNavigate', function(){
+    GridTargetFactory.stop();
+  })
+
 });

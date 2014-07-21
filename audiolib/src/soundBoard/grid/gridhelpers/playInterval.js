@@ -1,3 +1,5 @@
+//see commented code on SoundBoard.  The SoundBoard code just repeats this code for the current grid.
+
 Grid.prototype.playInterval = function(){
  var startTime = context.currentTime;
  var halfwayPointBetweenNotes = 60/this.BPM/2/2;

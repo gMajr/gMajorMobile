@@ -6,12 +6,10 @@
 // etc.
 // if there is a better way to organize this, please feel free to do so
 angular.module('gmajor', ['ionic',
-                          'gmajor.controllers',
                           'gmajor.gridController',
                           'gmajor.loginController',
                           'gmajor.chatsController',
                           'gmajor.chatController',
-                          'gmajor.chatFactory',
                           'gmajor.chatsFactory',
                           'gmajor.commentController',
                           'gmajor.commentFactory',
@@ -20,7 +18,6 @@ angular.module('gmajor', ['ionic',
                           'gmajor.menuService',
                           'gmajor.userController',
                           'gmajor.userService',
-                          'gmajor.main',
                           'gmajor.gridTargetFactory',
                           'gmajor.directives'
                           ])
@@ -50,21 +47,6 @@ angular.module('gmajor', ['ionic',
           url: '/grid',
           controller: 'GridController',
           templateUrl: 'templates/grid.html'
-      })
-      .state('one', {
-          url: '/one',
-          controller: 'OneController',
-          templateUrl: 'templates/one.html'
-      })
-      .state('two', {
-          url: '/two',
-          controller: 'TwoController',
-          templateUrl: 'templates/two.html'
-      })
-      .state('three', {
-          url: '/three',
-          controller: 'ThreeController',
-          templateUrl: 'templates/three.html'
       })
       .state('login', {
           url: '/login',

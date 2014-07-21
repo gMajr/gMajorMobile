@@ -20,48 +20,6 @@ server.use('/api', router);
 
 router.use(bodyParser.json());
 
-router.get('/kick', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/kick.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/hh', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/hh.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/synride', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/synride.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/syncowbell', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/syncowbell.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/synshaker', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/synshaker.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/synfx', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/synfx.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
 router.get('/', function(req, res){
   console.log('get /api accessed');
 });
@@ -73,7 +31,6 @@ router.route('/users')
     db.insert('gmajor.users', user, res);
   })
   .get(function(req, res){
-    console.log('yo');
     db.find('gmajor.users', res);
   });
 
@@ -89,7 +46,6 @@ router.route('/users/:userId')
   });
 
 router.route('/threads')
-  // TODO: Check that this works
   .post(function(req, res){
     var message = req.body;
     var newThread = {};
@@ -100,35 +56,21 @@ router.route('/threads')
     newThread.fbids = [message.fbid];
     db.insert('gmajor.threads', newThread, res);
   })
-  // TODO: Check functionality for /threads
+  // functional but is not currently used
   .get(function(req, res){
     var parsedUrl = url.parse(req.url);
     var params = querystring.parse(parsedUrl.query);
     db.match('gmajor.threads', res, params);
   });
 router.route('/threads/:threadId')
-  // appends a message to a thread
+  // appends a message to the thread in the DB with id threadId
   .post(function(req, res){
     var message = req.body;
     var threadId = req.params.threadId;
     db.append('gmajor.threads', res, threadId, message);
   })
+  // functional but is not currently used
   .get(function(req, res){
     var threadId = req.params.threadId;
     db.find('gmajor.threads', res, threadId);
   });
-
-
-
-// Restrictions: usernames must be unique
-// API
-// /user/:id/friends
-  // POST: 
-    // Adds UID associated with the name to user's friends array
-    // {friend: friendname}
-  // GET: 
-    // Returns array of current user's friends
-
-// server responsibilities: 
-  // handle authentication/login, sessions/cookies
-  // 

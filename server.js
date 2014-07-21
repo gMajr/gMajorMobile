@@ -20,48 +20,6 @@ server.use('/api', router);
 
 router.use(bodyParser.json());
 
-router.get('/kick', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/kick.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/hh', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/hh.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/synride', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/synride.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/syncowbell', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/syncowbell.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/synshaker', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/synshaker.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
-router.get('/synfx', function(req, res){
-  res.set({'Content-Type': 'audio/mpeg'});
-  var filepath = path.join(__dirname, 'sounds/synfx.wav');
-  var readStream = fs.createReadStream(filepath);
-  readStream.pipe(res);
-});
-
 router.get('/', function(req, res){
   console.log('get /api accessed');
 });

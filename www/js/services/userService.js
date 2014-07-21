@@ -1,6 +1,7 @@
 angular.module('gmajor.userService', [])
 
 .factory('User', function(){
+  // handles user login
   var userData = function(){
     openFB.api({
       path: '/me',

@@ -3,11 +3,17 @@ angular.module('gmajor.userController', [])
 .controller('UserController', function ($scope) {
   // somehow scope should be updated to have facebook name?
   // I think
-  $scope.loggedIn = false;
+  $scope.$root.loggedIn = false;
 
   $scope.logout = function(){
-    openFb.logout();
-    $scope.loggedIn = false;
+    openFB.logout();
+    window.sessionStorage.clear();
+    $scope.$root.loggedIn = false;
+    console.log($scope.$root.loggedIn);
+  };
+
+  $scope.loginMain = function(){
+    $scope.$root.loggedIn = true;
   };
 
 });

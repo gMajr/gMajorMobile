@@ -1,3 +1,5 @@
+// below is OpenFB, handles authenticatoin, has been slightly tweaked for this
+// project
 /**
  * OpenFB is a micro-library that lets you integrate your JavaScript application with Facebook.
  * OpenFB works for both BROWSER-BASED apps and CORDOVA/PHONEGAP apps.

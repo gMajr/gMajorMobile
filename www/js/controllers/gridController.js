@@ -56,7 +56,6 @@ angular.module('gmajor.gridController', [])
   }
 
   $scope.playGrid = function() {
-    console.log(GridTargetFactory);
     if(playStatus === 'stopped'){
       startPlayingGrid();
     } else {

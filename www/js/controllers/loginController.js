@@ -1,19 +1,20 @@
 angular.module('gmajor.loginController', [])
 
-.controller('LoginController', function ($scope) {
+.controller('LoginController', function ($scope, User) {
   $scope.navTitle = 'Log In';
+  
 
-  $scope.leftButtons = [{
-    type: 'button-icon icon ion-navicon',
-    tap: function(e) {
-        // TODO: Stuff on click
-    }
-  }];
-
-  $scope.rightButtons = [];
-
-  $scope.buttonClick = function(){
-    alert('button clicked');
+  $scope.login = function(){
+    openFB.login('public_profile', function(){
+      console.log('login successful');
+      // a little janky, but works for now
+      window.location.href = window.location.origin + '/#/chats';
+      User.userData();
+      $scope.loginMain();
+    },
+    function(err){
+      console.log(err);
+    });
   };
 
 });

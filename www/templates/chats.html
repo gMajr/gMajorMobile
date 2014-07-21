@@ -6,39 +6,24 @@
   <ion-content has-header="true" padding="true">
   <div class="row">
     <div class="col">
-      <button class="button button-block button-balanced">New Chat</button>
+      <button class="button button-block button-balanced" ng-click="startNewChat()">New Chat</button>
     </div>
   </div>
   <div class="row">
     <div class="col">
       <ul class="list">
-        <li class="item">
+        <li class="item" ng-repeat="chat in userChats" ng-click="navigateToChatScreen(chat)">
           <div class="row">
             <div class="col col-80">
-              With: Tyler &amp; Will
+              With: <span ng-repeat="user in chat.users" class="users"> {{user}} </span>
             </div>
             <div class="col">
-              3 grids
+              {{chat.gridNumbers}} Grids
             </div>
           </div>
           <div class="row">
             <div class="col">
-              Last: July 20 7:34pm
-            </div>
-          </div>
-        </li>
-        <li class="item">
-          <div class="row">
-            <div class="col col-80">
-              With: Tyler &amp; Will
-            </div>
-            <div class="col">
-              3 grids
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              Last: July 20 7:34pm
+              Last: {{chat.last}}
             </div>
           </div>
         </li>

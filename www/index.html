@@ -12,6 +12,12 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
+    <!-- moment.js -->
+    <script src="lib/moment/moment.js"></script>
+
+    <!-- underscore -->
+    <script src="lib/underscore/underscore.js"></script>
+
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -19,15 +25,18 @@
     <script src="cordova.js"></script>
 
     <!-- app specific js -->
+
     <script src="js/build/sounds.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/build/dependencies.js"></script>
+    <script src="js/openfb.js"></script>
 
   </head>
   <!-- 'gmajor' is the name of this angular module (js/app.js)-->
   <body ng-app="gmajor">
 
+  <div ng-controller="UserController">
   <div ng-controller="MenuController">
       <ion-side-menus>
 
@@ -56,6 +65,7 @@
 
       </ion-side-menus>
   </div>
+</div>
 
   </body>
 </html>

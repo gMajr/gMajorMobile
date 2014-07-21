@@ -1,3 +1,5 @@
+//see commented code on SoundBoard.  The SoundBoard code just repeats this code for the current grid.
+
 Grid.prototype.playInterval = function(){
  var startTime = context.currentTime;
  var halfwayPointBetweenNotes = 60/this.BPM/2/2;
@@ -11,7 +13,7 @@ Grid.prototype.playInterval = function(){
    var scheduledTime = ((numberOfCycles * ( 60/this.BPM/2 * 8 )) + startTime + ((currentCol + 1) * 60/this.BPM/2))
    for (var note in this.noteScheduler[currentCol]){
      if ( this.noteScheduler[currentCol][note] ){
-       this.playSounds( note, 1, scheduledTime )
+       this.playSounds( this.noteScheduler[currentCol][note], 1, scheduledTime )
      }
    }
 
@@ -23,7 +25,7 @@ Grid.prototype.playInterval = function(){
    k = k || 0;
    k++;
    firstTime = firstTime || 0;
-   this.interval = setTimeout( continuedLoop.bind(this, MIDI, startTime, k), firstTime * 1000, 2, cb );
+   this.interval = setTimeout( continuedLoop.bind(this, MIDI, startTime, k), firstTime * 1000);
  }
  if (!context.currentTime){
    this.playSounds(this.keys[0], 0, 0);

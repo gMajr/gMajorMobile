@@ -17,17 +17,11 @@ angular.module('gmajor.chatsController', [])
 		GridTargetFactory.soundBoard.Grids[0] = grid;
 		ChatsFactory.firstTime = true;
 		$location.url('/' + 'grid');
+	};
 
-	}
-
- 
   $scope.navigateToChatScreen = function(chat){
-
   	ChatsFactory.currentID = chat.id;
   	$location.url('/' + 'chat')
-
-  }
-
-
+  };
 
 });

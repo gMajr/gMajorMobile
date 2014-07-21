@@ -21,7 +21,12 @@ angular.module('gmajor.chatsFactory', [])
       var gridNumbers = data[i].music.length;
       var last = moment(data[i].timestamps[data[i].timestamps.length -1]).fromNow();
       var id = i;
-      chats.push({users: users, gridNumbers: gridNumbers, last: last, id: id});
+      chats.push({
+        users: users,
+        gridNumbers: gridNumbers,
+        last: last,
+        id: id
+      });
     }
     return chats;
   };

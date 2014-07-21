@@ -6,12 +6,10 @@
 // etc.
 // if there is a better way to organize this, please feel free to do so
 angular.module('gmajor', ['ionic',
-                          'gmajor.controllers',
                           'gmajor.gridController',
                           'gmajor.loginController',
                           'gmajor.chatsController',
                           'gmajor.chatController',
-                          'gmajor.chatFactory',
                           'gmajor.chatsFactory',
                           'gmajor.commentController',
                           'gmajor.commentFactory',

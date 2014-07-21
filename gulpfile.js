@@ -25,7 +25,7 @@ var paths = {
   templates: ['www/templates/**/*.html']
 };
 
-
+// compiles css
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
@@ -38,18 +38,21 @@ gulp.task('sass', function(done) {
     .on('end', done);
 });
 
+// compiles audio files
 gulp.task('audio', function(){
   gulp.src(paths.audio)
     .pipe(concat('sounds.js'))
     .pipe(gulp.dest('www/js/build/'));
 });
 
+// compiles angular and other dependencies
 gulp.task('dependencies', function(){
   gulp.src(paths.dependencies)
     .pipe(concat('dependencies.js'))
     .pipe(gulp.dest('www/js/build/'));
 });
 
+// serves and watches for files changes
 gulp.task('serve', function(){
   nodemon({
     script: 'server.js',
@@ -57,12 +60,12 @@ gulp.task('serve', function(){
   });
 })
 
-
+// servers to ionic
 gulp.task('serve-ionic', sh.task([
   'ionic serve'
 ]));
 
-
+// ios emulation
 gulp.task('emulate-ios', sh.task([
     'ionic emulate ios'
 ]));

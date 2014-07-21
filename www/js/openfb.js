@@ -239,4 +239,5 @@ var openFB = (function () {
     }
 
 }());
+// when setting up for a new app, edit the number here:
 openFB.init('324360737727026');

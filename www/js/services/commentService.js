@@ -26,7 +26,7 @@ angular.module('gmajor.commentFactory', [])
 
   // post data to existing thread
   var addAdditionalComment = function(data){
-    url = '/api/threads/' + ChatsFactory.data[ChatsFactory.currentID]._id;
+    var url = '/api/threads/' + ChatsFactory.data[ChatsFactory.currentID]._id;
     return $http({
       method: 'POST',
       url: url,

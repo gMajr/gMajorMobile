@@ -3,6 +3,7 @@
 > Music is the universal language
 
 ## Table of Contents
+1. [Introduction](#Introduction)
 1. [Wiki](#Wiki)
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
@@ -12,12 +13,31 @@
 1. [Contributing](#contributing)
 1. [Style](#Style)
 
+
+## Introduction
+This is an ionic app that runs on Safari for iOS7 and Chrome 36+. The backend is a 
+MongoDB database served by [mongolab](https://mongolab.com/). The DB is controlled by the [Node.js MongoDB Driver](http://docs.mongodb.org/ecosystem/drivers/node-js/). 
+
 ## Wiki
 The [Wiki](https://github.com/gMajr/gMajorMobile/wiki) contains information about the structure and usage of the app.
 
 ## Usage
 
-> This is a mobile app built on the Ionic JavaScript framework. It used the Web Audio API to generate sounds without using recorded samples. While it can be built down to a web site for testing purposes, it's expected to be run on a moble device.
+This is a mobile app built on the Ionic JavaScript framework. It used the Web Audio API to generate sounds without using recorded samples. While it can be built down to a web site for testing purposes, it's expected to be run on a moble device.
+
+## Database Setup
+Currently the mongodb connection URI is hardcoded into the file `db/db.js`. The 
+mongolab account associated with this server belongs to one of the original
+project owners. 
+## Local Setup
+
+1. `npm install`
+1. `bower install`
+1. `gulp` (concatenates js files, serves the app at localhost:8080, watches for file changes and recompiles them and restarts server as needed)
+
+## Deployment Setup
+See [Azure Deployment](https://github.com/gMajr/gMajorMobile/wiki/Azure-Deployment)
+
 
 ## Requirements
 

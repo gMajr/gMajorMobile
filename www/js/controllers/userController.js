@@ -1,8 +1,6 @@
 angular.module('gmajor.userController', [])
 
 .controller('UserController', function ($scope) {
-  // somehow scope should be updated to have facebook name?
-  // I think
   $scope.$root.loggedIn = false;
 
   $scope.logout = function(){
@@ -17,5 +15,3 @@ angular.module('gmajor.userController', [])
   };
 
 });
-// for reference at the moment, should not be here during deployment
-// 'http://graph.facebook.com/endpoint?key=' + window.sessionStorage.fbid +'&access_token=' + window.sessionStorage.fbtoken

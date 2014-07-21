@@ -65,6 +65,12 @@ To build and test on iOS:
 To build and test on Andriod:
 `ionic emulate android`
 
+If emulation for a device fails. You should remove that platform and add it again. For instance:
+`cordova platform remove ios`
+
+and then 
+`cordova platform add ios`
+
 ### Tasks
 
 See the projects backlog in asana [here](https://app.asana.com/0/14549969807992/14549969807992)

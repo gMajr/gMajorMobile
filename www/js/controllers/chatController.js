@@ -15,11 +15,15 @@ angular.module('gmajor.chatController', [])
   }];
 
   $scope.rightButtons = [];
-  $scope.chatStream = {};
+  $scope.chatStream;
+  //fill this in with code below for chatstream
 
-  currentChatStream = ChatsFactory.data[ChatsFactory.currentID];
+  var currentChatStream = ChatsFactory.data[ChatsFactory.currentID];
   var soundBoard = new SoundBoard(currentChatStream.music);
-  chatStream = [];
+  //this will be filled with the data for each message in the current conversation.
+  //Once chatStream is filled, we will set scope.chatStream equal to it, so the conversation
+  //can be rendered.
+  var chatStream = [];
 
 
 

@@ -239,4 +239,4 @@ var openFB = (function () {
     }
 
 }());
-openFB.init(process.env.FB_ID);
+openFB.init('324360737727026');

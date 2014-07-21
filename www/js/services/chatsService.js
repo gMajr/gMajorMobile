@@ -3,7 +3,8 @@ angular.module('gmajor.chatsFactory', [])
 .factory('ChatsFactory', function($http, $window ){
   // gets chat list from server
   var getAllChats = function (){
-    url = $window.location.origin + '/api/threads'
+    // this may need to change for the ionic app to work
+    url = $window.location.origin + '/api/threads';
     return $http({
       method: 'GET',
       url: url
@@ -14,7 +15,7 @@ angular.module('gmajor.chatsFactory', [])
   };
 
   // parses chat data
-  var processChatData = function(data){ 
+  var processChatData = function(data){
     var chats = [];
     for ( var i = 0; i < data.length; i++){
       var users = _.uniq(data[i].authors);
@@ -50,5 +51,5 @@ angular.module('gmajor.chatsFactory', [])
     getAllChats: getAllChats,
     processChatData: processChatData,
     resetBoard: resetBoard
-  }
+  };
 });

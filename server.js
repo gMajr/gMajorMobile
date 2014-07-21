@@ -73,7 +73,6 @@ router.route('/users')
     db.insert('gmajor.users', user, res);
   })
   .get(function(req, res){
-    console.log('yo');
     db.find('gmajor.users', res);
   });
 

@@ -105,7 +105,6 @@ router.route('/threads')
     var params = querystring.parse(parsedUrl.query);
     db.match('gmajor.threads', res, params);
   });
-  // 
 router.route('/threads/:threadId')
   // appends a message to the thread in the DB with id threadId
   .post(function(req, res){

@@ -1,4 +1,17 @@
- var instruments = 
+// Here, we are creating a global object called instruments.  The code to make the instrument
+// sounds is contained here.  Attack is the time that it takes for the instrument to fade in 
+// (typically .002 seconds).  Decay reflects the behavior of how the sound dies or silences over
+// time.
+// For a good reference on the equations below, please check out the following page.
+// This website gives a step-by-step guide on similar code.  I give 100% credit to the owner
+// of this page for the following equations.
+// http://keithwhor.com/music/
+// All the sounds are synthesized, which gives a lot of flexibility.  This library can produce these sounds
+// at ANY frequency, and any BPM
+// The wave equations represent the diferent shifted waves that make up the sounds.  These are basically
+// Fourier coefficients
+
+var instruments = 
 {
 
  piano: {

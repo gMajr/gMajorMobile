@@ -1,3 +1,8 @@
+// This imports sounds from the server.  These are the only sounds that are not synthesized.  We load 
+// the sounds at runtime, and then save them in an object called drumSounds
+// To understand this code more, please reference my blog post:
+// http://www.willvillanueva.com/the-web-audio-api-from-nodeexpress-to-your-browser/
+
 function loadSound(ext) {
   var request = new XMLHttpRequest();
   var url = window.location.origin + '/api/' +  ext;
@@ -17,7 +22,7 @@ function store(incomingData, ext) {
     source = context.createBufferSource(); // Create Sound Source
     context.decodeAudioData(incomingData, function(buffer){
       drumSounds[ext] = buffer;
-    })
+    });
 };
 
 var drumSounds = {};

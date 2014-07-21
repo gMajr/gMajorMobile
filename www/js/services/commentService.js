@@ -9,7 +9,7 @@ angular.module('gmajor.commentFactory', [])
   var addNewComment = function(message){ 
     // clean this up a bit
     var timestamp = new Date();
-    var author = window.sessionStorage.name;
+    var author = window.sessionStorage.name || 'Guest';
     var music = GridTargetFactory.soundBoard.exportGrids();
     var fbid = window.sessionStorage.fbid;
 

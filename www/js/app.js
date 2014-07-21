@@ -6,7 +6,6 @@
 // etc.
 // if there is a better way to organize this, please feel free to do so
 angular.module('gmajor', ['ionic',
-                          'gmajor.controllers',
                           'gmajor.gridController',
                           'gmajor.loginController',
                           'gmajor.chatsController',

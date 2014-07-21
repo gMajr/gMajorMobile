@@ -3,13 +3,16 @@
 > Music is the universal language
 
 ## Table of Contents
-
+1. [Wiki](#Wiki)
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
 1. [Contributing](#contributing)
+
+## Wiki
+The [Wiki](https://github.com/gMajr/gMajorMobile/wiki) contains information about the structure and usage of the app.
 
 ## Usage
 

@@ -49,21 +49,6 @@ angular.module('gmajor', ['ionic',
           controller: 'GridController',
           templateUrl: 'templates/grid.html'
       })
-      .state('one', {
-          url: '/one',
-          controller: 'OneController',
-          templateUrl: 'templates/one.html'
-      })
-      .state('two', {
-          url: '/two',
-          controller: 'TwoController',
-          templateUrl: 'templates/two.html'
-      })
-      .state('three', {
-          url: '/three',
-          controller: 'ThreeController',
-          templateUrl: 'templates/three.html'
-      })
       .state('login', {
           url: '/login',
           controller: 'LoginController',

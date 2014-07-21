@@ -36,13 +36,13 @@ angular.module('gmajor.chatController', [])
         $scope.playAllButtonState.text = 'Play All';
       }
     }
-  }
+  };
 
   $scope.playAllButtonState = {
     style: 'button-balanced',
     icon: 'ion-play',
     text: 'Play All'
-  }
+  };
 
   $scope.playAll = function() {
     if(currentlyPlaying !== 'all') {
@@ -57,7 +57,7 @@ angular.module('gmajor.chatController', [])
       stopAllPlaying();
       currentlyPlaying = undefined;
     }
-  }
+  };
 
   var playThis = function(){
     stopAllPlaying();
@@ -65,7 +65,7 @@ angular.module('gmajor.chatController', [])
     this.musicGrid.playInterval();
     this.buttonState.style = 'button-assertive';
     this.buttonState.icon = 'ion-stop';
-  }
+  };
 
 
   var stopThis = function(){
@@ -73,7 +73,7 @@ angular.module('gmajor.chatController', [])
     this.musicGrid.stopSounds();
     this.buttonState.style = 'button-balanced';
     this.buttonState.icon = 'ion-play';
-  }
+  };
   //the logic below for defining currentChatStream should be moved to the factory
 
     for ( var i = 0; i < currentChatStream.messages.length; i++ ){
@@ -93,9 +93,16 @@ angular.module('gmajor.chatController', [])
     stopThis = stopThis,
     buttonState = { style: 'button-balanced',
                    icon: 'ion-play'}
-    chatStream.push({id: id, username: username, comment: comment, musicGrid: musicGrid, togglePlay: togglePlay, playThis: playThis, stopThis: stopThis,
-      buttonState: buttonState });
-  }
+    chatStream.push({
+      id: id,
+      username: username, comment: comment,
+      musicGrid: musicGrid,
+      togglePlay: togglePlay,
+      playThis: playThis,
+      stopThis: stopThis,
+      buttonState: buttonState
+    });
+  };
   $scope.chatStream = chatStream;
 
 //the code below should also be added to the factory
@@ -104,12 +111,12 @@ angular.module('gmajor.chatController', [])
     soundBoard.stopSounds();
     ChatsFactory.resetBoard(GridTargetFactory);
     // selects from existing instruments
+    // just cycles through, should be able to select eventually
     grid = new Grid(instruments[$scope.chatStream.length % instruments.length], 100, 329.63);
     GridTargetFactory.soundBoard.Grids = soundBoard.Grids;
     GridTargetFactory.soundBoard.addGrid(grid);
     $location.url('/' + 'grid');
     ChatsFactory.firstTime = false;
-
-  }
+  };
 
 });

@@ -5,6 +5,7 @@
 ## Table of Contents
 1. [Introduction](#Introduction)
 1. [Wiki](#Wiki)
+1. [Website](#Website)
 1. [Database Setup](#Database Setup)
 1. [Local Setup](#Local Setup)
 1. [Deployment Setup](#Deployment)

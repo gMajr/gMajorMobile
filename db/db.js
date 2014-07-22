@@ -1,4 +1,10 @@
-var connectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://MongoLab-r:MBC1Zu.wH4o6g02MiEDSxOml1YfGewuVHMG1Ofe9Exc-@ds050077.mongolab.com:50077/MongoLab-r';
+// Assumes Azure deployment, falls back to local environment variables
+// See Wiki page 'Setting up MongoDB with Mongolab' for details
+var connectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI ||
+                      'mongodb://' + process.env.MONGO_USERNAME +
+                      ':' + process.env.MONGO_PASSWORD +
+                      '@' + process.env.MONGO_HOSTANDPORT +
+                      '/' + process.env.MONGO_DBNAME;
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 module.exports = {

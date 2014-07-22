@@ -33,7 +33,7 @@ var Grid = function(instrument, BPM, freq, noteScheduler){
       for ( var i = 0; i < 8; i++ ){
         temp.push({});
       }
-    return temp;
+      return temp;
     })();
   }
 

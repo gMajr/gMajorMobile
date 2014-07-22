@@ -24,9 +24,7 @@ MongoDB database served by [mongolab](https://mongolab.com/). The DB is controll
 The [Wiki](https://github.com/gMajr/gMajorMobile/wiki) contains information about the structure and usage of the app.
 
 ## Database Setup
-Currently the mongodb connection URI is hardcoded into the file `db/db.js`. The 
-mongolab account associated with this server belongs to one of the original
-project owners. You will need to [create a mongolab account](https://mongolab.com/signup/) to obtain a new mongo server URI. 
+The app depends on a MongoDB server for storage. We recommend creating a mongolab account, as the mongolab setup is documented in [Setting up MongoDB with Mongolab](https://github.com/gMajr/gMajorMobile/wiki/Setting-up-MongoDB-with-Mongolab)
 
 ## Local Setup
 1. `sudo npm install -g bower`

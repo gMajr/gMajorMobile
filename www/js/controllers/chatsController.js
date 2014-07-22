@@ -14,7 +14,8 @@ angular.module('gmajor.chatsController', [])
 		ChatsFactory.resetBoard(GridTargetFactory);
     // hardcoded instrument for now, should be able to choose this later
 		var grid = new Grid('piano', GridTargetFactory.BPM, 329.63);
-		GridTargetFactory.soundBoard.Grids[0] = grid;
+		GridTargetFactory.soundBoard.Grids.splice(0, GridTargetFactory.soundBoard.Grids.length)
+		GridTargetFactory.soundBoard.addGrid(grid);
 		ChatsFactory.firstTime = true;
 		$location.url('/' + 'grid');
 	};

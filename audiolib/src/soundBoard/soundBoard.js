@@ -4,6 +4,8 @@
 var SoundBoard = function(gridInformation){
 
 	this.Grids = [];
+	// the interval will be filled in at a later time within the
+	// 'playInterval' funciton
 	this.interval;
 //If gridInformation is passed into this function, it will build all the grids and the sounds necessary
 //to loop through and play each of the grids.

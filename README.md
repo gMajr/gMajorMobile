@@ -25,12 +25,11 @@ MongoDB database served by [mongolab](https://mongolab.com/). The DB is controll
 Product website can be found [here](http://gmajr.github.io) and is still in development.  
 
 ## Wiki
-The [Wiki](https://github.com/gMajr/gMajorMobile/wiki) contains information about the structure and usage of the app.
+The [Wiki](https://github.com/gMajr/gMajorMobile/wiki) contains information about the structure and usage of the app. 
+
 
 ## Database Setup
-Currently the mongodb connection URI is hardcoded into the file `db/db.js`. The 
-mongolab account associated with this server belongs to one of the original
-project owners. You will need to [create a mongolab account](https://mongolab.com/signup/) to obtain a new mongo server URI. 
+The app depends on a MongoDB server for storage. If you plan to deploy with Azure, you should follow the instructions in [Azure Deployment](https://github.com/gMajr/gMajorMobile/wiki/Azure-Deployment), which will include setting up your DB. Even if you don't, you need to set up a MongoDB server if you want to test and develop with a working database. We recommend creating a mongolab account, as the mongolab setup is documented in [Setting up MongoDB with Mongolab](https://github.com/gMajr/gMajorMobile/wiki/Setting-up-MongoDB-with-Mongolab)
 
 ## Local Setup
 1. `sudo npm install -g bower`
@@ -68,6 +67,12 @@ To build and test on iOS:
 
 To build and test on Andriod:
 `ionic emulate android`
+
+If emulation for a device fails. You should remove that platform and add it again. For instance:
+`cordova platform remove ios`
+
+and then 
+`cordova platform add ios`
 
 ### Tasks
 

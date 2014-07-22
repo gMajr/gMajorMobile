@@ -6,7 +6,7 @@ angular.module('gmajor.commentFactory', [])
   // and fill in data on post response
 
   // format data for server
-  var addNewComment = function(message){ 
+  var addNewComment = function(message){
     // clean this up a bit
     var timestamp = new Date();
     var author = window.sessionStorage.name || 'Guest';
@@ -20,14 +20,13 @@ angular.module('gmajor.commentFactory', [])
       author: author,
       music: music
     };
-    dataToServer = JSON.stringify(dataToServer);
-
-    return dataToServer;
+    
+    return JSON.stringify(dataToServer);
   };
 
   // post data to existing thread
   var addAdditionalComment = function(data){
-    url = '/api/threads/' + ChatsFactory.data[ChatsFactory.currentID]._id;
+    var url = '/api/threads/' + ChatsFactory.data[ChatsFactory.currentID]._id;
     return $http({
       method: 'POST',
       url: url,
@@ -35,7 +34,7 @@ angular.module('gmajor.commentFactory', [])
     })
     .then(function (resp) {
       return resp.data;
-    })
+    });
   };
 
   // create new song/conversation on server
@@ -47,13 +46,13 @@ angular.module('gmajor.commentFactory', [])
     })
     .then(function (resp) {
       return resp.data;
-    })
+    });
   };
 
   return {
     addSong: addSong,
     addNewComment: addNewComment,
     addAdditionalComment: addAdditionalComment
-  }
+  };
 
 });

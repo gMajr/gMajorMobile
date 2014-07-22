@@ -15,11 +15,15 @@ angular.module('gmajor.chatController', [])
   }];
 
   $scope.rightButtons = [];
-  $scope.chatStream = {};
+  $scope.chatStream;
+  //fill this in with code below for chatstream
 
-  currentChatStream = ChatsFactory.data[ChatsFactory.currentID];
+  var currentChatStream = ChatsFactory.data[ChatsFactory.currentID];
   var soundBoard = new SoundBoard(currentChatStream.music);
-  chatStream = [];
+  //this will be filled with the data for each message in the current conversation.
+  //Once chatStream is filled, we will set scope.chatStream equal to it, so the conversation
+  //can be rendered.
+  var chatStream = [];
 
 
 
@@ -91,7 +95,7 @@ angular.module('gmajor.chatController', [])
     };
     playThis = playThis,
     stopThis = stopThis,
-    buttonState = { style: 'button-balanced',
+    buttonState = {style: 'button-balanced',
                    icon: 'ion-play'}
     chatStream.push({
       id: id,
@@ -108,15 +112,20 @@ angular.module('gmajor.chatController', [])
 //the code below should also be added to the factory
 
   $scope.addMusic = function(){
+    stopAllPlaying();
     soundBoard.stopSounds();
     ChatsFactory.resetBoard(GridTargetFactory);
     // selects from existing instruments
     // just cycles through, should be able to select eventually
-    grid = new Grid(instruments[$scope.chatStream.length % instruments.length], 100, 329.63);
+    grid = new Grid(instruments[$scope.chatStream.length % instruments.length], GridTargetFactory.BPM, 329.63);
     GridTargetFactory.soundBoard.Grids = soundBoard.Grids;
     GridTargetFactory.soundBoard.addGrid(grid);
     $location.url('/' + 'grid');
     ChatsFactory.firstTime = false;
   };
+
+  $scope.$on('SideMenuNavigate', function(){
+    stopAllPlaying();
+  })
 
 });

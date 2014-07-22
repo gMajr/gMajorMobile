@@ -1,17 +1,20 @@
+// dependencies
 var express = require('express');
 var bodyParser = require('body-parser');
 var url = require('url');
 var querystring = require('querystring');
-var router = express.Router();
 var db = require(__dirname + '/db/db.js');
-var port = process.env.PORT || 8080;
-var server = express();
-var express = require('express');
 var path = require('path');
 var fs = require('fs');
 
+// server variables
+var server = express();
+var router = express.Router();
+var port = process.env.PORT || 8080;
+
 server.use(express.static(__dirname + '/www'));
 server.listen(port);
+
 db.init();
 
 // API Router
@@ -25,7 +28,6 @@ router.get('/', function(req, res){
 });
 
 router.route('/users')
-  // create a bear (accessed at POST http://localhost:8080/api/users)
   .post(function(req, res) {
     var user = req.body;
     db.insert('gmajor.users', user, res);
@@ -56,7 +58,6 @@ router.route('/threads')
     newThread.fbids = [message.fbid];
     db.insert('gmajor.threads', newThread, res);
   })
-  // functional but is not currently used
   .get(function(req, res){
     var parsedUrl = url.parse(req.url);
     var params = querystring.parse(parsedUrl.query);

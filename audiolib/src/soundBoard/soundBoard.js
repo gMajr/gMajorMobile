@@ -1,4 +1,4 @@
- // In this library, we have a soundBoard which holds multiple grids.  Each grid represents an instrument
+// In this library, we have a soundBoard which holds multiple grids.  Each grid represents an instrument
 // and a grid interval in our app.  All the grids are stored in SoundBoard's grid array
 
 var SoundBoard = function(gridInformation){

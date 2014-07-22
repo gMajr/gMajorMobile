@@ -1,9 +1,11 @@
-// In this library, we have a soundBoard which holds multiple grids.  Each grid represents an instrument
+ // In this library, we have a soundBoard which holds multiple grids.  Each grid represents an instrument
 // and a grid interval in our app.  All the grids are stored in SoundBoard's grid array
 
 var SoundBoard = function(gridInformation){
 
 	this.Grids = [];
+	// the interval will be filled in at a later time within the
+	// 'playInterval' funciton
 	this.interval;
 //If gridInformation is passed into this function, it will build all the grids and the sounds necessary
 //to loop through and play each of the grids.

@@ -15,6 +15,7 @@ angular.module('gmajor.chatsController', [])
     // hardcoded instrument for now, should be able to choose this later
 		var grid = new Grid('piano', GridTargetFactory.BPM, 329.63);
 		GridTargetFactory.soundBoard.Grids.splice(0, GridTargetFactory.soundBoard.Grids.length)
+		//Because of closure scope, I cannot set a new Board, but need to alter the original array.
 		GridTargetFactory.soundBoard.addGrid(grid);
 		ChatsFactory.firstTime = true;
 		$location.url('/' + 'grid');

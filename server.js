@@ -27,26 +27,6 @@ router.get('/', function(req, res){
   console.log('get /api accessed');
 });
 
-router.route('/users')
-  .post(function(req, res) {
-    var user = req.body;
-    db.insert('gmajor.users', user, res);
-  })
-  .get(function(req, res){
-    db.find('gmajor.users', res);
-  });
-
-router.route('/users/:userId')
-  .post(function(req, res){
-    var message = req.body;
-    var conId = req.params.userId;
-    db.update('gmajor.users', conId, message, res);
-  })
-  .get(function(req, res){
-    var conId = req.params.userId;
-    db.find('gmajor.users', res, conId);
-  });
-
 router.route('/threads')
   .post(function(req, res){
     var message = req.body;
@@ -63,6 +43,7 @@ router.route('/threads')
     var params = querystring.parse(parsedUrl.query);
     db.match('gmajor.threads', res, params);
   });
+
 router.route('/threads/:threadId')
   // appends a message to the thread in the DB with id threadId
   .post(function(req, res){

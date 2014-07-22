@@ -21,10 +21,11 @@ This is an ionic app that runs on Safari for iOS7 and Chrome 36+. The backend is
 MongoDB database served by [mongolab](https://mongolab.com/). The DB is controlled by the [Node.js MongoDB Driver](http://docs.mongodb.org/ecosystem/drivers/node-js/). The Web Audio API is used to generate sounds without using recorded samples. While it can be built down to a web site for testing purposes, it's expected to be run on a moble device. 
 
 ## Wiki
-The [Wiki](https://github.com/gMajr/gMajorMobile/wiki) contains information about the structure and usage of the app.
+The [Wiki](https://github.com/gMajr/gMajorMobile/wiki) contains information about the structure and usage of the app. 
+
 
 ## Database Setup
-The app depends on a MongoDB server for storage. We recommend creating a mongolab account, as the mongolab setup is documented in [Setting up MongoDB with Mongolab](https://github.com/gMajr/gMajorMobile/wiki/Setting-up-MongoDB-with-Mongolab)
+The app depends on a MongoDB server for storage. If you plan to deploy with Azure, you should follow the instructions in [Azure Deployment](https://github.com/gMajr/gMajorMobile/wiki/Azure-Deployment), which will include setting up your DB. Even if you don't, you need to set up a MongoDB server if you want to test and develop with a working database. We recommend creating a mongolab account, as the mongolab setup is documented in [Setting up MongoDB with Mongolab](https://github.com/gMajr/gMajorMobile/wiki/Setting-up-MongoDB-with-Mongolab)
 
 ## Local Setup
 1. `sudo npm install -g bower`

@@ -8,11 +8,33 @@ angular.module('gmajor.gridController', [])
 
   $scope.columns = GridTargetFactory.columns;
 
+  $scope.config = {};
+
+  // Select options for grid configuration.
+  $scope.config.instrumentOptions = [
+    {name: 'Piano', value: 'piano'},
+    {name: 'Drums', value: 'drums'},
+    {name: 'Organ', value: 'organ'},
+    {name: 'Acoustic', value: 'acoustic'},
+    {name: 'Edm', value: 'edm'}
+  ];
+  $scope.config.BPMOptions = [
+    {name: 25, value: 25},
+    {name: 50, value: 50},
+    {name: 100, value: 100},
+    {name: 200, value: 200},
+    {name: 400, value: 400}
+  ];
+
+  var currentBoard = GridTargetFactory.soundBoard.Grids[GridTargetFactory.soundBoard.Grids.length - 1];
+  $scope.config.instrument = currentBoard.instrumentName;
+  $scope.config.BPM = 100;
+
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',
     tap: function(e) {
-        // TODO: Stuff on click
-        stopPlayingGrid();
+      // TODO: Stuff on click
+      stopPlayingGrid();
     }
   }];
 
@@ -61,6 +83,11 @@ angular.module('gmajor.gridController', [])
     } else {
       stopPlayingGrid();
     }
+  }
+
+  // Change the instrument and BPM based on the input selection.
+  $scope.changeGrid = function() {
+    GridTargetFactory.configGrid($scope.config.instrument, $scope.config.BPM);
   }
 
   //Stop playing when the user navigates away via the side menu.

@@ -17,7 +17,7 @@ SoundBoard.prototype.playInterval = function( cb ){
    //the scheduled time is the precise time when the next set of notes need to be played
    for ( var i = 0; i < this.Grids.length; i++ ){
 	   for ( var note in this.Grids[i].noteScheduler[currentCol] ){
-	       this.Grids[i].playSounds( this.Grids[i].noteScheduler[currentCol][note], 1, scheduledTime )
+	     this.Grids[i].playSounds( this.Grids[i].noteScheduler[currentCol][note], 1, scheduledTime )
 	   }
    }
 	//in this for loop, we go through the note schduler in EVERY grid that exists on the soundBoard, and we
@@ -25,27 +25,28 @@ SoundBoard.prototype.playInterval = function( cb ){
 
    //the callback is optional
    if ( cb ){
+      console.log(this.BPM);
       var time = scheduledTime - context.currentTime;
       setTimeout(function(){cb(currentCol)}, time);
       //this calls the function that lights up the columns.
    }
    
-   loop.call( this, startTime, halfwayPointBetweenNotes, continuedLoop, (scheduledTime - context.currentTime + halfwayPointBetweenNotes), k);
+   loop.call( this, startTime, halfwayPointBetweenNotes, continuedLoop, (scheduledTime - context.currentTime), k);
  };
 
  var loop = function( startTime, halfwayPointBetweenNotes, continuedLoop, firstTime , k){
-// k is used for debugging.  I increment k for EVERY loop.
+   // k is used for debugging.  I increment k for EVERY loop.
    k = k || 0;
    k++;
 
    firstTime = firstTime || 0;
-//Set Timeout is not precise, but the web audio timer is EXTREMELY precise.  We schedule sounds with
-//respect to the web audio timer.  This setTimeout is always self-correcting itself, so it will never
-//be far off.  
+   //Set Timeout is not precise, but the web audio timer is EXTREMELY precise.  We schedule sounds with
+   //respect to the web audio timer.  This setTimeout is always self-correcting itself, so it will never
+   //be far off.  
    this.interval = setTimeout( continuedLoop.bind(this, startTime, k), firstTime * 1000);
  }
+//If the timer hasn't started, we start the timer by playing any sound.
  if (!context.currentTime){
- //If the timer hasn't started, we start the timer by playing any sound.
    this.Grids[0].playSounds(this.Grids[0].keys[0], 0, 0);
  }
  loop.call( this, startTime, halfwayPointBetweenNotes, continuedLoop);

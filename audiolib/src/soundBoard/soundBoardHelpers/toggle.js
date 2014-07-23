@@ -21,9 +21,9 @@ SoundBoard.prototype.toggle = function(col, row){
 		//mongodb.  In this case we give an integer as the key, and the full decimal frequency as the value.
 		
 		if (parseInt(currentBoard.keys[row]) in currentBoard.noteScheduler[col]){
-		 delete currentBoard.noteScheduler[col][parseInt(currentBoard.keys[row])];
+		 	delete currentBoard.noteScheduler[col][parseInt(currentBoard.keys[row])];
 		}else{
-		 currentBoard.noteScheduler[col][parseInt(currentBoard.keys[row])] = currentBoard.keys[row];
+		 	currentBoard.noteScheduler[col][parseInt(currentBoard.keys[row])] = currentBoard.keys[row];
 		}
 	}
 

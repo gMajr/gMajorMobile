@@ -3,8 +3,23 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
-  <ion-content has-header="true" padding="true">
-    Dig the Profile
-  </ion-content>
+
+    <ion-content has-header="true" padding="true">
+
+        <div class="list card">
+            <div class="item">
+                <h2>{{user.name}}</h2>
+                <p>{{user.email}}</p>
+            </div>
+            <div class="item item-image">
+                <img ng-src="{{user.photoUrl}}" />
+            </div>
+        </div>
+
+    </ion-content>
   
 </ion-view>
+
+
+
+    

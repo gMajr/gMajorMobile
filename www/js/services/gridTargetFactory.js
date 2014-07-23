@@ -11,7 +11,7 @@ angular.module('gmajor.gridTargetFactory', ['gmajor.chatsFactory'])
   var nSpacingOffset = Math.floor(298/(nMax+1));
   var mSpacingOffset = Math.floor(298/(mMax+1));
   // ideally, this would be made dynamic down the line.
-  var BPM = '100';
+  var BPM = 100;
 
   var columns = [];
   var soundBoardToggleCopy = [];

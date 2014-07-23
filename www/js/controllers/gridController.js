@@ -26,7 +26,8 @@ angular.module('gmajor.gridController', [])
     {name: 400, value: 400}
   ];
 
-  $scope.config.instrument = 'piano';
+  var currentBoard = GridTargetFactory.soundBoard.Grids[GridTargetFactory.soundBoard.Grids.length - 1];
+  $scope.config.instrument = currentBoard.instrumentName;
   $scope.config.BPM = 100;
 
   $scope.leftButtons = [{

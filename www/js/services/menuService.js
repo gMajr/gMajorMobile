@@ -7,6 +7,8 @@ angular.module('gmajor.menuService', [])
 
   var menuItems = [
     { text: 'Chats', iconClass: 'icon ion-map', link: 'chats'},
+    { text: 'Game', iconClass: 'icon ion-map', link: 'game'},
+    { text: 'Profile', iconClass: 'icon ion-map', link: 'profile'},
   ];
 
   // this is a bad implementation of dynamically changing login/logout buttons,

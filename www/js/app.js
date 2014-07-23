@@ -18,7 +18,9 @@ angular.module('gmajor', ['ionic',
                           'gmajor.userController',
                           'gmajor.userService',
                           'gmajor.gridTargetFactory',
-                          'gmajor.directives'
+                          'gmajor.directives',
+                          'gmajor.gameController',
+                          'gmajor.profileController',        
                           ])
 
 .run(function($ionicPlatform) {
@@ -61,6 +63,16 @@ angular.module('gmajor', ['ionic',
           url: '/chat',
           controller: 'ChatController',
           templateUrl: 'templates/chat.html'
+      })
+      .state('game', {
+          url: '/game',
+          controller: 'GameController',
+          templateUrl: 'templates/game.html'
+      })
+      .state('profile', {
+          url: '/profile',
+          controller: 'ProfileController',
+          templateUrl: 'templates/profile.html'
       })
       .state('comment', {
           url: '/comment',

@@ -15,11 +15,11 @@ module.exports = {
         {$set: data},
         {},
         function(err, object) {
-            if (err){
-              throw err;
-            }else{
-              res.send(object);
-            }
+          if (err){
+            throw err;
+          }else{
+            res.send(object);
+          }
         });
     });
   },
@@ -52,6 +52,7 @@ module.exports = {
       });
     });
   },
+
   match: function(collectionName, res, params){
     MongoClient.connect(connectionString, function(err, db) {
       if(err) throw err;
@@ -74,6 +75,7 @@ module.exports = {
       }
     });
   },
+  
   append: function(collectionName, res, id, message){
     if (id !== undefined){
       id = {_id: mongodb.ObjectID(id)};

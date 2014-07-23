@@ -1,8 +1,79 @@
 angular.module('gmajor.gameController', [])
 
-.controller('GameController', function ($scope, $location) {
+.controller('GameController', function ($scope, $location, GridTargetFactory) {
+	var prevPlayingCol = 0;
+  var playStatus = 'stopped';
 
   $scope.navTitle = 'Game';
 
+  $scope.columns = GridTargetFactory.columns;
+
+  $scope.config = {};
+
+  var currentBoard = GridTargetFactory.soundBoard.Grids[GridTargetFactory.soundBoard.Grids.length - 1];
+  $scope.config.instrument = currentBoard.instrumentName;
+  $scope.config.BPM = 100;
+
+  // generate random grid
+
+  $scope.leftButtons = [{
+    type: 'button-icon icon ion-navicon',
+    tap: function(e) {
+      // TODO: Stuff on click
+      stopPlayingGrid();
+    }
+  }];
+
+  $scope.addSongToChat = function(){
+    GridTargetFactory.stop();
+    $location.url('/' + 'comment');
+  }
+
+  $scope.rightButtons = [];
+
+  $scope.playButtonText = 'Play';
+  $scope.playButtonIcon = 'ion-play';
+  $scope.playButtonStyle = 'button-balanced';
+
+  var startPlayingGrid = function() {
+    GridTargetFactory.play(playcallback);
+    playStatus = 'playing';
+    //Change the play button to a stop button
+    $scope.playButtonText = 'Stop';
+    $scope.playButtonIcon = 'ion-stop';
+    $scope.playButtonStyle = 'button-assertive';
+  }
+
+  var stopPlayingGrid = function() {
+    GridTargetFactory.stop();
+    playStatus = 'stopped';
+    //Change the stop button back to a play button
+    $scope.playButtonText = 'Play';
+    $scope.playButtonIcon = 'ion-play';
+    $scope.playButtonStyle = 'button-balanced';
+  }
+
+
+  var playcallback = function(playingCol) {
+    if(playingCol >= 0){
+      $scope.columns[prevPlayingCol].activeClass = undefined;
+      $scope.columns[playingCol].activeClass = 'colActive';
+      $scope.$apply();
+      prevPlayingCol = playingCol;
+    }
+  }
+
+  $scope.playGrid = function() {
+    if(playStatus === 'stopped'){
+      startPlayingGrid();
+    } else {
+      stopPlayingGrid();
+    }
+  }
+
+  //Stop playing when the user navigates away via the side menu.
+  $scope.$on('SideMenuNavigate', function(){
+    stopPlayingGrid();
+  });
 
 });

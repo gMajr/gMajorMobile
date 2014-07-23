@@ -37,6 +37,20 @@ var Grid = function(instrument, BPM, freq, noteScheduler){
     })();
   }
 
+  // noteMatrix is an array of arrays representing the geometric layout of the grid
+  // 0 = off, 1 = on
+  this.noteMatrix = (function(){
+    var columns = [];
+    for (var c = 0; c < 8; c++) {
+      var row = [];
+      for (var r = 0; r < 6; r++) {
+        row.push(0);
+      }
+      columns.push(row);
+    }
+    return columns;
+  })();
+
 //if the instrument is drums, we import the sounds instead of calculate them.  Take a look at the 
 //imported sounds file to understand in more depth.  I linked to a blog post in there.
 

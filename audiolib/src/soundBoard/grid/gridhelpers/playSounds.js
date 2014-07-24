@@ -9,7 +9,13 @@ Grid.prototype.playSounds = function( frequencyOrSound, volume, start ){
   var buffer = this.soundHash[frequencyOrSound];
   osc.buffer = buffer;
   osc.loop = false;
-  osc.connect( gainNode );
-  gainNode.connect( context.destination );
-  osc.start( start );
+
+  var analyserNode   = context.createAnalyser();
+  analyserNode.fftSize = 512;
+  var frequencyBins = new Uint8Array(analyserNode.frequencyBinCount);
+
+  osc.connect(analyserNode);
+  analyserNode.connect(gainNode);
+  gainNode.connect(context.destination);
+  osc.start(start);
 };

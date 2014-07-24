@@ -29,7 +29,6 @@ var Grid = function(instrument, BPM, freq, noteScheduler, col){
 
   //if notesScheduler doens't exist, then we create a matrice, or set of objects within each column, that
   //represent each sound that should be scheduled at each grid column.
-
   if ( noteScheduler ){
     this.noteScheduler = noteScheduler;
   }else{
@@ -56,9 +55,8 @@ var Grid = function(instrument, BPM, freq, noteScheduler, col){
     return columns;
   })();
 
-//if the instrument is drums, we import the sounds instead of calculate them.  Take a look at the 
-//imported sounds file to understand in more depth.  I linked to a blog post in there.
-
+  //if the instrument is drums, we import the sounds instead of calculate them.  Take a look at the 
+  //imported sounds file to understand in more depth.  I linked to a blog post in there.
   if ( instrument === 'drums' ){
 
     this.soundHash = drumSounds;
@@ -67,23 +65,22 @@ var Grid = function(instrument, BPM, freq, noteScheduler, col){
   }else{
 
     this.instrument = instruments[this.instrumentName];
-//Here we set the keys.  Right now we're creating sounds on the pentatonic scale.  You can change this equation
-//to produce ANY notes you would like.  We have a set of 6 notes which corresponds to the 6 rows of the grid.
+    //Here we set the keys.  Right now we're creating sounds on the pentatonic scale.  You can change this equation
+    //to produce ANY notes you would like.  We have a set of 6 notes which corresponds to the 6 rows of the grid.
     this.keys = scale = (function(){
       return [ freq, 9/8 * freq, 5/4 * freq,
         3/2 * freq, 5/3 * freq, 2 * freq ].reverse();
     })();
 
-//http://keithwhor.com/music/ check out his website to understand attack in more detail.
-//A lot of this code was transferred over.  He was using the audio element instead of the web audio
-//api.
-
+    //http://keithwhor.com/music/ check out his website to understand attack in more detail.
+    //A lot of this code was transferred over.  He was using the audio element instead of the web audio
+    //api.
     var attackLen = this.sampleRate * this.instrument.attack();
     var duration = 60 / this.BPM / 2;
     var volume = 1;
 
-   //this stores the sounds for later use so we don't have to calculate it every time
-   //Here is where we actually calculate the waveforms
+    //this stores the sounds for later use so we don't have to calculate it every time
+    //Here is where we actually calculate the waveforms
     for ( var i = 0; i < scale.length; i++ ){
       var buffer = context.createBuffer( 1, duration * this.sampleRate, this.sampleRate );
       //we store the sounds in a buffer. The buffer is what sounds get stored in for the Web Audio API

@@ -7,9 +7,8 @@ angular.module('gmajor.userService', [])
       path: '/me',
       params: {fields: 'id, name, email'},
       success: function(user) {
-        console.log('user coming back from facebook', user);
         // stores user/id in scope for client access
-        window.sessionStorage['photoUrl'] = 'https://graph.facebook.com/' + user.id+ '/picture?type=normal'
+        window.sessionStorage['photoUrl'] = 'https://graph.facebook.com/' + user.id+ '/picture?type=square'
         window.sessionStorage['fbid'] = user.id;
         window.sessionStorage['name'] = user.name;
         window.sessionStorage['email'] = user.email;

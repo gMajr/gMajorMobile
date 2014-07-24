@@ -30,6 +30,7 @@ angular.module('gmajor.commentController', [])
 //store in local storage... 
   $scope.addNewComment = function(){ 
     message = $scope.text;
+
     if (ChatsFactory.firstTime === true){
       var serverData = CommentFactory.addNewComment(message);
       CommentFactory.addSong(serverData)
@@ -39,7 +40,7 @@ angular.module('gmajor.commentController', [])
         GridTargetFactory.stop()
         //add local storage logic here :):):)
       })
-    }else{
+    }else{      
       var serverData = CommentFactory.addNewComment(message);
       CommentFactory.addAdditionalComment(serverData)
       .then(function(data){

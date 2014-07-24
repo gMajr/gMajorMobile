@@ -34,6 +34,7 @@ router.route('/threads')
     newThread.music = message.music;
     newThread.authors = [message.author];
     newThread.messages = [message.message];
+    newThread.photos = [message.photoUrl];
     newThread.timestamps = [message.timestamp];
     newThread.fbids = [message.fbid];
     db.insert('gmajor.threads', newThread, res);

@@ -12,12 +12,14 @@ angular.module('gmajor.commentFactory', [])
     var author = window.sessionStorage.name || 'Guest';
     var music = GridTargetFactory.soundBoard.exportGrids();
     var fbid = window.sessionStorage.fbid;
+    var photoUrl = window.sessionStorage.photoUrl;
 
     dataToServer = {
       fbid: fbid,
       message: message,
       timestamp: timestamp,
       author: author,
+      photoUrl: photoUrl,
       music: music
     };
     

@@ -83,6 +83,7 @@ angular.module('gmajor.chatController', [])
     for ( var i = 0; i < currentChatStream.messages.length; i++ ){
     id = i;
     username = currentChatStream.authors[i];
+    photoUrl = currentChatStream.photos[i];
     comment = currentChatStream.messages[i];
     musicGrid = soundBoard.Grids[i];
 
@@ -100,6 +101,7 @@ angular.module('gmajor.chatController', [])
     chatStream.push({
       id: id,
       username: username, comment: comment,
+      photoUrl: photoUrl,
       musicGrid: musicGrid,
       togglePlay: togglePlay,
       playThis: playThis,

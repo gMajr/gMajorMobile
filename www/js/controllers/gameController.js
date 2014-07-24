@@ -31,7 +31,6 @@ angular.module('gmajor.gameController', [])
   };
   randomizeGrid($scope.opponentMatrix.columns);
 
-
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',
     tap: function(e) {
@@ -76,8 +75,9 @@ angular.module('gmajor.gameController', [])
     if(!loop && playingCol === 7) {
     	$timeout(function() {
 	    	$scope.columns[playingCol].activeClass = undefined;
-	    	$scope.$apply();
 	    	stopPlayingGrid();
+	    	playersTurn();
+	    	$scope.$apply();
     	}, 100);
     }
   }
@@ -94,4 +94,15 @@ angular.module('gmajor.gameController', [])
   $scope.$on('SideMenuNavigate', function(){
     stopPlayingGrid();
   });
+
+  // Game
+  // Play one time
+  $scope.playGrid();
+  // Show player an empty board
+  var playersTurn = function() {
+  	$scope.currentBoard = $scope.playerGrid;
+  	$scope.columns = $scope.playerMatrix.columns;
+  };
+
+
 });

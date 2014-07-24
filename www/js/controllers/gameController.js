@@ -104,5 +104,15 @@ angular.module('gmajor.gameController', [])
   	$scope.columns = $scope.playerMatrix.columns;
   };
 
+  $scope.compare = function() {
+  	var player = JSON.stringify($scope.playerGrid.noteMatrix);
+  	var opponent = JSON.stringify($scope.opponentGrid.noteMatrix);
+  	if (player === opponent) {
+  		alert("You win!");
+  	} else {
+  		alert("You lose!");
+  	}
+  };
+
 
 });

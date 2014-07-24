@@ -10,13 +10,18 @@
         <li class="item" ng-repeat="chat in chatStream">
           <div class="row">
             <div class="col">
-              <p>{{chat.username}} said:</p>
+              <p>{{chat.username}}</p>
+            </div>
+          </div>
+         <div class="row">
+            <div class="col" class="item item-image">
+                <img ng-src="{{chat.photoUrl}}"/>
+            </div>
+            <div class="col">
+              <button class="button {{chat.buttonState.style}}" ng-click="chat.togglePlay()"><i class="icon {{chat.buttonState.icon}}"></i></button>
             </div>
           </div>
           <div class="row">
-            <div class="col col-25">
-              <button class="button {{chat.buttonState.style}}" ng-click="chat.togglePlay()"><i class="icon {{chat.buttonState.icon}}"></i></button>
-            </div>
             <div class="col item-text-wrap">
               <p>{{chat.comment}}</p>
             </div>

@@ -13,10 +13,6 @@
         <select ng-model="config.instrument" ng-change="changeGrid()" ng-options="instrument.value as instrument.name for instrument in config.instrumentOptions">
         </select>
       </label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col list">
       <label class="item item-input item-select">
         <div class="input-label">
           BPM:
@@ -41,7 +37,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <button class="button button-block {{playButtonStyle}}" ng-click="playGrid()"><i class="icon {{playButtonIcon}}"></i> {{playButtonText}}</button>
+      <button class="button button-block {{playButtonStyle}} play-button" ng-click="playGrid()"><i class="icon {{playButtonIcon}}"></i> {{playButtonText}}</button>
     </div>
   </div>
     <div class="row">

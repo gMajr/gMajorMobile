@@ -22,3 +22,7 @@
 .users:not(:first-child){
 	display:block;
 }
+
+.play-button.button {
+  margin: 0;
+}

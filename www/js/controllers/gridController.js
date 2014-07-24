@@ -28,7 +28,7 @@ angular.module('gmajor.gridController', [])
 
   var currentBoard = GridTargetFactory.soundBoard.Grids[GridTargetFactory.soundBoard.Grids.length - 1];
   $scope.config.instrument = currentBoard.instrumentName;
-  $scope.config.BPM = 100;
+  $scope.config.BPM = GridTargetFactory.BPM;
 
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',

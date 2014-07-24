@@ -19,7 +19,9 @@
 	  </div>
 	  <div class="row">
 	    <div class="col">
-	      <button class="button button-block button-balanced" ng-click="compare()"><i class="icon ion-play"></i> Submit</button>
+	      <button ng-click="playGame()" ng-show="readyToPlay" class="button button-block button-balanced"><i class="icon ion-play"></i> Play </button>
+	      <button ng-click="decideWinner()" ng-hide="readyToPlay" class="button button-block button-positive"><i class="icon"></i> I got it! </button>
+	      <button ng-click="restartGame()" ng-hide="readyToPlay" class="button button-block button-positive"><i class="icon"></i> Start Over </button>
 	    </div>
 	  </div>
   </ion-content>

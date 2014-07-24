@@ -1,23 +1,25 @@
 angular.module('gmajor.gameController', [])
 
-.controller('GameController', function ($scope, $timeout, $location, GameGridFactory) {
+.controller('GameController', function ($scope, $state, $timeout, $location, $ionicPopup, GameGridFactory) {
 	var prevPlayingCol = 0;
 	var loop = false;
   var playStatus = 'stopped';
   var BPM = '100';
 
+  // set up player and opponents grids (musical) and matrices (visual)
   $scope.opponentGrid = new Grid('piano', BPM, 329.63);
   $scope.playerGrid = new Grid('piano', BPM, 329.63);
   $scope.opponentMatrix = GameGridFactory.newMatrix($scope.opponentGrid);
   $scope.playerMatrix = GameGridFactory.newMatrix($scope.playerGrid);
 
-  $scope.navTitle = 'Game';
-
-  // active settings
-  $scope.columns = $scope.opponentMatrix.columns;
+  // default settings loaded when state is intiated
+  $scope.columns = $scope.playerMatrix.columns; // cheat
   $scope.currentBoard = $scope.opponentGrid;
+  // show or hide play button
+  $scope.readyToPlay = true;
 
   $scope.config = {};
+  $scope.navTitle = 'Match Each Note';
  
   $scope.config.instrument = $scope.currentBoard.instrumentName;
   $scope.config.BPM = BPM;
@@ -39,29 +41,15 @@ angular.module('gmajor.gameController', [])
     }
   }];
 
-  $scope.rightButtons = [];
-
-  $scope.playButtonText = 'Play';
-  $scope.playButtonIcon = 'ion-play';
-  $scope.playButtonStyle = 'button-balanced';
-
   var startPlayingGrid = function() {
   	console.log("here ", $scope.currentBoard);
     $scope.currentBoard.playInterval(playcallback);
     playStatus = 'playing';
-    //Change the play button to a stop button
-    $scope.playButtonText = 'Stop';
-    $scope.playButtonIcon = 'ion-stop';
-    $scope.playButtonStyle = 'button-assertive';
   }
 
   var stopPlayingGrid = function() {
     $scope.currentBoard.stopSounds();
     playStatus = 'stopped';
-    //Change the stop button back to a play button
-    $scope.playButtonText = 'Play';
-    $scope.playButtonIcon = 'ion-play';
-    $scope.playButtonStyle = 'button-balanced';
   }
 
   var playcallback = function(playingCol) { 	
@@ -97,21 +85,41 @@ angular.module('gmajor.gameController', [])
 
   // Game
   // Play one time
-  $scope.playGrid();
+  $scope.playGame = function() {
+		$scope.columns = $scope.opponentMatrix.columns;
+  	$scope.playGrid();
+  	$scope.readyToPlay = false;
+  	$scope.$apply();
+  };
   // Show player an empty board
   var playersTurn = function() {
   	$scope.currentBoard = $scope.playerGrid;
   	$scope.columns = $scope.playerMatrix.columns;
   };
 
-  $scope.compare = function() {
+  $scope.decideWinner = function() {
   	var player = JSON.stringify($scope.playerGrid.noteMatrix);
   	var opponent = JSON.stringify($scope.opponentGrid.noteMatrix);
   	if (player === opponent) {
-  		alert("You win!");
+  		$scope.winOrLose("You win!");
   	} else {
-  		alert("You lose!");
+  		$scope.winOrLose("You lose!");
   	}
+  };
+
+  // show alert for invalid phone
+	$scope.winOrLose = function(title) {
+	  $ionicPopup.alert({
+	    title: title,
+      template: 'Would you like to play again?'
+	  }).then(function(res) {
+	  	$scope.restartGame();
+    });
+  };
+
+  $scope.restartGame = function() {
+  	// refresh state
+  	$state.go($state.current, {}, {reload: true});
   };
 
 

@@ -2,3 +2,12 @@
 
 window.AudioContext = window.AudioContext||window.webkitAudioContext;
 var context = new AudioContext();
+
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function(callback, element){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();

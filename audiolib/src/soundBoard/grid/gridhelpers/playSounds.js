@@ -4,6 +4,7 @@ Grid.prototype.playSounds = function( frequencyOrSound, volume, start ){
   var duration = 60 / this.BPM / 2;
   var osc = context.createBufferSource();
   var gainNode = context.createGain();
+  var instrument = this.instrumentName;
   gainNode.gain.value = volume;
 
   var buffer = this.soundHash[frequencyOrSound];
@@ -61,8 +62,10 @@ Grid.prototype.playSounds = function( frequencyOrSound, volume, start ){
           // The properties of the audio elements are such that there are frequencies on the 
           // low and high end of the spectrum, but none in the middle (except for drums). Zoom
           // shows the begginning portion of the frequency in order to visualize the more interesting
-          // data. Set to 1 to visualize the full range.
-          var zoom = 8;
+          // data. Set to 1 to visualize the full range as we have with drums.
+          var zoom;
+          instrument === "drums" ? zoom = 1 : zoom = 8;
+
           // Sets the space ratio between bars.
           var spacing = zoom*0.75;
           // Sets the color range.

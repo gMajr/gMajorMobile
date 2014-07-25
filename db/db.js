@@ -1,4 +1,9 @@
-var connectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://MongoLab-r:MBC1Zu.wH4o6g02MiEDSxOml1YfGewuVHMG1Ofe9Exc-@ds050077.mongolab.com:50077/MongoLab-r';
+var dbuser = process.env.MONGO_USERNAME;
+var dbpassword = process.env.MONGO_PASSWORD;
+var dburi = process.env.MONGO_HOSTANDPORT;
+var dbname = process.env.MONGO_DBNAME;
+
+var connectionString = ("mongodb://" + dbuser + ":" + dbpassword + "@" + dburi + "/" + dbname)   || 'mongodb://MongoLab-r:MBC1Zu.wH4o6g02MiEDSxOml1YfGewuVHMG1Ofe9Exc-@ds050077.mongolab.com:50077/MongoLab-r';
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 module.exports = {

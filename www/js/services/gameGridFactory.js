@@ -2,6 +2,8 @@ angular.module('gmajor.gameGridFactory', [])
 
 .factory('GameGridFactory', function(){
 
+  // defines spacing for a well-balanced grid
+  // of a single size (not dynamic with respect to M or N)
   var iPhoneSVGWidth = 298;
   var nMax = 8;
   var mMax = 6;
@@ -21,7 +23,7 @@ angular.module('gmajor.gameGridFactory', [])
     var matrix = {};
     matrix.BPM = '100';
     matrix.grid = grid;
-    matrix.columns = makeMatrix(matrix.grid);
+    matrix.matrix = makeMatrix(matrix.grid);
     return matrix;
   }
 
@@ -36,6 +38,7 @@ angular.module('gmajor.gameGridFactory', [])
 
   var makeMatrix = function(grid) {
     var columns = [];
+    var numColumns = grid.noteMatrix.length;
 
     // toggle updates the matrix (view) and the grid (music)
     var clickToggle = function() {
@@ -55,7 +58,7 @@ angular.module('gmajor.gameGridFactory', [])
     };
 
     // build the matrix
-    for(var n = 0; n < nMax; n++) {
+    for(var n = 0; n < numColumns; n++) {
       var currColumn = [];
       currColumn.activeClass = undefined;
       for(var m = 0; m < mMax; m++) {

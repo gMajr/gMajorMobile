@@ -3,13 +3,14 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
-  <ion-content has-header="true" padding="true">
+  <ion-content has-header="true" padding="false">
+
 	  <div class="row" padding="false">
 	    <div class="col">
 	      <svg width="298" height="298" xmlns="http://www.w3.org/2000/svg" version="1.1">
 	        <rect x="0" y="0" width="298" height="298" fill="white"/>
 	        <g stroke="black" fill="grey" stroke-width="2">
-	          <g ng-repeat="column in columns" class="column {{column.activeClass}}">
+	          <g ng-repeat="column in currentMatrix.matrix" class="column {{column.activeClass}}">
 	            <circle ng-repeat-start="target in column" ng-cx="target.x" ng-cy="target.y" ng-r="target.circleR" />
 	            <rect ng-repeat-end ng-x="target.rectX" ng-y="target.rectY" ng-width="target.rectHeight" ng-height="target.rectWidth" on-touch="target.clickToggle()" class="targetInvisible" />
 	          </g>
@@ -17,6 +18,7 @@
 	      </svg>
 	    </div>
 	  </div>
+
 	  <div class="row">
 	    <div class="col">
 	      <button ng-click="playGame()" ng-show="readyToPlay" class="button button-block button-balanced"><i class="icon ion-play"></i> Play </button>
@@ -24,6 +26,7 @@
 	      <button ng-click="restartGame()" ng-hide="readyToPlay" class="button button-block button-positive"><i class="icon"></i> Start Over </button>
 	    </div>
 	  </div>
+
   </ion-content>
   
 </ion-view>

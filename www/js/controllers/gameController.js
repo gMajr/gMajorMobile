@@ -6,32 +6,42 @@ angular.module('gmajor.gameController', [])
   var playStatus = 'stopped';
   var BPM = '100';
 
-  // set up player and opponents grids (musical) and matrices (visual)
-  $scope.opponentGrid = new Grid('piano', BPM, 329.63);
-  $scope.playerGrid = new Grid('piano', BPM, 329.63);
+  // set up player and opponents
+  // grids contain musical data
+  // matrices contain visual data necessary for the UI to render
+  // toggling a target in the matrix, updates it's grid
+  // grids also contain a noteMatrix that represents the state of it's matrix in basic on/off (1 or 0) terms
+  // the grids' noteMatrix is used for comparing grids and determining whether they match
+  $scope.opponentGrid = new Grid('piano', BPM, 329.63, null, 1);
+  $scope.playerGrid = new Grid('piano', BPM, 329.63, null, 1);
   $scope.opponentMatrix = GameGridFactory.newMatrix($scope.opponentGrid);
   $scope.playerMatrix = GameGridFactory.newMatrix($scope.playerGrid);
 
-  // default settings loaded when state is intiated
-  $scope.columns = $scope.playerMatrix.columns; // cheat
-  $scope.currentBoard = $scope.opponentGrid;
-  // show or hide play button
+  // the scopes columns render the visual grid in the UI
+  // each column contains target objects with methods and data
+  // both a current matrix and grid must be defined (for visual and music to correspond)
+    // *TODO: make this a dummy empty board that isn't clickable
+  $scope.currentMatrix = $scope.playerMatrix; // (this is a cheat)
+  $scope.currentGrid = $scope.opponentGrid;
+  // shows or hide play button
   $scope.readyToPlay = true;
-
-  $scope.config = {};
+ 
   $scope.navTitle = 'Match Each Note';
  
-  $scope.config.instrument = $scope.currentBoard.instrumentName;
+  // configure instruments to use in template if desired
+  $scope.config = {};
+  $scope.config.instrument = $scope.currentGrid.instrumentName;
   $scope.config.BPM = BPM;
 
-  // generate random opponent's grid
-  var randomizeGrid = function(targetMatrix) {
-  	for (var c = 0; c < targetMatrix.length; c++) {
+  // creates a random matrix with 1 note per column
+  var randomizeMatrix = function(matrix) {
+  	for (var c = 0; c < matrix.length; c++) {
   		var rowIndex = Math.floor(Math.random()*6);
-  		targetMatrix[c][rowIndex].clickToggle();
+  		matrix[c][rowIndex].clickToggle();
   	}
   };
-  randomizeGrid($scope.opponentMatrix.columns);
+  // generate random opponent's matrix (and update that grid)
+  randomizeMatrix($scope.opponentMatrix.matrix);
 
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',
@@ -42,27 +52,26 @@ angular.module('gmajor.gameController', [])
   }];
 
   var startPlayingGrid = function() {
-  	console.log("here ", $scope.currentBoard);
-    $scope.currentBoard.playInterval(playcallback);
+    $scope.currentGrid.playInterval(playcallback);
     playStatus = 'playing';
   }
 
   var stopPlayingGrid = function() {
-    $scope.currentBoard.stopSounds();
+    $scope.currentGrid.stopSounds();
     playStatus = 'stopped';
   }
 
   var playcallback = function(playingCol) { 	
     if(playingCol >= 0){
-      $scope.columns[prevPlayingCol].activeClass = undefined;
-      $scope.columns[playingCol].activeClass = 'colActive';
+      $scope.currentMatrix.matrix[prevPlayingCol].activeClass = undefined;
+      $scope.currentMatrix.matrix[playingCol].activeClass = 'colActive';
       $scope.$apply();
       prevPlayingCol = playingCol;
     }
     // prevent loop
-    if(!loop && playingCol === 7) {
+    if(!loop && playingCol === 8) {
     	$timeout(function() {
-	    	$scope.columns[playingCol].activeClass = undefined;
+	    	$scope.currentMatrix.matrix[playingCol].activeClass = undefined;
 	    	stopPlayingGrid();
 	    	playersTurn();
 	    	$scope.$apply();
@@ -86,15 +95,15 @@ angular.module('gmajor.gameController', [])
   // Game
   // Play one time
   $scope.playGame = function() {
-		$scope.columns = $scope.opponentMatrix.columns;
+		$scope.currentMatrix = $scope.opponentMatrix;
   	$scope.playGrid();
   	$scope.readyToPlay = false;
   	$scope.$apply();
   };
   // Show player an empty board
   var playersTurn = function() {
-  	$scope.currentBoard = $scope.playerGrid;
-  	$scope.columns = $scope.playerMatrix.columns;
+  	$scope.currentGrid = $scope.playerGrid;
+  	$scope.currentMatrix = $scope.playerMatrix;
   };
 
   $scope.decideWinner = function() {

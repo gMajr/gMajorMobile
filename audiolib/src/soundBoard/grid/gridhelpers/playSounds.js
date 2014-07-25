@@ -22,7 +22,7 @@ Grid.prototype.playSounds = function( frequencyOrSound, volume, start ){
   osc.start(start);
 
   // If there is a canvas element, launch the audio visualizer.
-  if ($('canvas').length > 0) {
+  if (document.getElementsByTagName('canvas').length > 0) {
 
     /***********************
     *** Audio Visualizer ***
@@ -34,7 +34,7 @@ Grid.prototype.playSounds = function( frequencyOrSound, volume, start ){
 
     // Get the HTML5 canvas element. More info here:
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Canvas
-    ctx = $('canvas').get()[0].getContext('2d');
+    ctx = document.getElementsByTagName('canvas')[0].getContext('2d');
 
     // Draws the frequency on the canvas.
     requestAnimFrame(drawFrequency);

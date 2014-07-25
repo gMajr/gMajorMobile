@@ -41,14 +41,14 @@ angular.module('gmajor.gameGridFactory', [])
     var numColumns = grid.noteMatrix.length;
 
     // toggle updates the matrix (view) and the grid (music)
-    var clickToggle = function() {
-      var col = this.col;
-      var row = this.row;
-      // TODO: update grid by toggling
-      grid.toggle(col, row);
+    var clickToggle = function(silent) {
+      grid.toggle(this.col, this.row);
       if (this.toggleState === 'off') {
-        // control for sounds
-        // soundBoard.playSounds(currentBoard.keys[this.row], 1, 0);
+        if (!silent) {
+          // play the sound
+          grid.playSounds(grid.keys[this.row], 1, 0);
+        }
+        // update the view
         this.circleR = selectedCirR;
         this.toggleState = 'on';
       } else {

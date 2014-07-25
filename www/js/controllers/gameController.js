@@ -121,7 +121,7 @@ angular.module('gmajor.gameController', [])
     var win = player === opponent;
     // progress through levels, beat the game, or lose
     if (!win) {
-      $scope.showPopup("Almost!", "You made it to level " + $scope.level + ". Try again?", $scope.restartGame);
+      $scope.showPopup("Almost!", "Try level " + $scope.level + " again?", $scope.restartLevel);
     } else if ($scope.level < maxLevel) {
   		$scope.showPopup("You beat the level!", "Keep going?", $scope.nextLevel);
   	} else if ($scope.level === maxLevel) {
@@ -140,16 +140,16 @@ angular.module('gmajor.gameController', [])
   };
 
   $scope.nextLevel = function() {
-    // define next level
     $rootScope.gameLevel = $scope.level + 1;
-    // go there
+    $state.go($state.current, {}, {reload: true});
+  };
+
+  $scope.restartLevel = function() {
     $state.go($state.current, {}, {reload: true});
   };
 
   $scope.restartGame = function() {
-    // start on first level
     $rootScope.gameLevel = null;
-  	// refresh state
   	$state.go($state.current, {}, {reload: true});
   };
 

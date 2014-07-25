@@ -15,7 +15,6 @@ SoundBoard.prototype.playSounds = function( frequencyOrSound, volume, start){
   gainNode.gain.value = volume;
   //here, we look to our soundhash table to get the sound data and play it.
   var buffer = currentBoard.soundHash[frequencyOrSound];
-  console.log(currentBoard.soundHash)
   osc.buffer = buffer;
   //if this is not set to false, then the sound will continue to loop and play.
   osc.loop = false;

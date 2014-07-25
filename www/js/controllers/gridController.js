@@ -16,7 +16,7 @@ angular.module('gmajor.gridController', [])
     {name: 'Drums', value: 'drums'},
     {name: 'Organ', value: 'organ'},
     {name: 'Acoustic', value: 'acoustic'},
-    {name: 'Edm', value: 'edm'}
+    {name: 'EDM', value: 'edm'}
   ];
   $scope.config.BPMOptions = [
     {name: 40, value: 40},

@@ -5,6 +5,12 @@
 
   <ion-content has-header="true" padding="false">
 
+  	<div class="row" padding="false">
+	    <div class="col" style="text-align: center;">
+	    	<h3>Level {{level}}</h3>
+	    </div>
+	  </div>
+
 	  <div class="row" padding="false">
 	    <div class="col">
 	      <svg width="298" height="298" xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -21,9 +27,9 @@
 
 	  <div class="row">
 	    <div class="col">
-	      <button ng-click="playGame()" ng-show="readyToPlay" class="button button-block button-balanced"><i class="icon ion-play"></i> Play </button>
-	      <button ng-click="decideWinner()" ng-hide="readyToPlay" class="button button-block button-positive"><i class="icon"></i> I got it! </button>
-	      <button ng-click="restartGame()" ng-hide="readyToPlay" class="button button-block button-positive"><i class="icon"></i> Start Over </button>
+	      <button ng-click="playOpponentsSequence()" ng-show="readyToPlay" class="button button-block button-balanced"><i class="icon ion-play"></i> Play </button>
+	      <button ng-click="submitPlayersSequence()" ng-hide="readyToPlay" class="button button-block button-positive"><i class="icon"></i> I got it! </button>
+	      <button ng-click="restartGame()" ng-hide="readyToPlay" class="button button-block button-positive"><i class="icon"></i> Restart Game </button>
 	    </div>
 	  </div>
 

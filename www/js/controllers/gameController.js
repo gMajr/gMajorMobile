@@ -1,10 +1,13 @@
 angular.module('gmajor.gameController', [])
 
-.controller('GameController', function ($scope, $state, $timeout, $location, $ionicPopup, GameGridFactory) {
+.controller('GameController', function ($scope, $rootScope, $state, $timeout, $location, $ionicPopup, GameGridFactory) {
 	var prevPlayingCol = 0;
 	var loop = false;
   var playStatus = 'stopped';
   var BPM = '100';
+
+  $scope.level = $rootScope.gameLevel || 2;
+  var maxLevel = 8;
 
   // set up player and opponents
   // grids contain musical data
@@ -12,8 +15,8 @@ angular.module('gmajor.gameController', [])
   // toggling a target in the matrix, updates it's grid
   // grids also contain a noteMatrix that represents the state of it's matrix in basic on/off (1 or 0) terms
   // the grids' noteMatrix is used for comparing grids and determining whether they match
-  $scope.opponentGrid = new Grid('piano', BPM, 329.63, null, 1);
-  $scope.playerGrid = new Grid('piano', BPM, 329.63, null, 1);
+  $scope.opponentGrid = new Grid('piano', BPM, 329.63, null, $scope.level);
+  $scope.playerGrid = new Grid('piano', BPM, 329.63, null, $scope.level);
   $scope.opponentMatrix = GameGridFactory.newMatrix($scope.opponentGrid);
   $scope.playerMatrix = GameGridFactory.newMatrix($scope.playerGrid);
 
@@ -68,8 +71,8 @@ angular.module('gmajor.gameController', [])
       $scope.$apply();
       prevPlayingCol = playingCol;
     }
-    // prevent loop
-    if(!loop && playingCol === 8) {
+    // prevent loop in game mode
+    if(!loop && playingCol === ($scope.level-1)) {
     	$timeout(function() {
 	    	$scope.currentMatrix.matrix[playingCol].activeClass = undefined;
 	    	stopPlayingGrid();
@@ -92,44 +95,62 @@ angular.module('gmajor.gameController', [])
     stopPlayingGrid();
   });
 
+  ///////////////
   // Game
-  // Play one time
-  $scope.playGame = function() {
+  ///////////////
+
+  // Animated walkthrough of oppenents randomized matrix
+  // player only sees one time
+  $scope.playOpponentsSequence = function() {
 		$scope.currentMatrix = $scope.opponentMatrix;
   	$scope.playGrid();
   	$scope.readyToPlay = false;
   	$scope.$apply();
   };
-  // Show player an empty board
+
+  // Show player an empty board to mirror the oppenents sequence on
   var playersTurn = function() {
   	$scope.currentGrid = $scope.playerGrid;
   	$scope.currentMatrix = $scope.playerMatrix;
   };
 
-  $scope.decideWinner = function() {
+  // Player matches the opponent's sequence to beat the level
+  $scope.submitPlayersSequence = function() {
   	var player = JSON.stringify($scope.playerGrid.noteMatrix);
   	var opponent = JSON.stringify($scope.opponentGrid.noteMatrix);
-  	if (player === opponent) {
-  		$scope.winOrLose("You win!");
-  	} else {
-  		$scope.winOrLose("You lose!");
-  	}
+    var win = player === opponent;
+    // progress through levels, beat the game, or lose
+    if (!win) {
+      $scope.showPopup("Almost!", "You made it to level " + $scope.level + ". Try again?", $scope.restartGame);
+    } else if ($scope.level < maxLevel) {
+  		$scope.showPopup("You beat the level!", "Keep going?", $scope.nextLevel);
+  	} else if ($scope.level === maxLevel) {
+      $scope.showPopup("WINNING!", "You're a gMajor ninja. You beat the game. Play again?", $scope.restartGame);
+    }
   };
 
-  // show alert for invalid phone
-	$scope.winOrLose = function(title) {
+  // show alert when progressing through levels or starting over
+	$scope.showPopup = function(title, msg, cb) {
 	  $ionicPopup.alert({
 	    title: title,
-      template: 'Would you like to play again?'
+      template: msg
 	  }).then(function(res) {
-	  	$scope.restartGame();
+	  	cb();
     });
   };
 
+  $scope.nextLevel = function() {
+    // define next level
+    $rootScope.gameLevel = $scope.level + 1;
+    // go there
+    $state.go($state.current, {}, {reload: true});
+  };
+
   $scope.restartGame = function() {
+    // start on first level
+    $rootScope.gameLevel = null;
   	// refresh state
   	$state.go($state.current, {}, {reload: true});
   };
-
 
 });

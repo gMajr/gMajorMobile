@@ -95,14 +95,20 @@ angular.module('gmajor.gridController', [])
     stopPlayingGrid();
   });
 
+  // Modal controls.
   $ionicModal.fromTemplateUrl('modal-audio-viz.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.modal = modal;
   });
-
   $scope.openModal = function() {
     $scope.modal.show();
   };
+  $scope.removeModal = function() {
+    $scope.modal.hide();
+  };
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
 });

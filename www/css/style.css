@@ -33,12 +33,11 @@ canvas {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  background-color: black;
-  margin-top: 50px;
+  margin-top: 150px;
 }
 
-.modal-backdrop .bar.bar-header
-/*.modal-backdrop .scroll-content */{
-  /*background: black;
-  color: white;*/
+.modal-backdrop.active,
+.modal-backdrop.active .bar.bar-header {
+  background: black;
+  opacity: 0.75;
 }

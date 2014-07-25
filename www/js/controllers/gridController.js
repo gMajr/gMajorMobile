@@ -19,11 +19,11 @@ angular.module('gmajor.gridController', [])
     {name: 'Edm', value: 'edm'}
   ];
   $scope.config.BPMOptions = [
-    {name: 25, value: 25},
-    {name: 50, value: 50},
+    {name: 40, value: 40},
+    {name: 80, value: 80},
     {name: 100, value: 100},
-    {name: 200, value: 200},
-    {name: 400, value: 400}
+    {name: 160, value: 160},
+    {name: 200, value: 200}
   ];
 
   var currentBoard = GridTargetFactory.soundBoard.Grids[GridTargetFactory.soundBoard.Grids.length - 1];
@@ -88,7 +88,7 @@ angular.module('gmajor.gridController', [])
   // Change the instrument and BPM based on the input selection.
   $scope.changeGrid = function() {
     GridTargetFactory.configGrid($scope.config.instrument, $scope.config.BPM);
-  }
+  };
 
   //Stop playing when the user navigates away via the side menu.
   $scope.$on('SideMenuNavigate', function(){

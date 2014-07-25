@@ -6,28 +6,16 @@
   <ion-content has-header="true" padding="true">
   <div class="row">
     <div class="col">
-      <ul class="list">
-        <li class="item" ng-repeat="chat in chatStream">
-          <div class="row">
-            <div class="col">
-              <p>{{chat.username}}</p>
-            </div>
-          </div>
-         <div class="row">
-            <div class="col" class="item item-image">
-                <img ng-src="{{chat.photoUrl}}"/>
-            </div>
-            <div class="col">
-              <button class="button {{chat.buttonState.style}}" ng-click="chat.togglePlay()"><i class="icon {{chat.buttonState.icon}}"></i></button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col item-text-wrap">
-              <p>{{chat.comment}}</p>
-            </div>
-          </div>
-        </li ng-repeat-end>
-      </ul>
+      <div class="list">
+        <div class="item item-avatar" ng-repeat="chat in chatStream">
+
+          <img src="{{chat.photoUrl}}">
+          <h2>{{chat.username}}</h2>
+          <p>{{chat.comment}}</p>
+          <button class="button button-small button-block button-outline {{chat.buttonState.style}}" ng-click="chat.togglePlay()"><i class="icon {{chat.buttonState.icon}}"></i></button>
+
+        </div ng-repeat-end>
+      </div>
     </div>
   </div>
   <div class="row">

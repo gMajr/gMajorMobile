@@ -95,6 +95,7 @@ module.exports = {
           item.music = message.music;
           item.authors.push(message.author);
           item.messages.push(message.message);
+          item.photos.push(message.photoUrl);
           item.timestamps.push(message.timestamp);
           item.fbids.push(message.fbid);
 

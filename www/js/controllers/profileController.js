@@ -6,6 +6,14 @@ angular.module('gmajor.profileController', [])
   $scope.user.id = window.sessionStorage['fbid'];
   $scope.navTitle = 'Profile';
   $scope.user.name=window.sessionStorage['name'];
-  console.log('name from session', window.sessionStorage['name']);
-  console.log('window session storage', window.sessionStorage);
+
+    $scope.goTo = function(page) {
+    // a bit wonky, but works in the short term
+    if (page !== 'logout'){
+      $location.url('/' + page);
+    }else{
+      $scope.logout();
+    }
+  };
+
 });

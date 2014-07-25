@@ -1,6 +1,6 @@
 angular.module('gmajor.gridController', [])
 
-.controller('GridController', function ($scope, GridTargetFactory, ChatsFactory, $location) {
+.controller('GridController', function ($scope, GridTargetFactory, ChatsFactory, $location, $ionicModal) {
   var prevPlayingCol = 0;
   var playStatus = 'stopped';
 
@@ -16,14 +16,14 @@ angular.module('gmajor.gridController', [])
     {name: 'Drums', value: 'drums'},
     {name: 'Organ', value: 'organ'},
     {name: 'Acoustic', value: 'acoustic'},
-    {name: 'Edm', value: 'edm'}
+    {name: 'EDM', value: 'edm'}
   ];
   $scope.config.BPMOptions = [
-    {name: 25, value: 25},
-    {name: 50, value: 50},
+    {name: 40, value: 40},
+    {name: 80, value: 80},
     {name: 100, value: 100},
-    {name: 200, value: 200},
-    {name: 400, value: 400}
+    {name: 160, value: 160},
+    {name: 200, value: 200}
   ];
 
   var currentBoard = GridTargetFactory.soundBoard.Grids[GridTargetFactory.soundBoard.Grids.length - 1];
@@ -88,10 +88,27 @@ angular.module('gmajor.gridController', [])
   // Change the instrument and BPM based on the input selection.
   $scope.changeGrid = function() {
     GridTargetFactory.configGrid($scope.config.instrument, $scope.config.BPM);
-  }
+  };
 
   //Stop playing when the user navigates away via the side menu.
   $scope.$on('SideMenuNavigate', function(){
     stopPlayingGrid();
-  })
+  });
+
+  // Modal controls.
+  $ionicModal.fromTemplateUrl('modal-audio-viz.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.removeModal = function() {
+    $scope.modal.hide();
+  };
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
 });

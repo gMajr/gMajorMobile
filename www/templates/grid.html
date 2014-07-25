@@ -2,6 +2,9 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon" ng-click="openModal()">Visualizer</button>
+  </ion-nav-buttons>
 
   <ion-content has-header="true" scroll="true">
   
@@ -51,3 +54,14 @@
 
   </ion-content>
 </ion-view>
+
+<script id="modal-audio-viz.html" class="modal-audio-viz" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar ng-click="removeModal()">
+      <h1 class="title"></h1>
+    </ion-header-bar>
+    <ion-content ng-click="removeModal()">
+      <canvas class="visualizer"></canvas>
+    <ion-content>
+  </ion-modal-view>
+</script>

@@ -14,18 +14,14 @@
   <div class="row">
     <div class="col">
       <ul class="list">
-        <li class="item" ng-repeat="chat in userChats" ng-click="navigateToChatScreen(chat)">
-          <div class="row">
-            <div class="col col-80">
-              With: <span ng-repeat="user in chat.users" class="users"> {{user}} </span>
-            </div>
-            <div class="col">
-              {{chat.gridNumbers}} Grids
-            </div>
-          </div>
+        <li class="item chats-list" ng-click="navigateToChatScreen(chat)" ng-repeat="chat in userChats">
           <div class="row">
             <div class="col">
-              Last: {{chat.last}}
+              <span ng-repeat="user in chat.users" class="users"> {{user}} </span>
+              <span class="badge badge-positive"> {{chat.gridNumbers}} </span>
+              <span class="col chats-time">
+                {{chat.last}}
+              </span>
             </div>
           </div>
         </li>

@@ -2,8 +2,16 @@ var dbuser = process.env.MONGO_USERNAME;
 var dbpassword = process.env.MONGO_PASSWORD;
 var dburi = process.env.MONGO_HOSTANDPORT;
 var dbname = process.env.MONGO_DBNAME;
+var MONGO_CONNECTION_STRING;
 
-var connectionString = ("mongodb://" + dbuser + ":" + dbpassword + "@" + dburi + "/" + dbname)   || 'mongodb://MongoLab-r:MBC1Zu.wH4o6g02MiEDSxOml1YfGewuVHMG1Ofe9Exc-@ds050077.mongolab.com:50077/MongoLab-r';
+if (dbuser && dbpassword && dburi && dbname) {
+  MONGO_CONNECTION_STRING = "mongodb://" + dbuser + ":" + dbpassword + "@" + dburi + "/" + dbname  
+}
+else {
+  MONGO_CONNECTION_STRING = "mongodb://localhost/gmajor";
+}
+
+var connectionString = MONGO_CONNECTION_STRING;
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 module.exports = {

@@ -1,4 +1,17 @@
-var connectionString = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://MongoLab-r:MBC1Zu.wH4o6g02MiEDSxOml1YfGewuVHMG1Ofe9Exc-@ds050077.mongolab.com:50077/MongoLab-r';
+var dbuser = process.env.MONGO_USERNAME;
+var dbpassword = process.env.MONGO_PASSWORD;
+var dburi = process.env.MONGO_HOSTANDPORT;
+var dbname = process.env.MONGO_DBNAME;
+var MONGO_CONNECTION_STRING;
+
+if (dbuser && dbpassword && dburi && dbname) {
+  MONGO_CONNECTION_STRING = "mongodb://" + dbuser + ":" + dbpassword + "@" + dburi + "/" + dbname  
+}
+else {
+  MONGO_CONNECTION_STRING = "mongodb://localhost/gmajor";
+}
+
+var connectionString = MONGO_CONNECTION_STRING;
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 module.exports = {
@@ -15,11 +28,11 @@ module.exports = {
         {$set: data},
         {},
         function(err, object) {
-            if (err){
-              throw err;
-            }else{
-              res.send(object);
-            }
+          if (err){
+            throw err;
+          }else{
+            res.send(object);
+          }
         });
     });
   },
@@ -52,6 +65,7 @@ module.exports = {
       });
     });
   },
+
   match: function(collectionName, res, params){
     MongoClient.connect(connectionString, function(err, db) {
       if(err) throw err;
@@ -74,6 +88,7 @@ module.exports = {
       }
     });
   },
+  
   append: function(collectionName, res, id, message){
     if (id !== undefined){
       id = {_id: mongodb.ObjectID(id)};
@@ -88,6 +103,7 @@ module.exports = {
           item.music = message.music;
           item.authors.push(message.author);
           item.messages.push(message.message);
+          item.photos.push(message.photoUrl);
           item.timestamps.push(message.timestamp);
           item.fbids.push(message.fbid);
 

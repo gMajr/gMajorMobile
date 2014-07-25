@@ -22,3 +22,22 @@
 .users:not(:first-child){
 	display:block;
 }
+
+.play-button.button {
+  margin: 0;
+}
+
+canvas {
+  width: 298;
+  height: 220;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 150px;
+}
+
+.modal-backdrop.active,
+.modal-backdrop.active .bar.bar-header {
+  background: black;
+  opacity: 0.75;
+}

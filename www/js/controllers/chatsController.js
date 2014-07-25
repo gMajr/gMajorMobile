@@ -5,10 +5,10 @@ angular.module('gmajor.chatsController', [])
   $scope.navTitle = 'Chats';
 
 	ChatsFactory.getAllChats()
-	.then(function (data) {
-		 $scope.userChats = ChatsFactory.processChatData(data);
-		 ChatsFactory.data = data;
-	});
+  	.then(function (data) {
+  		$scope.userChats = ChatsFactory.processChatData(data);
+  		ChatsFactory.data = data;
+  	});
 
 	$scope.startNewChat = function(){
 		ChatsFactory.resetBoard(GridTargetFactory);

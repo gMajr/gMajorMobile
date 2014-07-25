@@ -2,30 +2,67 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon" ng-click="openModal()">Visualizer</button>
+  </ion-nav-buttons>
 
   <ion-content has-header="true" scroll="true">
-  <div class="row" padding="false">
-    <div class="col">
-      <svg width="298" height="298" xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <rect x="0" y="0" width="298" height="298" fill="white"/>
-        <g stroke="black" fill="grey" stroke-width="2">
-          <g  ng-repeat="column in columns" class="column {{column.activeClass}}">
-            <circle ng-repeat-start="target in column" ng-cx="target.x" ng-cy="target.y" ng-r="target.circleR" />
-            <rect ng-repeat-end ng-x="target.rectX" ng-y="target.rectY" ng-width="target.rectHeight" ng-height="target.rectWidth" on-touch="target.clickToggle()" class="targetInvisible" />
-          </g>
-        </g>
-      </svg>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <button class="button button-block {{playButtonStyle}}" ng-click="playGrid()"><i class="icon {{playButtonIcon}}"></i> {{playButtonText}}</button>
-    </div>
-  </div>
+  
     <div class="row">
-    <div class="col">
-      <button class="button button-block button-positive" ng-click="addSongToChat()"><i class="icon ion-plus"></i> Add Song To Chat</button>
+      <div class="col list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Instrument:
+          </div>
+          <select ng-model="config.instrument" ng-change="changeGrid()" ng-options="instrument.value as instrument.name for instrument in config.instrumentOptions">
+          </select>
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            BPM:
+          </div>
+          <select ng-model="config.BPM" ng-change="changeGrid()" ng-options="BPM.value as BPM.name for BPM in config.BPMOptions">
+          </select>
+        </label>
+      </div>
     </div>
-  </div>
+    
+    <div class="row" padding="false">
+      <div class="col">
+        <svg width="298" height="298" xmlns="http://www.w3.org/2000/svg" version="1.1">
+          <rect x="0" y="0" width="298" height="298" fill="white"/>
+          <g stroke="black" fill="grey" stroke-width="2">
+            <g ng-repeat="column in columns" class="column {{column.activeClass}}">
+              <circle ng-repeat-start="target in column" ng-cx="target.x" ng-cy="target.y" ng-r="target.circleR" />
+              <rect ng-repeat-end ng-x="target.rectX" ng-y="target.rectY" ng-width="target.rectHeight" ng-height="target.rectWidth" on-touch="target.clickToggle()" class="targetInvisible" />
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button class="button button-block {{playButtonStyle}} play-button" ng-click="playGrid()"><i class="icon {{playButtonIcon}}"></i> {{playButtonText}}</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button class="button button-block button-positive" ng-click="addSongToChat()"><i class="icon ion-plus"></i> Add Song To Chat</button>
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>
+
+<script id="modal-audio-viz.html" class="modal-audio-viz" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar ng-click="removeModal()">
+      <h1 class="title"></h1>
+    </ion-header-bar>
+    <ion-content ng-click="removeModal()">
+      <canvas class="visualizer"></canvas>
+    <ion-content>
+  </ion-modal-view>
+</script>

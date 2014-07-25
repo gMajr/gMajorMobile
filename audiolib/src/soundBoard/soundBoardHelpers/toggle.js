@@ -13,17 +13,21 @@ SoundBoard.prototype.toggle = function(col, row){
 	if ( currentBoard.instrumentName === 'drums' ){
 		if( currentBoard.keys[row] in currentBoard.noteScheduler[col]){
 			delete currentBoard.noteScheduler[col][currentBoard.keys[row]];
+			currentBoard.noteMatrix[col][row] = 0;
 		}else{
 			currentBoard.noteScheduler[col][currentBoard.keys[row]] = currentBoard.keys[row];
+			currentBoard.noteMatrix[col][row] = 1;
 		}
 	}else{		
 		//we had to put a number without a decimal as a key.  A decimal in the key will not work with 
 		//mongodb.  In this case we give an integer as the key, and the full decimal frequency as the value.
 		
 		if (parseInt(currentBoard.keys[row]) in currentBoard.noteScheduler[col]){
-		 delete currentBoard.noteScheduler[col][parseInt(currentBoard.keys[row])];
+		 	delete currentBoard.noteScheduler[col][parseInt(currentBoard.keys[row])];
+			currentBoard.noteMatrix[col][row] = 0;
 		}else{
-		 currentBoard.noteScheduler[col][parseInt(currentBoard.keys[row])] = currentBoard.keys[row];
+		 	currentBoard.noteScheduler[col][parseInt(currentBoard.keys[row])] = currentBoard.keys[row];
+			currentBoard.noteMatrix[col][row] = 1;
 		}
 	}
 

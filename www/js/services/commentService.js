@@ -11,13 +11,15 @@ angular.module('gmajor.commentFactory', [])
     var timestamp = new Date();
     var author = window.sessionStorage.name || 'Guest';
     var music = GridTargetFactory.soundBoard.exportGrids();
-    var fbid = window.sessionStorage.fbid;
+    var fbid = window.sessionStorage.fbid || '77';
+    var photoUrl = window.sessionStorage.photoUrl || "http://cdn1.image.bored.com/user/81830/media/0415807030cool_face_4057_jpg.jpeg";
 
     dataToServer = {
       fbid: fbid,
       message: message,
       timestamp: timestamp,
       author: author,
+      photoUrl: photoUrl,
       music: music
     };
     

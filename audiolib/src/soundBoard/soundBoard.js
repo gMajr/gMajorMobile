@@ -19,7 +19,7 @@ var SoundBoard = function(gridInformation){
 			var freq = gridInformation[i].freq;
 			var noteScheduler = gridInformation[i].noteScheduler;
 
-//BPM represents beats-per-minute.  If you have 60 BPM, then you divid by 60 to get a beat-per-second.  
+//BPM represents beats-per-minute.  If you have 60 BPM, then you divide by 60 to get a beat-per-second.  
 //In music, this means you will have two sounds to each beat, or a sound every .5 seconds.
 //We've set the default BPM in our app to 120 BPMs, but you may definitely change it.
 

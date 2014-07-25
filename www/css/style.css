@@ -41,3 +41,14 @@ canvas {
   background: black;
   opacity: 0.75;
 }
+
+.chats-list {
+  padding-bottom: 0;
+}
+
+.chats-time {
+  font-style: italic;
+  color: #999;
+  text-align: right;
+}
+

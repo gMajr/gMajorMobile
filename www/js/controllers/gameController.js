@@ -40,19 +40,12 @@ angular.module('gmajor.gameController', [])
   var randomizeMatrix = function(matrix) {
   	for (var c = 0; c < matrix.length; c++) {
   		var rowIndex = Math.floor(Math.random()*6);
-  		matrix[c][rowIndex].clickToggle();
+      // toggle silently
+  		matrix[c][rowIndex].clickToggle(true);
   	}
   };
   // generate random opponent's matrix (and update that grid)
   randomizeMatrix($scope.opponentMatrix.matrix);
-
-  $scope.leftButtons = [{
-    type: 'button-icon icon ion-navicon',
-    tap: function(e) {
-      // TODO: Stuff on click
-      stopPlayingGrid();
-    }
-  }];
 
   var startPlayingGrid = function() {
     $scope.currentGrid.playInterval(playcallback);

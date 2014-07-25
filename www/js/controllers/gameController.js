@@ -1,12 +1,23 @@
 angular.module('gmajor.gameController', [])
 
 .controller('GameController', function ($scope, $rootScope, $state, $timeout, $location, $ionicPopup, GameGridFactory) {
-	var prevPlayingCol = 0;
+	// music playback variables
+  var prevPlayingCol = 0;
 	var loop = false;
   var playStatus = 'stopped';
   var BPM = '100';
-
+  // game and scoring variables
+  var roundStart;
+  var roundEnd;
+  var levelBonusTime = 10*1000; // in milliseconds
+  if (!$rootScope.levelPenaltyTime) {
+    $rootScope.levelPenaltyTime = 0;
+  }
+  if (!$rootScope.gameScore) {
+    $rootScope.gameScore = 0;
+  }
   $scope.level = $rootScope.gameLevel || 2;
+  $scope.score = $rootScope.gameScore;
   var maxLevel = 8;
 
   // set up player and opponents
@@ -95,10 +106,11 @@ angular.module('gmajor.gameController', [])
   // Animated walkthrough of oppenents randomized matrix
   // player only sees one time
   $scope.playOpponentsSequence = function() {
+    roundStart = new Date().getTime(); // timestamp
 		$scope.currentMatrix = $scope.opponentMatrix;
   	$scope.playGrid();
   	$scope.readyToPlay = false;
-  	$scope.$apply();
+  	//$scope.$apply();
   };
 
   // Show player an empty board to mirror the oppenents sequence on
@@ -109,6 +121,7 @@ angular.module('gmajor.gameController', [])
 
   // Player matches the opponent's sequence to beat the level
   $scope.submitPlayersSequence = function() {
+    roundEnd = new Date().getTime(); // timestamp
   	var player = JSON.stringify($scope.playerGrid.noteMatrix);
   	var opponent = JSON.stringify($scope.opponentGrid.noteMatrix);
     var win = player === opponent;
@@ -133,17 +146,32 @@ angular.module('gmajor.gameController', [])
   };
 
   $scope.nextLevel = function() {
+    // update penalty time
+    $rootScope.levelPenaltyTime = $rootScope.levelPenaltyTime+(roundEnd-roundStart);
+    // update level and game scores
+    levelBonusTime -= $rootScope.levelPenaltyTime;
+    if (levelBonusTime > 0) {
+      $rootScope.gameScore += levelBonusTime;
+    }
+    // reset penalty time
+    $rootScope.levelPenaltyTime = null;
+    // move to next level
     $rootScope.gameLevel = $scope.level + 1;
     $state.go($state.current, {}, {reload: true});
   };
 
   $scope.restartLevel = function() {
+    // update penalty time
+    $rootScope.levelPenaltyTime = $rootScope.levelPenaltyTime+(roundEnd-roundStart);
     $state.go($state.current, {}, {reload: true});
   };
 
   $scope.restartGame = function() {
+    $rootScope.gameScore = null;
     $rootScope.gameLevel = null;
   	$state.go($state.current, {}, {reload: true});
   };
+
+  console.log("Score = ", $rootScope.gameScore);
 
 });

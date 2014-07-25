@@ -1,4 +1,4 @@
-<ion-view title="{{navTitle}}">
+<ion-view title="{{navTitle}}" class="royal">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
@@ -6,8 +6,11 @@
   <ion-content has-header="true" padding="false">
 
   	<div class="row" padding="false">
-	    <div class="col" style="text-align: center;">
-	    	<h3>Level {{level}}</h3>
+	    <div class="col">
+	    	<div class="button-bar">
+  				<a class="button">Level {{level-1}}</a>
+				  <a class="button">Score: {{score}}</a>
+				</div>
 	    </div>
 	  </div>
 

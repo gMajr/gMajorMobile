@@ -1,37 +1,50 @@
 angular.module('gmajor.gameController', [])
 
-.controller('GameController', function ($scope, $state, $timeout, $location, $ionicPopup, GameGridFactory) {
+.controller('GameController', function ($scope, $rootScope, $state, $timeout, $location, $ionicPopup, GameGridFactory) {
 	var prevPlayingCol = 0;
 	var loop = false;
   var playStatus = 'stopped';
   var BPM = '100';
 
-  // set up player and opponents grids (musical) and matrices (visual)
-  $scope.opponentGrid = new Grid('piano', BPM, 329.63);
-  $scope.playerGrid = new Grid('piano', BPM, 329.63);
+  $scope.level = $rootScope.gameLevel || 2;
+  var maxLevel = 8;
+
+  // set up player and opponents
+  // grids contain musical data
+  // matrices contain visual data necessary for the UI to render
+  // toggling a target in the matrix, updates it's grid
+  // grids also contain a noteMatrix that represents the state of it's matrix in basic on/off (1 or 0) terms
+  // the grids' noteMatrix is used for comparing grids and determining whether they match
+  $scope.opponentGrid = new Grid('piano', BPM, 329.63, null, $scope.level);
+  $scope.playerGrid = new Grid('piano', BPM, 329.63, null, $scope.level);
   $scope.opponentMatrix = GameGridFactory.newMatrix($scope.opponentGrid);
   $scope.playerMatrix = GameGridFactory.newMatrix($scope.playerGrid);
 
-  // default settings loaded when state is intiated
-  $scope.columns = $scope.playerMatrix.columns; // cheat
-  $scope.currentBoard = $scope.opponentGrid;
-  // show or hide play button
+  // the scopes columns render the visual grid in the UI
+  // each column contains target objects with methods and data
+  // both a current matrix and grid must be defined (for visual and music to correspond)
+    // *TODO: make this a dummy empty board that isn't clickable
+  $scope.currentMatrix = $scope.playerMatrix; // (this is a cheat)
+  $scope.currentGrid = $scope.opponentGrid;
+  // shows or hide play button
   $scope.readyToPlay = true;
-
-  $scope.config = {};
+ 
   $scope.navTitle = 'Match Each Note';
  
-  $scope.config.instrument = $scope.currentBoard.instrumentName;
+  // configure instruments to use in template if desired
+  $scope.config = {};
+  $scope.config.instrument = $scope.currentGrid.instrumentName;
   $scope.config.BPM = BPM;
 
-  // generate random opponent's grid
-  var randomizeGrid = function(targetMatrix) {
-  	for (var c = 0; c < targetMatrix.length; c++) {
+  // creates a random matrix with 1 note per column
+  var randomizeMatrix = function(matrix) {
+  	for (var c = 0; c < matrix.length; c++) {
   		var rowIndex = Math.floor(Math.random()*6);
-  		targetMatrix[c][rowIndex].clickToggle();
+  		matrix[c][rowIndex].clickToggle();
   	}
   };
-  randomizeGrid($scope.opponentMatrix.columns);
+  // generate random opponent's matrix (and update that grid)
+  randomizeMatrix($scope.opponentMatrix.matrix);
 
   $scope.leftButtons = [{
     type: 'button-icon icon ion-navicon',
@@ -42,27 +55,26 @@ angular.module('gmajor.gameController', [])
   }];
 
   var startPlayingGrid = function() {
-  	console.log("here ", $scope.currentBoard);
-    $scope.currentBoard.playInterval(playcallback);
+    $scope.currentGrid.playInterval(playcallback);
     playStatus = 'playing';
   }
 
   var stopPlayingGrid = function() {
-    $scope.currentBoard.stopSounds();
+    $scope.currentGrid.stopSounds();
     playStatus = 'stopped';
   }
 
   var playcallback = function(playingCol) { 	
     if(playingCol >= 0){
-      $scope.columns[prevPlayingCol].activeClass = undefined;
-      $scope.columns[playingCol].activeClass = 'colActive';
+      $scope.currentMatrix.matrix[prevPlayingCol].activeClass = undefined;
+      $scope.currentMatrix.matrix[playingCol].activeClass = 'colActive';
       $scope.$apply();
       prevPlayingCol = playingCol;
     }
-    // prevent loop
-    if(!loop && playingCol === 7) {
+    // prevent loop in game mode
+    if(!loop && playingCol === ($scope.level-1)) {
     	$timeout(function() {
-	    	$scope.columns[playingCol].activeClass = undefined;
+	    	$scope.currentMatrix.matrix[playingCol].activeClass = undefined;
 	    	stopPlayingGrid();
 	    	playersTurn();
 	    	$scope.$apply();
@@ -83,44 +95,62 @@ angular.module('gmajor.gameController', [])
     stopPlayingGrid();
   });
 
+  ///////////////
   // Game
-  // Play one time
-  $scope.playGame = function() {
-		$scope.columns = $scope.opponentMatrix.columns;
+  ///////////////
+
+  // Animated walkthrough of oppenents randomized matrix
+  // player only sees one time
+  $scope.playOpponentsSequence = function() {
+		$scope.currentMatrix = $scope.opponentMatrix;
   	$scope.playGrid();
   	$scope.readyToPlay = false;
   	$scope.$apply();
   };
-  // Show player an empty board
+
+  // Show player an empty board to mirror the oppenents sequence on
   var playersTurn = function() {
-  	$scope.currentBoard = $scope.playerGrid;
-  	$scope.columns = $scope.playerMatrix.columns;
+  	$scope.currentGrid = $scope.playerGrid;
+  	$scope.currentMatrix = $scope.playerMatrix;
   };
 
-  $scope.decideWinner = function() {
+  // Player matches the opponent's sequence to beat the level
+  $scope.submitPlayersSequence = function() {
   	var player = JSON.stringify($scope.playerGrid.noteMatrix);
   	var opponent = JSON.stringify($scope.opponentGrid.noteMatrix);
-  	if (player === opponent) {
-  		$scope.winOrLose("You win!");
-  	} else {
-  		$scope.winOrLose("You lose!");
-  	}
+    var win = player === opponent;
+    // progress through levels, beat the game, or lose
+    if (!win) {
+      $scope.showPopup("Almost!", "You made it to level " + $scope.level + ". Try again?", $scope.restartGame);
+    } else if ($scope.level < maxLevel) {
+  		$scope.showPopup("You beat the level!", "Keep going?", $scope.nextLevel);
+  	} else if ($scope.level === maxLevel) {
+      $scope.showPopup("WINNING!", "You're a gMajor ninja. You beat the game. Play again?", $scope.restartGame);
+    }
   };
 
-  // show alert for invalid phone
-	$scope.winOrLose = function(title) {
+  // show alert when progressing through levels or starting over
+	$scope.showPopup = function(title, msg, cb) {
 	  $ionicPopup.alert({
 	    title: title,
-      template: 'Would you like to play again?'
+      template: msg
 	  }).then(function(res) {
-	  	$scope.restartGame();
+	  	cb();
     });
   };
 
+  $scope.nextLevel = function() {
+    // define next level
+    $rootScope.gameLevel = $scope.level + 1;
+    // go there
+    $state.go($state.current, {}, {reload: true});
+  };
+
   $scope.restartGame = function() {
+    // start on first level
+    $rootScope.gameLevel = null;
   	// refresh state
   	$state.go($state.current, {}, {reload: true});
   };
-
 
 });

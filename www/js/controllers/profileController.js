@@ -9,7 +9,6 @@ angular.module('gmajor.profileController', [])
 
     $scope.goTo = function(page) {
     // a bit wonky, but works in the short term
-    console.log('button clicked ', page);
     if (page !== 'logout'){
       $location.url('/' + page);
     }else{

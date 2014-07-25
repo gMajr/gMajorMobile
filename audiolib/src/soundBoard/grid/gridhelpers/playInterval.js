@@ -8,7 +8,6 @@ Grid.prototype.playInterval = function(cb){
 
   var continuedLoop = function( MIDI, startTime, k ){
 
-    console.log("schd ", this.noteScheduler);
     var currentTime = context.currentTime;
     var currentCol = Math.ceil( ( currentTime - startTime ) / ( 60 / this.BPM / 2 ) % 8 ) - 1;
     var numberOfCycles = Math.floor( ( currentTime - startTime ) / ( 60 / this.BPM / 2 * 8 ) );

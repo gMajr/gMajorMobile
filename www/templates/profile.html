@@ -5,16 +5,30 @@
 
 
     <ion-content has-header="true" padding="true">
-
-        <div class="list card">
-            <div class="item">
-                <h2>{{user.name}}</h2>
-                <p>{{user.email}}</p>
-            </div>
-            <div class="item item-image">
-                <img ng-src="{{user.photoUrl}}" />
+        <div class="row" padding="false">
+            <div class="col">
+                <h3>{{user.name}}</h3>
             </div>
         </div>
+
+        <div class="row" padding="false">
+            <div class="col">
+                <!--<img ng-src="{{user.photoUrl}}" />-->
+                <img class="full-image" ng-src="{{user.photoUrl}}" />
+            </div>
+            <div class="col">
+                <div class="row" padding="false">
+                    <div class="col">
+                        <p>High Score: TBD</p>
+                    </div>
+                </div>  
+                <div class="row" padding="false">
+                    <div class="col">
+                        <button ng-click="goTo('game')" class="button button-block button-balanced"> Play </button>
+                    </div>
+                </div>      
+            </div>
+        </div>  
 
     </ion-content>
   

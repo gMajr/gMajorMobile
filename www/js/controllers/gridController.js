@@ -1,6 +1,6 @@
 angular.module('gmajor.gridController', [])
 
-.controller('GridController', function ($scope, GridTargetFactory, ChatsFactory, $location) {
+.controller('GridController', function ($scope, GridTargetFactory, ChatsFactory, $location, $ionicModal) {
   var prevPlayingCol = 0;
   var playStatus = 'stopped';
 
@@ -93,5 +93,16 @@ angular.module('gmajor.gridController', [])
   //Stop playing when the user navigates away via the side menu.
   $scope.$on('SideMenuNavigate', function(){
     stopPlayingGrid();
-  })
+  });
+
+  $ionicModal.fromTemplateUrl('modal-audio-viz.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
 });

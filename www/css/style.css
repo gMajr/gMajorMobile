@@ -52,3 +52,23 @@ canvas {
   text-align: right;
 }
 
+.index-logo {
+  background: url("http://gmajr.github.io/images/gMajorLogo.png") no-repeat scroll center top;
+  background-size: contain;
+  height: 300px;
+}
+
+.log-in-page {
+  background-color: #66CC33;
+}
+
+.side-menu-container {
+  background-color: #66CC33;
+}
+
+.side-menu-logo {
+  background: url("http://gmajr.github.io/images/gMajorLogo.png") no-repeat scroll center top;
+  background-size: contain;
+  height: 176px;
+}
+

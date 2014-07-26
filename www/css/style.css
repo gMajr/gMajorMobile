@@ -53,7 +53,7 @@ canvas {
 }
 
 .index-logo {
-  background: url("http://gmajr.github.io/images/gMajorLogo.png") no-repeat scroll center top;
+  background: url("/img/gMajorLogo.png") no-repeat scroll center top;
   background-size: contain;
   height: 300px;
 }
@@ -67,7 +67,7 @@ canvas {
 }
 
 .side-menu-logo {
-  background: url("http://gmajr.github.io/images/gMajorLogo.png") no-repeat scroll center top;
+  background: url("/img/gMajorLogo.png") no-repeat scroll center top;
   background-size: contain;
   height: 176px;
 }

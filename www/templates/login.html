@@ -1,10 +1,19 @@
-<ion-view title="{{navTitle}}">
+<ion-view title="{{navTitle}}" class="log-in-page">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
 
   <ion-content has-header="true" padding="true">
-    <button class="button button-block button-positive" ng-click="login()">Login with Facebook</button>
+    <div class="row">
+      <div class="col index-logo" alt="gMajor"></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button class="button button-block button-positive" ng-click="login()">
+          Login with Facebook
+        </button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

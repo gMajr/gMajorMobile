@@ -240,4 +240,4 @@ var openFB = (function () {
 
 }());
 // when setting up for a new app, edit the number here:
-openFB.init('657453954332268');
+openFB.init('670710196332403');

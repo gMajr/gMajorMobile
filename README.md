@@ -19,7 +19,7 @@
 
 ## Introduction
 This is an ionic app that runs on Safari for iOS7 and Chrome 36+. The backend is a 
-MongoDB database served by [mongolab](https://mongolab.com/). The DB is controlled by the [Node.js MongoDB Driver](http://docs.mongodb.org/ecosystem/drivers/node-js/). The Web Audio API is used to generate sounds without using recorded samples. While it can be built down to a web site for testing purposes, it's expected to be run on a moble device. 
+MongoDB database served by [mongolab](https://mongolab.com/). The DB is controlled by the [Node.js MongoDB Driver](http://docs.mongodb.org/ecosystem/drivers/node-js/). The Web Audio API is used to generate sounds without using recorded samples. While it can be built down to a web site for testing purposes, it's expected to be run on a mobile device. 
 
 ## Website
 Product website can be found [here](http://gmajr.github.io) and is still in development.  

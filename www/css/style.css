@@ -55,7 +55,7 @@ canvas {
 .index-logo {
   background: url("/img/gMajorLogo.png") no-repeat scroll center top;
   background-size: contain;
-  height: 300px;
+  height: 250px;
 }
 
 .log-in-page {

@@ -1,5 +1,6 @@
 # GMajor Mobile
-
+[![Build Status](https://travis-ci.org/gMajr/gMajorMobile.svg?branch=master)](https://travis-ci.org/gMajr/gMajorMobile)
+[![Gulp](http://img.shields.io/badge/Built%20with-Gulp-blue.svg)](http://gulpjs.com)
 > Music is the universal language
 
 ## Table of Contents
